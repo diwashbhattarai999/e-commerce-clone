@@ -2,6 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-color: #624096;
+  --secondary-color: #43A69B;
+  --lightgrey-color: #4B4453;
+  --dark-color: #000;
+  --transparent-color: transparent;
+  --accent-color: #613E98;
+  --red-color: #F70353;
+  --gray-color: #808080;
+  --grey-text: #EAEAEA;
+  --blue-color: #008FBE;
+  --base-background-color: #f1f1f1;
+  --content-background-color: #ffffff;
+  --text-primary-color: #4B4453;
+  --text-secondary-color: #4B4453;
+  --spacing-base: 4px;
+  --spacing-0x: 0px;
+  --spacing-1x: 4px;
+  --spacing-2x: 8px;
+  --spacing-3x: 12px;
+  --spacing-4x: 16px;
+  --spacing-5x: 20px;
+  --spacing-6x: 24px;
+  --spacing-7x: 28px;
+  --spacing-8x: 32px;
+  --spacing-9x: 36px;
+  --spacing-10x: 40px;
+  --spacing-11x: 44px;
+  --spacing-12x: 48px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +55,7 @@ input,
 textarea,
 select {
   font: inherit;
+  outline: none;
 }
 
 p,
