@@ -37,6 +37,16 @@ module.exports = {
         "spacing-12x": "var(spacing-12x)",
       },
     },
+    screens: {
+      'tablet': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'laptop': '992px',
+      // => @media (min-width: 990px) { ... }
+
+      'desktop': '1024px',
+      // => @media (min-width: 1024px) { ... }
+    },
   },
   plugins: [],
 };

@@ -4,19 +4,19 @@
 
 :root {
   --primary-color: #624096;
-  --secondary-color: #43A69B;
-  --lightgrey-color: #4B4453;
+  --secondary-color: #43a69b;
+  --lightgrey-color: #4b4453;
   --dark-color: #000;
   --transparent-color: transparent;
-  --accent-color: #613E98;
-  --red-color: #F70353;
+  --accent-color: #613e98;
+  --red-color: #f70353;
   --gray-color: #808080;
-  --grey-text: #EAEAEA;
-  --blue-color: #008FBE;
+  --grey-text: #eaeaea;
+  --blue-color: #008fbe;
   --base-background-color: #f1f1f1;
   --content-background-color: #ffffff;
-  --text-primary-color: #4B4453;
-  --text-secondary-color: #4B4453;
+  --text-primary-color: #4b4453;
+  --text-secondary-color: #4b4453;
   --spacing-base: 4px;
   --spacing-0x: 0px;
   --spacing-1x: 4px;
@@ -89,4 +89,16 @@ ul {
 button {
   outline: none;
   border: none;
+}
+
+.triangle::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-top: 0;
+  border-bottom: 6px solid var(--primary-color);
 }

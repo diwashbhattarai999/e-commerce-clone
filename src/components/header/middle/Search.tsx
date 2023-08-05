@@ -1,12 +1,47 @@
-import {BiSearch} from "react-icons/bi"
+"use client";
+
+import { useState } from "react";
+import { BiSearch } from "react-icons/bi";
+import SearchBar from "./SearchBar";
 
 const Search = () => {
-    return (
-        <div className="border-2 border-primary-color rounded-full w-2/3 flex items-center px-4 py-3 ">
-            <BiSearch size="20px" color="#613E98" className="cursor-pointer"/>
-            <input type="text" placeholder="Search entire store here..." className="ml-2 w-full" />
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const handleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
+  return (
+    <>
+      {/* laptop */}
+      <div className="w-2/3 hidden laptop:block">
+        <SearchBar />
+      </div>
+
+      {/* Tablet */}
+      <div className="laptop:hidden flex flex-col items-end">
+        <div onClick={() => handleSearch()}>
+          <BiSearch
+            size="20px"
+            color="#613E98"
+            className="cursor-pointer mr-4"
+          />
         </div>
-    );
-}
+        <div
+          className={`
+            ${isSearchOpen ? "flex" : "hidden"}
+            absolute top-12  
+            bg-white
+            z-50
+            triangle
+            w-1/2
+        `}
+        >
+          <SearchBar />
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Search;

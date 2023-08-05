@@ -18,7 +18,7 @@ const Cart = () => {
       <div className="flex items-center relative px-2 ">
         <h5 className="mr-2">Cart</h5>
         <MdOutlineShoppingCart size="20px" />
-        <span className="rounded-full bg-secondary-color w-6 h-6 absolute bottom-3 left-[46px] flex items-center justify-center overflow-hidden text-white">
+        <span className="rounded-full bg-secondary-color w-6 h-6 absolute bottom-3 right-4 flex items-center justify-center overflow-hidden text-white">
           0
         </span>
         <PiCaretDownThin size="18px" />
