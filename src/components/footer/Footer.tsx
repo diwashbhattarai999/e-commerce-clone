@@ -6,7 +6,7 @@ import qr_app from "@/images/footer_qr_app.png";
 
 const Footer = () => {
   return (
-    <div className="bg-white fixed bottom-0 w-full pt-14 pb-4">
+    <div className="bg-white bottom-0 w-full pt-14 pb-4">
       <Container>
         <div className="flex flex-col-reverse laptop:flex-row">
           <div className="w-full">

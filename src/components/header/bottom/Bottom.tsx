@@ -80,7 +80,7 @@ const Bottom = () => {
           <div className="cursor-pointer">
             <VscAccount size="20" />
           </div>
-          <div className="mt-2">
+          <div className="mt-2 relative">
             <Cart />
           </div>
         </div>

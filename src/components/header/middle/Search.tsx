@@ -30,7 +30,7 @@ const Search = () => {
         <div
           className={`
             ${isSearchOpen ? "flex" : "hidden"}
-            absolute top-12  
+            absolute top-16  
             bg-white
             z-50
             triangle

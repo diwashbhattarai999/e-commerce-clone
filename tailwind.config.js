@@ -38,6 +38,9 @@ module.exports = {
       },
     },
     screens: {
+      'mobile': '400px',
+      // => @media (min-width: 400px) { ... }
+
       'tablet': '768px',
       // => @media (min-width: 768px) { ... }
 

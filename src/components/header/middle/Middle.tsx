@@ -28,7 +28,7 @@ const Middle = () => {
         <Logo />
       </div>
       <Search />
-      <div className="hidden laptop:block">
+      <div className="hidden laptop:block relative">
         <Cart />
       </div>
     </div>
