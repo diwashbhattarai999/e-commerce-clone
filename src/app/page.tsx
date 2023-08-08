@@ -4,7 +4,9 @@ export default function Home() {
   return (
     <main>
       <Container>
-        Body
+        <div className="h-screen">
+
+        </div>
       </Container>
     </main>
   )

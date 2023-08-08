@@ -1,14 +1,18 @@
+"use client";
+
 import { BiLogoFacebook, BiLogoInstagram, BiLogoTwitter } from "react-icons/bi";
 import MenuItem from "../MenuItem";
 
 const Top = () => {
   return (
-    <div className="
+    <div
+      className="
       hidden
       w-full 
       laptop:flex items-center justify-between 
       text-lightgrey-color
-    ">
+    "
+    >
       <div className="flex gap-3">
         <p className="text-sm ">Connect with us</p>
         <div className="flex gap-1">

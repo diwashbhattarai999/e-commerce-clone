@@ -9,8 +9,13 @@ import { VscAccount } from "react-icons/vsc";
 import { useState } from "react";
 import Categories from "@/components/categories/Categories";
 import Cart from "../Cart";
+import MobileSearch from "../middle/MobileSearch";
 
-const Bottom = () => {
+type BottomProp = {
+  isScroll: boolean;
+};
+
+const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
   const [openCategories, setOpenCategories] = useState(false);
   const [slider, setSlider] = useState(false);
 
@@ -23,29 +28,32 @@ const Bottom = () => {
   };
 
   return (
-    <div>
-      <div
-        className="
-      hidden
-      laptop:flex items-center w-full justify-center 
-      text-sm 
-      border-b-2 border-[#D5D5D5] 
-      pb-2
-      "
-      >
-        <MenuItem Icon={BsTag} label="Brands" />
-        <MenuItem Icon={BiStoreAlt} label="Stores" />
-        <div className="">
-          <MenuItem
-            Icon={MdOutlineCategory}
-            IconRight={PiCaretDownThin}
-            label="Categories"
-            onClick={() => handleClick()}
-          />
-          {openCategories && <Categories />}
+    <>
+      <div className="flex">
+        <div
+          className="
+            hidden
+            laptop:flex items-center w-full justify-center 
+            text-sm 
+            border-b-2 border-[#D5D5D5] 
+            pb-2
+          "
+        >
+          <MenuItem Icon={BsTag} label="Brands" />
+          <MenuItem Icon={BiStoreAlt} label="Stores" />
+          <div className="">
+            <MenuItem
+              Icon={MdOutlineCategory}
+              IconRight={PiCaretDownThin}
+              label="Categories"
+              onClick={() => handleClick()}
+            />
+            {openCategories && <Categories />}
+          </div>
+          <MenuItem border_right={true} label="Sign In" />
+          <MenuItem label="Sign Up" />
         </div>
-        <MenuItem border_right={true} label="Sign In" />
-        <MenuItem label="Sign Up" />
+        <div className="hidden laptop:block">{isScroll && <Cart />}</div>
       </div>
 
       <div className="laptop:hidden flex items-center justify-between pb-3 text-sm">
@@ -83,9 +91,10 @@ const Bottom = () => {
           <div className="mt-2 relative">
             <Cart />
           </div>
+          {isScroll && <MobileSearch />}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
