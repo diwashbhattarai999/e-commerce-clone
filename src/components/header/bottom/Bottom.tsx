@@ -10,6 +10,7 @@ import { useState } from "react";
 import Categories from "@/components/categories/Categories";
 import Cart from "../Cart";
 import MobileSearch from "../middle/MobileSearch";
+import SignIn from "@/components/signin/SignIn";
 
 type BottomProp = {
   isScroll: boolean;
@@ -18,15 +19,19 @@ type BottomProp = {
 const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
   const [openCategories, setOpenCategories] = useState(false);
   const [slider, setSlider] = useState(false);
+  const [isOpenSignIn, setIsOpenSignIn] = useState(true);
 
-  const handleClick = () => {
+  const handleCategories = () => {
     setOpenCategories(!openCategories);
+  };
+
+  const handleSignIn = () => {
+    setIsOpenSignIn(!isOpenSignIn);
   };
 
   const handleSlider = () => {
     setSlider(!slider);
   };
-
   return (
     <>
       <div className="flex">
@@ -41,19 +46,24 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
         >
           <MenuItem Icon={BsTag} label="Brands" />
           <MenuItem Icon={BiStoreAlt} label="Stores" />
-          <div className="">
+          <>
             <MenuItem
               Icon={MdOutlineCategory}
               IconRight={PiCaretDownThin}
               label="Categories"
-              onClick={() => handleClick()}
+              onClick={() => handleCategories()}
             />
             {openCategories && <Categories />}
-          </div>
-          <MenuItem border_right={true} label="Sign In" />
+          </>
+          <MenuItem
+            border_right={true}
+            label="Sign In"
+            onClick={handleSignIn}
+          />
           <MenuItem label="Sign Up" />
         </div>
         <div className="hidden laptop:block">{isScroll && <Cart />}</div>
+        {isOpenSignIn && <SignIn />}
       </div>
 
       <div className="laptop:hidden flex items-center justify-between pb-3 text-sm">

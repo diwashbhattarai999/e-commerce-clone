@@ -8,6 +8,9 @@ import { toggleCart } from "@/Redux/slices/cartSlice";
 
 const Cart = () => {
   const cart = useSelector((state: RootState) => state.cartReducer.isOpen);
+  const counter = useSelector(
+    (state: RootState) => state.cartCounterReducer.value
+  );
   const dispatch = useDispatch();
 
   return (
@@ -27,15 +30,26 @@ const Cart = () => {
         <div className="flex items-center relative px-2 ">
           <h5 className="mr-2">Cart</h5>
           <MdOutlineShoppingCart size="20px" />
-          <span className="rounded-full bg-secondary-color w-6 h-6 absolute bottom-3 right-4 flex items-center justify-center overflow-hidden text-white">
-            0
+          <span
+            className="
+              rounded-full 
+              bg-secondary-color 
+              w-6 h-6 
+              absolute bottom-3 right-4 
+              flex items-center justify-center 
+              overflow-hidden 
+              text-white
+            "
+          >
+            {counter}
           </span>
           <PiCaretDownThin size="18px" />
         </div>
       </div>
       {cart && (
         <>
-          <div className="
+          <div
+            className="
             bg-white
             rotate-45 
             h-4 
@@ -43,8 +57,10 @@ const Cart = () => {
             right-6 
             top-9 
             absolute
-          "></div>
-          <div className="
+          "
+          ></div>
+          <div
+            className="
             bg-white
             absolute 
             top-16 
@@ -57,7 +73,8 @@ const Cart = () => {
             mobile:w-[370px]
             tablet:w-[520px]
             text-center
-          ">
+          "
+          >
             You have no items in your shopping cart.
           </div>
         </>
