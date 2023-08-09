@@ -12,6 +12,8 @@ const Header = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
+
+  //On scroll --------------------
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -22,10 +24,11 @@ const Header = () => {
         if (window.scrollY === 0) {
           setIsScroll(false);
           headerRef.current.style.display = "block";
+          bottomRef.current.style.paddingTop = "0";
         } else {
           setIsScroll(true);
           headerRef.current.style.display = "none";
-          bottomRef.current.style.paddingTop = "0.5rem";
+          bottomRef.current.style.paddingTop = "1rem";
         }
       }
     };
@@ -36,7 +39,7 @@ const Header = () => {
       // CleanUp Function
       return () => window.removeEventListener("scroll", handleScroll);
     }
-  });
+  }, [isScroll]);
 
   return (
     <div className="pt-2 bg-content-background-color sticky top-0">
@@ -47,7 +50,7 @@ const Header = () => {
             <Middle />
           </div>
           <div ref={bottomRef}>
-            <Bottom isScroll={isScroll}/>
+            <Bottom isScroll={isScroll} />
           </div>
         </div>
       </Container>

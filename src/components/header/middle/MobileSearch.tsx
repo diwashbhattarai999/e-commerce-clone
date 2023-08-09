@@ -3,18 +3,22 @@
 import { BiSearch } from "react-icons/bi";
 import SearchBar from "./SearchBar";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/Redux/store";
-import { toggleSearch } from "@/Redux/slices/searchSlice";
+import {
+  selectToggleFeatureState,
+  toggleFeature,
+} from "@/Redux/slices/featureToggleSlice";
 
 const MobileSearch = () => {
-  const isSearchOpen = useSelector(
-    (state: RootState) => state.searchReducer.isOpen
-  );
+  const isSearchOpen = useSelector(selectToggleFeatureState("search"));
   const dispatch = useDispatch();
+
+  const handleSearch = () => {
+    dispatch(toggleFeature({ featureName: "search" }));
+  };
 
   return (
     <div className="laptop:hidden flex flex-col items-end">
-      <div onClick={() => dispatch(toggleSearch())}>
+      <div onClick={handleSearch}>
         <BiSearch size="20px" color="#613E98" className="cursor-pointer mr-4" />
       </div>
       <div

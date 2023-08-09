@@ -30,7 +30,7 @@ const featureToggleSlice = createSlice({
 });
 
 export const { toggleFeature } = featureToggleSlice.actions;
-export const selectFeatureState =
+export const selectToggleFeatureState =
   (featureName: keyof FeatureToggleState) => (state: RootState) =>
-    state.featureToggle[featureName] ;
+    state.featureToggle[featureName];
 export default featureToggleSlice.reducer;

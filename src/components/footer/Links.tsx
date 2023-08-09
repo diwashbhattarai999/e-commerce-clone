@@ -13,7 +13,10 @@ const Links = () => {
               {linkss.map(({ id, value, link }) => {
                 return (
                   <li key={id} className="mb-2">
-                    <Link href={link} className="text-dark-color">
+                    <Link
+                      href={link}
+                      className="text-dark-color hover:text-primary-color"
+                    >
                       {value}
                     </Link>
                   </li>

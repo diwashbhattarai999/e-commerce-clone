@@ -15,7 +15,11 @@ const Middle = () => {
   };
 
   return (
-    <div className="flex justify-between items-center px-2 gap-4 mt-4 mb-2 tablet:mb-0 laptop:mt-1">
+    <div className="
+      flex justify-between items-center gap-4 
+      px-2 
+      mt-4 mb-2 tablet:mb-0 laptop:mt-2
+    ">
       <div className="flex items-center gap-4">
         <div
           className="laptop:hidden cursor-pointer relative"

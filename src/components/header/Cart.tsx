@@ -4,14 +4,21 @@ import { RootState } from "@/Redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { PiCaretDownThin } from "react-icons/pi";
-import { toggleCart } from "@/Redux/slices/cartSlice";
+import {
+  selectToggleFeatureState,
+  toggleFeature,
+} from "@/Redux/slices/featureToggleSlice";
 
 const Cart = () => {
-  const cart = useSelector((state: RootState) => state.cartReducer.isOpen);
+  const cart = useSelector(selectToggleFeatureState("cart"));
   const counter = useSelector(
     (state: RootState) => state.cartCounterReducer.value
   );
   const dispatch = useDispatch();
+
+  const carthandler = () => {
+    dispatch(toggleFeature({ featureName: "cart" }));
+  };
 
   return (
     <>
@@ -25,7 +32,7 @@ const Cart = () => {
           hover:text-primary-color
           cursor-pointer
         "
-        onClick={() => dispatch(toggleCart())}
+        onClick={carthandler}
       >
         <div className="flex items-center relative px-2 ">
           <h5 className="mr-2">Cart</h5>
