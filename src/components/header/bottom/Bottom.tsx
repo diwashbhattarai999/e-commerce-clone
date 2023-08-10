@@ -10,7 +10,6 @@ import { useState } from "react";
 import Categories from "@/components/categories/Categories";
 import Cart from "../Cart";
 
-import SignIn from "@/components/signin/SignIn";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectToggleFeatureState,
@@ -25,7 +24,6 @@ type BottomProp = {
 const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
   const [openCategories, setOpenCategories] = useState(false);
 
-
   const isOpenSignIn = useSelector(selectToggleFeatureState("signIn"));
   const dispatch = useDispatch();
 
@@ -35,8 +33,12 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
 
   const handleSignIn = () => {
     dispatch(toggleFeature({ featureName: "signIn" }));
+    if (isOpenSignIn) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
   };
-
 
   return (
     <>
@@ -69,11 +71,9 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
           <MenuItem label="Sign Up" />
         </div>
         <div className="hidden laptop:block">{isScroll && <Cart />}</div>
-
-        {isOpenSignIn && <SignIn />}
       </div>
 
-      <MobileBottom isScroll={isScroll}/>
+      <MobileBottom isScroll={isScroll} />
     </>
   );
 };

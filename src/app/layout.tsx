@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import { Providers } from "@/Redux/provider";
+import SignIn from "@/components/signin/SignIn";
 
 export const metadata: Metadata = {
   title: "Sastodeal Clone",
@@ -19,7 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-base-background-color">
-        <Providers >
+        <Providers>
+          <SignIn />
           <Header />
           {children}
           <Footer />
