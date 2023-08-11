@@ -6,7 +6,7 @@ import { BiStoreAlt } from "react-icons/bi";
 import { MdOutlineCategory } from "react-icons/md";
 import { PiCaretDownThin } from "react-icons/pi";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Categories from "@/components/categories/Categories";
 import Cart from "../Cart";
 
@@ -27,17 +27,25 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
   const isOpenSignIn = useSelector(selectToggleFeatureState("signIn"));
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (isOpenSignIn) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    // Clean up: Reset overflow when the component unmounts
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpenSignIn]);
+
   const handleCategories = () => {
     setOpenCategories(!openCategories);
   };
 
   const handleSignIn = () => {
     dispatch(toggleFeature({ featureName: "signIn" }));
-    if (isOpenSignIn) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
   };
 
   return (
