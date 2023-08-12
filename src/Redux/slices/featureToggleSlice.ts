@@ -7,12 +7,14 @@ export interface FeatureToggleState {
   search: boolean;
   cart: boolean;
   signIn: boolean;
+  signUp: boolean;
 }
 
 const initialState: FeatureToggleState = {
   search: false,
   cart: false,
   signIn: false,
+  signUp: false,
 };
 
 const featureToggleSlice = createSlice({

@@ -25,10 +25,11 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
   const [openCategories, setOpenCategories] = useState(false);
 
   const isOpenSignIn = useSelector(selectToggleFeatureState("signIn"));
+  const isOpenSignUp = useSelector(selectToggleFeatureState("signUp"));
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isOpenSignIn) {
+    if (isOpenSignIn || isOpenSignUp) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -38,7 +39,7 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isOpenSignIn]);
+  }, [isOpenSignIn, isOpenSignUp]);
 
   const handleCategories = () => {
     setOpenCategories(!openCategories);
@@ -46,6 +47,9 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
 
   const handleSignIn = () => {
     dispatch(toggleFeature({ featureName: "signIn" }));
+  };
+  const handleSignUp = () => {
+    dispatch(toggleFeature({ featureName: "signUp" }));
   };
 
   return (
@@ -76,7 +80,7 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
             label="Sign In"
             onClick={handleSignIn}
           />
-          <MenuItem label="Sign Up" />
+          <MenuItem label="Sign Up" onClick={handleSignUp} />
         </div>
         <div className="hidden laptop:block">{isScroll && <Cart />}</div>
       </div>

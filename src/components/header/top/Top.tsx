@@ -2,8 +2,17 @@
 
 import { BiLogoFacebook, BiLogoInstagram, BiLogoTwitter } from "react-icons/bi";
 import MenuItem from "../MenuItem";
+import { useRouter } from "next/navigation";
 
 const Top = () => {
+  const router = useRouter();
+  const handleAdvertise = () => {
+    router.push("/advertise_on_sastodeal");
+  };
+  const handleSell = () => {
+    router.push("/sell_on_sastodeal");
+  };
+
   return (
     <div
       className="
@@ -31,8 +40,12 @@ const Top = () => {
         </div>
       </div>
       <div className="flex items-center text-xs">
-        <MenuItem border_right label="Advertise On Sastodeal" />
-        <MenuItem border_right label="Sell On Sastodeal" />
+        <MenuItem
+          border_right
+          onClick={handleAdvertise}
+          label="Advertise On Sastodeal"
+        />
+        <MenuItem border_right onClick={handleSell} label="Sell On Sastodeal" />
         <MenuItem border_right label="Raise A Ticket" />
         <MenuItem label="Order Tracking" />
       </div>
