@@ -24,12 +24,12 @@ const RegisterHeading: React.FC<HeadingProps> = ({ title, name }) => {
     <div
       className="
         flex items-center justify-between 
-        pb-4 
+        pb-2 tablet:pb-4 
         border-b-2 border-[#d4d4d4]
         text-primary-color 
     "
     >
-      <h2 className="text-xl font-semibold">{title}</h2>
+      <h2 className="text-lg tablet:text-xl font-semibold">{title}</h2>
       <div onClick={close} className="cursor-pointer">
         <IoMdClose size="20" />
       </div>

@@ -13,7 +13,7 @@ const Input: React.FC<InputProps> = ({ items, buttonText }) => {
   return (
     <form>
       {items.map(({ id, title, type }) => (
-        <div key={id} className="mb-5">
+        <div key={id} className="mb-4 tablet:mb-5">
           <label
             className="
               text-sm after:content-['*'] after:ml-1 
@@ -28,8 +28,8 @@ const Input: React.FC<InputProps> = ({ items, buttonText }) => {
               className="
                 text-base 
                 border-[1px] border-[#686b6f]
-                p-3 
-                w-full min-h-[58px]
+                p-2 tablet:p-3 
+                w-full min-h-[43px] tablet:min-h-[58px]
               "
             />
           </div>

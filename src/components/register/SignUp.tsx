@@ -5,8 +5,7 @@ import {
   toggleFeature,
 } from "@/Redux/slices/featureToggleSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Container from "../Container";
-import Heading from "./RegisterHeading";
+import RegisterHeading from "./RegisterHeading";
 import Input from "./Input";
 
 interface items {
@@ -57,37 +56,35 @@ const SignUp = () => {
       {isOpenSignUp && (
         <div
           className="
-            w-full min-h-screen
-            fixed top-0 left-0 
-            bg-black/[0.6]
+            w-full min-h-screen 
+            flex justify-center
+            absolute top-0 left-0 
+            bg-black/[0.7]
             z-50
         "
         >
-          <Container>
-            <div
-              className="
+          <div
+            className="
               bg-white text-black 
-              my-14 mx-auto
-              w-auto max-w-[600px]
+              w-full max-w-[600px] h-fit
+              my-auto tablet:my-14 mx-auto
+              p-5 tablet:p-8
             "
-            >
-              <div className="p-8">
-                <Heading title="Create New Account" name="signup" />
-                <div className="mt-6">
-                  <Input items={itemLists} buttonText="Create an Account" />
-                  <div className="pt-2 pl-2 text-lg">
-                    Already registered?{" "}
-                    <span
-                      className="text-primary-color font-semibold cursor-pointer"
-                      onClick={handleSignIn}
-                    >
-                      Sign In
-                    </span>
-                  </div>
-                </div>
+          >
+            <RegisterHeading title="Create New Account" name="signup" />
+            <div className="mt-5 tablet:mt-6">
+              <Input items={itemLists} buttonText="Create an Account" />
+              <div className="pt-2 pl-2 text-lg">
+                Already registered?{" "}
+                <span
+                  className="text-primary-color font-semibold cursor-pointer"
+                  onClick={handleSignIn}
+                >
+                  Sign In
+                </span>
               </div>
             </div>
-          </Container>
+          </div>
         </div>
       )}
     </>
