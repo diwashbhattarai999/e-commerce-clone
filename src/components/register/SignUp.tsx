@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import RegisterHeading from "./RegisterHeading";
 import Input from "./Input";
+import { useEffect, useState } from "react";
 
 interface items {
   id: number;
@@ -43,6 +44,7 @@ const itemLists: items[] = [
 ];
 
 const SignUp = () => {
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const isOpenSignUp = useSelector(selectToggleFeatureState("signUp"));
   const dispatch = useDispatch();
 
@@ -51,42 +53,49 @@ const SignUp = () => {
     dispatch(toggleFeature({ featureName: "signIn" }));
   };
 
+  useEffect(() => {
+    setIsTransitioning(isOpenSignUp);
+  }, [isOpenSignUp]);
+
   return (
     <>
-      {isOpenSignUp && (
-        <div
-          className="
-            w-full min-h-screen 
+      {/* {isOpenSignUp && ( */}
+      <div
+        className={`
+            w-full h-screen 
             flex justify-center
-            absolute top-0 left-0 
+            fixed left-0 
             bg-black/[0.7]
-            z-50
-        "
-        >
-          <div
-            className="
+            z-50 overflow-x-hidden overflow-y-auto inset-0
+            ${isOpenSignUp ? "" : "hidden"}
+        `}
+      >
+        <div
+          className={`
               bg-white text-black 
               w-full max-w-[600px] h-fit
               my-auto tablet:my-14 mx-auto
               p-5 tablet:p-8
-            "
-          >
-            <RegisterHeading title="Create New Account" name="signup" />
-            <div className="mt-5 tablet:mt-6">
-              <Input items={itemLists} buttonText="Create an Account" />
-              <div className="pt-2 pl-2 text-lg">
-                Already registered?{" "}
-                <span
-                  className="text-primary-color font-semibold cursor-pointer"
-                  onClick={handleSignIn}
-                >
-                  Sign In
-                </span>
-              </div>
+              duration-300
+              ${isTransitioning ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
+            `}
+        >
+          <RegisterHeading title="Create New Account" name="signup" />
+          <div className="mt-5 tablet:mt-6">
+            <Input items={itemLists} buttonText="Create an Account" />
+            <div className="pt-2 pl-2 text-lg">
+              Already registered?{" "}
+              <span
+                className="text-primary-color font-semibold cursor-pointer"
+                onClick={handleSignIn}
+              >
+                Sign In
+              </span>
             </div>
           </div>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </>
   );
 };

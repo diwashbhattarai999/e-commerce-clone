@@ -44,16 +44,16 @@ const SignIn = () => {
       {isOpenSignIn && (
         <div
           className="
-            w-full min-h-screen 
+            w-full min-h-screen
             flex justify-center
-            absolute top-0 left-0 
+            absolute top-0 left-0
             bg-black/[0.6]
-            z-50
+            z-50 overflow-x-hidden overflow-y-auto inset-0
           "
         >
           <div
             className="
-              bg-white text-black 
+              bg-white text-black
               w-full max-w-[600px]
               my-auto h-fit tablet:my-14 mx-auto
               p-5 tablet:p-8
@@ -64,7 +64,7 @@ const SignIn = () => {
               <div className="pt-4 tablet:pr-6 tablet:w-7/12">
                 <h3
                   className="
-                      text-dark-color 
+                      text-dark-color
                       font-semibold text-sm
                       pb-3 mb-3 mt-1 border-b-2 border-[#ccc]
                     "
@@ -83,7 +83,7 @@ const SignIn = () => {
               <div className="pt-4 tablet:pl-6 text-center tablet:text-left tablet:w-5/12">
                 <div
                   className="
-                      text-dark-color font-semibold text-sm 
+                      text-dark-color font-semibold text-sm
                       pb-3 mb-2 mt-1
                       border-b-[1px] border-[#ccc]
 
@@ -94,7 +94,7 @@ const SignIn = () => {
                 <div className="flex justify-center tablet:justify-start">
                   <div
                     className="
-                        mr-4 mt-2 p-4 
+                        mr-4 mt-2 p-4
                         rounded-full w-[60px] h-[60px]
                         text-2xl bg-[#3b5998]
                         flex items-center justify-center
@@ -104,7 +104,7 @@ const SignIn = () => {
                   </div>
                   <div
                     className="
-                        mr-4 mt-2 p-4 
+                        mr-4 mt-2 p-4
                         rounded-full w-[60px] h-[60px]
                         text-2xl bg-[#dd4b39]
                         flex items-center justify-center
