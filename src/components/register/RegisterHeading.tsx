@@ -30,7 +30,7 @@ const RegisterHeading: React.FC<HeadingProps> = ({ title, name }) => {
     "
     >
       <h2 className="text-lg tablet:text-xl font-semibold">{title}</h2>
-      <div onClick={close} className="cursor-pointer">
+      <div onClick={close} className="cursor-pointer transition-all">
         <IoMdClose size="20" />
       </div>
     </div>

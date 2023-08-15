@@ -44,9 +44,9 @@ const itemLists: items[] = [
 ];
 
 const SignUp = () => {
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const isOpenSignUp = useSelector(selectToggleFeatureState("signUp"));
   const dispatch = useDispatch();
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleSignIn = () => {
     dispatch(toggleFeature({ featureName: "signUp" }));
@@ -59,7 +59,6 @@ const SignUp = () => {
 
   return (
     <>
-      {/* {isOpenSignUp && ( */}
       <div
         className={`
             w-full h-screen 
@@ -76,9 +75,13 @@ const SignUp = () => {
               w-full max-w-[600px] h-fit
               my-auto tablet:my-14 mx-auto
               p-5 tablet:p-8
-              duration-300
-              ${isTransitioning ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
-            `}
+              transition-all duration-300 
+              ${
+                isTransitioning
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-[-70px] opacity-0 "
+              }
+          `}
         >
           <RegisterHeading title="Create New Account" name="signup" />
           <div className="mt-5 tablet:mt-6">
@@ -95,7 +98,6 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-      {/* )} */}
     </>
   );
 };
