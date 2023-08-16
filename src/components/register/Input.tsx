@@ -1,3 +1,5 @@
+import Button from "../Button";
+
 interface Items {
   id: number;
   title: string;
@@ -35,24 +37,7 @@ const Input: React.FC<InputProps> = ({ items, buttonText }) => {
           </div>
         </div>
       ))}
-      <div className="my-2 text-center">
-        <button
-          type="submit"
-          className="
-            w-full 
-          text-white text-base
-            bg-accent-color 
-            py-2 px-5
-            rounded-full
-            min-h-[40px]
-            tracking-[0.01em]
-            hover:bg-secondary-color
-            transition duration-500
-          "
-        >
-          {buttonText}
-        </button>
-      </div>
+      <Button center full/>
     </form>
   );
 };

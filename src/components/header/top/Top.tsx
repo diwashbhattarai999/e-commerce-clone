@@ -7,11 +7,17 @@ import Link from "next/link";
 
 const Top = () => {
   const router = useRouter();
+
   const handleAdvertise = () => {
     router.push("/advertise_on_sastodeal");
   };
+
   const handleSell = () => {
     router.push("/sell_on_sastodeal");
+  };
+
+  const handleOrder = () => {
+    router.push("/order_tracking");
   };
 
   return (
@@ -47,10 +53,13 @@ const Top = () => {
           label="Advertise On Sastodeal"
         />
         <MenuItem border_right onClick={handleSell} label="Sell On Sastodeal" />
-        <Link href="https://support.sastodeal.com/open.php?_gl=1*9zvyy2*_ga*ODA2ODE0MTUxLjE2ODA0MDE4ODg.*_ga_77Q2597311*MTY5MTkzOTIyMi42My4xLjE2OTE5MzkyMjMuNTkuMC4w">
+        <Link
+          href="https://support.sastodeal.com/open.php?_gl=1*9zvyy2*_ga*ODA2ODE0MTUxLjE2ODA0MDE4ODg.*_ga_77Q2597311*MTY5MTkzOTIyMi42My4xLjE2OTE5MzkyMjMuNTkuMC4w"
+          target="_blank"
+        >
           <MenuItem border_right label="Raise A Ticket" />
         </Link>
-        <MenuItem label="Order Tracking" />
+        <MenuItem onClick={handleOrder} label="Order Tracking" />
       </div>
     </div>
   );
