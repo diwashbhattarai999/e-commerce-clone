@@ -7,7 +7,7 @@ import { VscAccount } from "react-icons/vsc";
 import { MdFavoriteBorder } from "react-icons/md";
 
 type BottomProp = {
-  isScroll: boolean;
+  isScroll?: boolean;
 };
 
 const MobileBottom: React.FC<BottomProp> = ({ isScroll }) => {

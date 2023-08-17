@@ -18,7 +18,7 @@ import {
 import MobileBottom from "./MobileBottom";
 
 type BottomProp = {
-  isScroll: boolean;
+  isScroll?: boolean;
 };
 
 const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
@@ -60,7 +60,7 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
             laptop:flex items-center w-full justify-center 
             text-sm 
             border-b-2 border-[#D5D5D5] 
-            pb-2
+            pb-2 pt-4
           "
       >
         <div className="flex items-center w-full justify-center">
