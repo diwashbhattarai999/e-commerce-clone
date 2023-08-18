@@ -34,7 +34,9 @@ export default function RootLayout({
               <SignIn />
               <SignUp />
               <Header />
-              {children}
+              <div className="mt-[7.8rem] tablet:mt-32 laptop:mt-44">
+                {children}
+              </div>
             </div>
             <Footer />
           </div>

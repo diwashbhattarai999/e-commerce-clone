@@ -3,7 +3,7 @@ import Banner from "@/components/banner/Banner";
 
 export default function Home() {
   return (
-    <main className="pt-96 laptop:pt-44">
+    <main className="">
       <div className="min-h-screen">
         <Banner />
         <Container>

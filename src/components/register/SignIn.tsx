@@ -43,7 +43,6 @@ const SignIn = () => {
 
   useEffect(() => {
     setIsTransitioning(isOpenSignIn);
-    console.log("hello")
   }, [isOpenSignIn]);
 
   return (

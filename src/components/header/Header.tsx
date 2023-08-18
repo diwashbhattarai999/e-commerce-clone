@@ -32,9 +32,8 @@ const Header = () => {
   return (
     <div
       className="
-      pt-2 bg-content-background-color fixed w-full top-0 
-      
-    "
+        pt-2 bg-content-background-color fixed w-full top-0 
+      "
     >
       <Container>
         <div className="flex flex-col gap-4">
