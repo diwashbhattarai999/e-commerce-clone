@@ -13,7 +13,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (typeof window !== "undefined") {
-        if (window.scrollY === 0) {
+        if (window.scrollY <= 50) {
           setIsScroll(false);
         } else {
           setIsScroll(true);
@@ -32,7 +32,8 @@ const Header = () => {
   return (
     <div
       className="
-        pt-2 bg-content-background-color fixed w-full top-0 
+        pt-2 bg-content-background-color fixed w-full top-0 z-50
+        transition-all duration-300 ease-in-out
       "
     >
       <Container>

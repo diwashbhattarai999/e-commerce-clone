@@ -63,7 +63,7 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
             pb-2 pt-4
           "
       >
-        <div className="flex items-center w-full justify-center">
+        <div className="flex items-center flex-1 justify-center">
           <MenuItem Icon={BsTag} label="Brands" />
           <MenuItem Icon={BiStoreAlt} label="Stores" />
           <>

@@ -12,7 +12,7 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Search entire store here..."
-        className="ml-2 w-full"
+        className="ml-2 w-full text-ellipsis"
       />
     </div>
   );

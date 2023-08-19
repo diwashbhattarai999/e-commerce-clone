@@ -19,13 +19,18 @@ const MobileBottom: React.FC<BottomProp> = ({ isScroll }) => {
 
   return (
     <>
-      <div className="laptop:hidden flex items-center justify-between pb-3 text-sm">
+      <div
+        className={`
+          laptop:hidden flex items-center justify-between pb-3 text-sm
+          ${isScroll ? "pt-2" : "pt-0"}
+        `}
+      >
         <div className="text-[#777] flex flex-col">
-          <p className="font-bold">Crossborder</p>
+          <p className="font-bold text-xs mobile:text-sm">Crossborder</p>
           <div
             className="
               relative 
-              py-1 
+              mobile:py-1 
               bg-blue-color 
               rounded-full 
               flex items-center justify-center 
@@ -34,10 +39,12 @@ const MobileBottom: React.FC<BottomProp> = ({ isScroll }) => {
           "
             onClick={() => handleSlider()}
           >
-            <span className="text-xs">{slider ? "ON" : "OFF"}</span>
+            <span className="text-[0.7rem] mobile:text-xs">
+              {slider ? "ON" : "OFF"}
+            </span>
             <span
               className={`
-                absolute w-4 h-4 bg-white rounded-full
+                absolute w-3 h-3 mobile:w-4 mobile:h-4 bg-white rounded-full
                 ${slider ? "right-1" : "left-1"}
                 transition ease-in-out duration-500
               `}
