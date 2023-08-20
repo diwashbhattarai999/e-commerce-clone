@@ -50,10 +50,7 @@ const Countdown: React.FC<CountdownProps> = ({ date }) => {
     <div className="pt-10 w-full absolute top-0">
       <Container>
         <div className="px-2 laptop:px-5 desktop:px-12 flex">
-          <Timer time={timeLeft.days} title="Days" />
-          <Timer time={timeLeft.hours} title="Hours" />
-          <Timer time={timeLeft.minutes} title="Min" />
-          <Timer time={timeLeft.seconds} title="Secs" />
+          <Timer time={timeLeft} />
         </div>
       </Container>
     </div>

@@ -10,7 +10,7 @@ const Banner = () => {
         alt="banner"
         className="w-full min-h-[765px] max-w-full object-cover"
       />
-      <Countdown date={new Date(2023, 8, 19)} />
+      <Countdown date={new Date(2023, 8, 18)} />
     </div>
   );
 };

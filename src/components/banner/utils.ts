@@ -51,7 +51,7 @@ function getRemainingHours(
   nowDayjs: dayjs.Dayjs,
   timestamDayjs: dayjs.Dayjs
 ): string {
-  const hours = (timestamDayjs.diff(nowDayjs, "hours") % 60)
+  const hours = (timestamDayjs.diff(nowDayjs, "hours") % 24)
     .toString()
     .padStart(2, "0");
   return hours;
