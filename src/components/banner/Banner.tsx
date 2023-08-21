@@ -1,6 +1,7 @@
 import Image from "next/image";
-import banner from "@/images/banner.jpg";
+import banner from "@/images/banner/banner.jpg";
 import Countdown from "./Countdown";
+import SubBanner from "./SubBanner";
 
 const Banner = () => {
   return (
@@ -11,6 +12,7 @@ const Banner = () => {
         className="w-full min-h-[765px] max-w-full object-cover"
       />
       <Countdown date={new Date(2023, 8, 18)} />
+      <SubBanner />
     </div>
   );
 };
