@@ -1,53 +1,36 @@
 import Category from "./Category";
-import SubCategory from "./SubCategory";
-
-const category = [
-  {
-    id: 1,
-    title: "Daily Needs",
-  },
-  {
-    id: 2,
-    title: "Electronics",
-  },
-  {
-    id: 3,
-    title: "Books",
-  },
-  {
-    id: 4,
-    title: "Myntra Brands",
-  },
-];
+import categoryData from "./CategoryList";
 
 const Categories = () => {
+
+
+
   return (
     <div
       className="
-    absolute 
-    left-0 right-0 bottom-0 top-[9.6rem] 
-    h-[60vh] w-[90vw] 
-    mx-auto 
-    bg-white
+        absolute -left-4 right-0 bottom-0 top-full 
+        mt-[1px] h-[75vh] max-h[800px] max-w-[25%]
+        bg-white shadow-md
     "
     >
-      <div className="h-full flex justify-between">
-        <div
+      <nav>
+        <ul
           className="
           flex items-center flex-col 
           text-primary-color 
-          pt-8 pl-16 
-          border-r-2 border-primary-color
+          pl-8 pt-8 desktop:pl-12 
           "
         >
-          {category.map(({ id, title }) => (
-            <Category key={id} title={title} />
+          {categoryData.map(({ id, name, link, menu }) => (
+            <Category 
+              key={id} 
+              title={name} 
+              link={link} 
+              menu={menu} 
+            />
           ))}
-        </div>
-        <div className="flex-1">
-          <SubCategory title="Foods" />
-        </div>
-      </div>
+        </ul>
+      </nav>
     </div>
   );
 };

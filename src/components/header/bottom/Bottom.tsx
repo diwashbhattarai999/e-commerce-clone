@@ -6,7 +6,7 @@ import { BiStoreAlt } from "react-icons/bi";
 import { MdOutlineCategory } from "react-icons/md";
 import { PiCaretDownThin } from "react-icons/pi";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Categories from "@/components/categories/Categories";
 import Cart from "../Cart";
 
@@ -22,7 +22,7 @@ type BottomProp = {
 };
 
 const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
-  const [openCategories, setOpenCategories] = useState(false);
+  const isOpenCategories = useSelector(selectToggleFeatureState("categories"));
 
   const isOpenSignIn = useSelector(selectToggleFeatureState("signIn"));
   const isOpenSignUp = useSelector(selectToggleFeatureState("signUp"));
@@ -42,7 +42,7 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
   }, [isOpenSignIn, isOpenSignUp]);
 
   const handleCategories = () => {
-    setOpenCategories(!openCategories);
+    dispatch(toggleFeature({ featureName: "categories" }));
   };
 
   const handleSignIn = () => {
@@ -61,20 +61,21 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
             text-sm 
             border-b-2 border-[#D5D5D5] 
             pb-2 pt-4
+            relative
           "
       >
         <div className="flex items-center flex-1 justify-center">
           <MenuItem Icon={BsTag} label="Brands" />
           <MenuItem Icon={BiStoreAlt} label="Stores" />
-          <>
+          <div>
             <MenuItem
               Icon={MdOutlineCategory}
               IconRight={PiCaretDownThin}
               label="Categories"
               onClick={handleCategories}
             />
-            {openCategories && <Categories />}
-          </>
+            {isOpenCategories && <Categories />}
+          </div>
           <MenuItem
             border_right={true}
             label="Sign In"
