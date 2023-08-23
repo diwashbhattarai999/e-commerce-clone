@@ -1,53 +1,53 @@
 import { HiMiniChevronRight } from "react-icons/hi2";
-import { MenuItem } from "./CategoryList";
+import { CategoryItem } from "./CategoryList";
 import Link from "next/link";
 import SubCategory from "./SubCategory";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/Redux/store";
+import { setActiveStates } from "@/Redux/slices/categorySlice";
 
 interface CategoryProps {
-  title: string;
-  link: string;
-  menu: MenuItem[];
+  category: CategoryItem;
 }
 
-const Category: React.FC<CategoryProps> = ({ title, link, menu }) => {
-  const [isActive, setIsActive] = useState(true);
+const Category: React.FC<CategoryProps> = ({ category }) => {
+  const dispatch = useDispatch();
+  const activeStates = useSelector(
+    (state: RootState) => state.categoryReducer.activeStates
+  );
 
-  const handleCategoryClick = () => {
-    setIsActive(!isActive);
-  };
-
-  const handleMouseEnter = () => {
-    setIsActive(true);
+  const hanldeMouseEnter = () => {
+    dispatch(setActiveStates(category.id));
   };
 
   const handleMouseLeave = () => {
-    setIsActive(false);
+    dispatch(setActiveStates(1));
   };
 
   return (
     <li
       className="
-        border-t-2 w-full
+        border-t-2 w-full cursor-pointer
         hover:bg-primary-color hover:text-white
-        cursor-pointer
       "
-      onClick={handleCategoryClick}
-      // onMouseEnter={handleMouseEnter}
-      // onMouseLeave={handleMouseLeave}
+      onMouseEnter={hanldeMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      <Link href={link}>
+      <Link href={category.link} className=" ">
         <div
           className="
           flex items-center justify-between gap-6 
           px-4 py-2
         "
         >
-          <h5 className="font-semibold text-base">{title}</h5>
+          <h5 className="font-semibold text-base">{category.name}</h5>
           <HiMiniChevronRight size="18px" />
         </div>
       </Link>
-      {isActive && <SubCategory menu={menu} />}
+      <SubCategory
+        menu={category.menu}
+        isActive={activeStates === category.id}
+      />
     </li>
   );
 };

@@ -3,11 +3,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartCounterReducer from "./slices/cartCounterSlice";
 import featureToggleReducer from "./slices/featureToggleSlice";
+import categoryReducer from "./slices/categorySlice";
 
 export const store = configureStore({
   reducer: {
     cartCounterReducer,
     featureToggle: featureToggleReducer,
+    categoryReducer,
   },
 });
 

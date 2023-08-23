@@ -2,9 +2,6 @@ import Category from "./Category";
 import categoryData from "./CategoryList";
 
 const Categories = () => {
-
-
-
   return (
     <div
       className="
@@ -21,13 +18,8 @@ const Categories = () => {
           pl-8 pt-8 desktop:pl-12 
           "
         >
-          {categoryData.map(({ id, name, link, menu }) => (
-            <Category 
-              key={id} 
-              title={name} 
-              link={link} 
-              menu={menu} 
-            />
+          {categoryData.map((category, index) => (
+            <Category key={category.id} category={category} />
           ))}
         </ul>
       </nav>

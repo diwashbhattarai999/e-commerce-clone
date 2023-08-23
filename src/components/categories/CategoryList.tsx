@@ -10,7 +10,7 @@ export interface MenuItem {
   subMenu: SubMenuItem[];
 }
 
-interface CategoryItem {
+export interface CategoryItem {
   id: number;
   name: string;
   link: string;
@@ -162,7 +162,7 @@ const categoryData: CategoryItem[] = [
     menu: [
       {
         id: 1,
-        name: "Food Essentials",
+        name: "Mobile Phones & Tablets",
         link: "",
         subMenu: [
           {
@@ -193,7 +193,7 @@ const categoryData: CategoryItem[] = [
       },
       {
         id: 2,
-        name: "SD Liquors",
+        name: "Large Home Appliances",
         link: "",
         subMenu: [
           {
@@ -220,7 +220,7 @@ const categoryData: CategoryItem[] = [
       },
       {
         id: 3,
-        name: "Hair Care",
+        name: "Televisions",
         link: "",
         subMenu: [
           {
@@ -239,7 +239,7 @@ const categoryData: CategoryItem[] = [
       },
       {
         id: 4,
-        name: "Home Care",
+        name: "Small Home Appliances",
         link: "",
         subMenu: [
           {
@@ -262,7 +262,7 @@ const categoryData: CategoryItem[] = [
       },
       {
         id: 5,
-        name: "Personal Care",
+        name: "Audio Accessories",
         link: "",
         subMenu: [
           {
@@ -271,21 +271,6 @@ const categoryData: CategoryItem[] = [
           },
           {
             name: "Shaving & Grooming",
-            link: "",
-          },
-        ],
-      },
-      {
-        id: 6,
-        name: "Pet Care",
-        link: "",
-        subMenu: [
-          {
-            name: "Pet Grooming",
-            link: "",
-          },
-          {
-            name: "Pet Food",
             link: "",
           },
         ],
@@ -299,7 +284,7 @@ const categoryData: CategoryItem[] = [
     menu: [
       {
         id: 1,
-        name: "Food Essentials",
+        name: "Academics",
         link: "",
         subMenu: [
           {
@@ -330,7 +315,7 @@ const categoryData: CategoryItem[] = [
       },
       {
         id: 2,
-        name: "SD Liquors",
+        name: "Genre",
         link: "",
         subMenu: [
           {
@@ -351,78 +336,6 @@ const categoryData: CategoryItem[] = [
           },
           {
             name: "Wine",
-            link: "",
-          },
-        ],
-      },
-      {
-        id: 3,
-        name: "Hair Care",
-        link: "",
-        subMenu: [
-          {
-            name: "Hair Oil & Serum",
-            link: "",
-          },
-          {
-            name: "Hair Colour & Mehendi",
-            link: "",
-          },
-          {
-            name: "Shampoo & Conditioner",
-            link: "",
-          },
-        ],
-      },
-      {
-        id: 4,
-        name: "Home Care",
-        link: "",
-        subMenu: [
-          {
-            name: "Household Cleaners",
-            link: "",
-          },
-          {
-            name: "Laundry Soap & Detergent",
-            link: "",
-          },
-          {
-            name: "Dishwashing Essentials",
-            link: "",
-          },
-          {
-            name: "Room Freshner",
-            link: "",
-          },
-        ],
-      },
-      {
-        id: 5,
-        name: "Personal Care",
-        link: "",
-        subMenu: [
-          {
-            name: "Bath Products",
-            link: "",
-          },
-          {
-            name: "Shaving & Grooming",
-            link: "",
-          },
-        ],
-      },
-      {
-        id: 6,
-        name: "Pet Care",
-        link: "",
-        subMenu: [
-          {
-            name: "Pet Grooming",
-            link: "",
-          },
-          {
-            name: "Pet Food",
             link: "",
           },
         ],
@@ -436,7 +349,7 @@ const categoryData: CategoryItem[] = [
     menu: [
       {
         id: 1,
-        name: "Food Essentials",
+        name: "Myntra Men",
         link: "",
         subMenu: [
           {
@@ -467,7 +380,7 @@ const categoryData: CategoryItem[] = [
       },
       {
         id: 2,
-        name: "SD Liquors",
+        name: "Myntra Women",
         link: "",
         subMenu: [
           {
@@ -488,78 +401,6 @@ const categoryData: CategoryItem[] = [
           },
           {
             name: "Wine",
-            link: "",
-          },
-        ],
-      },
-      {
-        id: 3,
-        name: "Hair Care",
-        link: "",
-        subMenu: [
-          {
-            name: "Hair Oil & Serum",
-            link: "",
-          },
-          {
-            name: "Hair Colour & Mehendi",
-            link: "",
-          },
-          {
-            name: "Shampoo & Conditioner",
-            link: "",
-          },
-        ],
-      },
-      {
-        id: 4,
-        name: "Home Care",
-        link: "",
-        subMenu: [
-          {
-            name: "Household Cleaners",
-            link: "",
-          },
-          {
-            name: "Laundry Soap & Detergent",
-            link: "",
-          },
-          {
-            name: "Dishwashing Essentials",
-            link: "",
-          },
-          {
-            name: "Room Freshner",
-            link: "",
-          },
-        ],
-      },
-      {
-        id: 5,
-        name: "Personal Care",
-        link: "",
-        subMenu: [
-          {
-            name: "Bath Products",
-            link: "",
-          },
-          {
-            name: "Shaving & Grooming",
-            link: "",
-          },
-        ],
-      },
-      {
-        id: 6,
-        name: "Pet Care",
-        link: "",
-        subMenu: [
-          {
-            name: "Pet Grooming",
-            link: "",
-          },
-          {
-            name: "Pet Food",
             link: "",
           },
         ],
