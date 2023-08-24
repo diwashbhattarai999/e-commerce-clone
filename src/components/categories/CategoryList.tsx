@@ -1,4 +1,5 @@
 export interface SubMenuItem {
+  id: number;
   name: string;
   link: string;
 }
@@ -29,26 +30,32 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Rice & Rice Products",
             link: "",
           },
           {
+            id: 2,
             name: "Cooking Oils & Vinegar",
             link: "",
           },
           {
+            id: 3,
             name: "Flour Products",
             link: "",
           },
           {
+            id: 4,
             name: "Beans & Lentils Products",
             link: "",
           },
           {
+            id: 5,
             name: "Hot Beverages",
             link: "",
           },
           {
+            id: 6,
             name: "Biscuit & Cookies",
             link: "",
           },
@@ -60,22 +67,27 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Rum",
             link: "",
           },
           {
+            id: 2,
             name: "Blended Whisky",
             link: "",
           },
           {
+            id: 3,
             name: "Vodka",
             link: "",
           },
           {
+            id: 4,
             name: "Beer",
             link: "",
           },
           {
+            id: 5,
             name: "Wine",
             link: "",
           },
@@ -87,14 +99,17 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Hair Oil & Serum",
             link: "",
           },
           {
+            id: 2,
             name: "Hair Colour & Mehendi",
             link: "",
           },
           {
+            id: 3,
             name: "Shampoo & Conditioner",
             link: "",
           },
@@ -106,18 +121,22 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Household Cleaners",
             link: "",
           },
           {
+            id: 2,
             name: "Laundry Soap & Detergent",
             link: "",
           },
           {
+            id: 3,
             name: "Dishwashing Essentials",
             link: "",
           },
           {
+            id: 4,
             name: "Room Freshner",
             link: "",
           },
@@ -129,10 +148,12 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Bath Products",
             link: "",
           },
           {
+            id: 2,
             name: "Shaving & Grooming",
             link: "",
           },
@@ -144,10 +165,12 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Pet Grooming",
             link: "",
           },
           {
+            id: 2,
             name: "Pet Food",
             link: "",
           },
@@ -166,26 +189,32 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Rice & Rice Products",
             link: "",
           },
           {
+            id: 2,
             name: "Cooking Oils & Vinegar",
             link: "",
           },
           {
+            id: 3,
             name: "Flour Products",
             link: "",
           },
           {
+            id: 4,
             name: "Beans & Lentils Products",
             link: "",
           },
           {
+            id: 5,
             name: "Hot Beverages",
             link: "",
           },
           {
+            id: 6,
             name: "Biscuit & Cookies",
             link: "",
           },
@@ -197,22 +226,27 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Rum",
             link: "",
           },
           {
+            id: 2,
             name: "Blended Whisky",
             link: "",
           },
           {
+            id: 3,
             name: "Vodka",
             link: "",
           },
           {
+            id: 4,
             name: "Beer",
             link: "",
           },
           {
+            id: 5,
             name: "Wine",
             link: "",
           },
@@ -224,14 +258,17 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Hair Oil & Serum",
             link: "",
           },
           {
+            id: 2,
             name: "Hair Colour & Mehendi",
             link: "",
           },
           {
+            id: 3,
             name: "Shampoo & Conditioner",
             link: "",
           },
@@ -243,18 +280,22 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Household Cleaners",
             link: "",
           },
           {
+            id: 2,
             name: "Laundry Soap & Detergent",
             link: "",
           },
           {
+            id: 3,
             name: "Dishwashing Essentials",
             link: "",
           },
           {
+            id: 4,
             name: "Room Freshner",
             link: "",
           },
@@ -266,10 +307,12 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Bath Products",
             link: "",
           },
           {
+            id: 2,
             name: "Shaving & Grooming",
             link: "",
           },
@@ -288,26 +331,32 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Rice & Rice Products",
             link: "",
           },
           {
+            id: 2,
             name: "Cooking Oils & Vinegar",
             link: "",
           },
           {
+            id: 3,
             name: "Flour Products",
             link: "",
           },
           {
+            id: 4,
             name: "Beans & Lentils Products",
             link: "",
           },
           {
+            id: 5,
             name: "Hot Beverages",
             link: "",
           },
           {
+            id: 6,
             name: "Biscuit & Cookies",
             link: "",
           },
@@ -319,22 +368,27 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Rum",
             link: "",
           },
           {
+            id: 2,
             name: "Blended Whisky",
             link: "",
           },
           {
+            id: 3,
             name: "Vodka",
             link: "",
           },
           {
+            id: 4,
             name: "Beer",
             link: "",
           },
           {
+            id: 5,
             name: "Wine",
             link: "",
           },
@@ -353,26 +407,32 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Rice & Rice Products",
             link: "",
           },
           {
+            id: 2,
             name: "Cooking Oils & Vinegar",
             link: "",
           },
           {
+            id: 3,
             name: "Flour Products",
             link: "",
           },
           {
+            id: 4,
             name: "Beans & Lentils Products",
             link: "",
           },
           {
+            id: 5,
             name: "Hot Beverages",
             link: "",
           },
           {
+            id: 6,
             name: "Biscuit & Cookies",
             link: "",
           },
@@ -384,22 +444,27 @@ const categoryData: CategoryItem[] = [
         link: "",
         subMenu: [
           {
+            id: 1,
             name: "Rum",
             link: "",
           },
           {
+            id: 2,
             name: "Blended Whisky",
             link: "",
           },
           {
+            id: 3,
             name: "Vodka",
             link: "",
           },
           {
+            id: 4,
             name: "Beer",
             link: "",
           },
           {
+            id: 5,
             name: "Wine",
             link: "",
           },

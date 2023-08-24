@@ -6,7 +6,7 @@ const Categories = () => {
     <div
       className="
         absolute -left-4 right-0 bottom-0 top-full 
-        mt-[1px] h-[75vh] max-h[800px] max-w-[25%]
+        mt-[1px] h-[70vh] max-h[800px] max-w-[25%]
         bg-white shadow-md
     "
     >

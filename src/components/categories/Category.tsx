@@ -1,7 +1,7 @@
 import { HiMiniChevronRight } from "react-icons/hi2";
 import { CategoryItem } from "./CategoryList";
 import Link from "next/link";
-import SubCategory from "./SubCategory";
+import MenuCategory from "./MenuCategory";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import { setActiveStates } from "@/Redux/slices/categorySlice";
@@ -44,7 +44,7 @@ const Category: React.FC<CategoryProps> = ({ category }) => {
           <HiMiniChevronRight size="18px" />
         </div>
       </Link>
-      <SubCategory
+      <MenuCategory
         menu={category.menu}
         isActive={activeStates === category.id}
       />
