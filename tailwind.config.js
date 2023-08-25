@@ -24,6 +24,7 @@ module.exports = {
       },
       width: {
         "subcategory-width": "calc(300% + 32px)",
+        "sidebar-width": "calc(100% - 54px)",
       },
     },
     screens: {
