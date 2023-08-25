@@ -1,10 +1,9 @@
-import { HiMiniChevronRight } from "react-icons/hi2";
 import { CategoryItem } from "./CategoryList";
-import Link from "next/link";
 import MenuCategory from "./MenuCategory";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import { setActiveStates } from "@/Redux/slices/categorySlice";
+import CategoryTitle from "./CategoryTitle";
 
 interface CategoryProps {
   category: CategoryItem;
@@ -26,24 +25,11 @@ const Category: React.FC<CategoryProps> = ({ category }) => {
 
   return (
     <li
-      className="
-        border-t-2 w-full cursor-pointer
-        hover:bg-primary-color hover:text-white
-      "
+      className="border-t-2 w-full cursor-pointer"
       onMouseEnter={hanldeMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link href={category.link} className=" ">
-        <div
-          className="
-          flex items-center justify-between gap-6 
-          px-4 py-2
-        "
-        >
-          <h5 className="font-semibold text-base">{category.name}</h5>
-          <HiMiniChevronRight size="18px" />
-        </div>
-      </Link>
+      <CategoryTitle category={category} bold/>
       <MenuCategory
         menu={category.menu}
         isActive={activeStates === category.id}

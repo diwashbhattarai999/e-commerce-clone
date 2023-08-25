@@ -1,9 +1,10 @@
 interface ButtonProps {
+  buttonText: string;
   center?: boolean;
   full?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ center, full }) => {
+const Button: React.FC<ButtonProps> = ({ center, full, buttonText }) => {
   return (
     <div className={`my-2 ${center && "text-center"}`}>
       <button
@@ -20,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({ center, full }) => {
             transition duration-500
           `}
       >
-        Track Now
+        {buttonText}
       </button>
     </div>
   );

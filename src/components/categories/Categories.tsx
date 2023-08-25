@@ -14,11 +14,10 @@ const Categories = () => {
         <ul
           className="
           flex items-center flex-col 
-          text-primary-color 
           pl-8 pt-8 desktop:pl-12 
           "
         >
-          {categoryData.map((category, index) => (
+          {categoryData.map((category) => (
             <Category key={category.id} category={category} />
           ))}
         </ul>
