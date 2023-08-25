@@ -29,22 +29,23 @@ const AccountList: List[] = [
   {
     id: 1,
     name: "Advertise On Sastodeal",
-    link: "",
+    link: "/advertise_on_sastodeal",
   },
   {
     id: 2,
     name: "Sell On Sastodeal",
-    link: "",
+    link: "sell_on_sastodeal",
   },
   {
     id: 3,
     name: "Raise A Ticket",
+    // link: 'https://support.sastodeal.com/open.php?_gl=1*9zvyy2*_ga*ODA2ODE0MTUxLjE2ODA0MDE4ODg.*_ga_77Q2597311*MTY5MTkzOTIyMi42My4xLjE2OTE5MzkyMjMuNTkuMC4w"',
     link: "",
   },
   {
     id: 4,
     name: "Order Tracking",
-    link: "",
+    link: "order_tracking",
   },
   {
     id: 5,

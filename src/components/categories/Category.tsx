@@ -29,7 +29,7 @@ const Category: React.FC<CategoryProps> = ({ category }) => {
       onMouseEnter={hanldeMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <CategoryTitle category={category} bold/>
+      <CategoryTitle category={category} bold arrowRight/>
       <MenuCategory
         menu={category.menu}
         isActive={activeStates === category.id}

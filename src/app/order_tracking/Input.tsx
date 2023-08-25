@@ -44,12 +44,12 @@ const Input = () => {
                 w-full h-auto min-h-[48px] p-2 
                 text-base text-lightgrey-color
                 text-ellipsis
-                "
+              "
             />
           </div>
         ))}
       </div>
-      <Button />
+      <Button buttonText="Track Now" />
     </form>
   );
 };

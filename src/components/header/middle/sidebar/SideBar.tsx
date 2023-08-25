@@ -12,6 +12,7 @@ import initialSections, { AccountList, SettingsList } from "./SideBarList";
 import CategoryTitle from "@/components/categories/CategoryTitle";
 import categoryData from "@/components/categories/CategoryList";
 import Category from "@/components/categories/Category";
+import SectionsList from "./SectionsList";
 
 const SideBar = () => {
   const [sections, setSections] = useState(initialSections);
@@ -60,42 +61,7 @@ const SideBar = () => {
                 absolute w-full top-[4.28rem] left-0
               "
               >
-                {title === "Menu" && (
-                  <>
-                    {categoryData.map((category) => (
-                      <CategoryTitle
-                        key={category.id}
-                        category={category}
-                        uppercase
-                        arrowDown
-                      />
-                    ))}
-                  </>
-                )}
-                {title === "Account" && (
-                  <>
-                    {AccountList.map((category) => (
-                      <CategoryTitle
-                        key={category.id}
-                        category={category}
-                        uppercase
-                        arrowDown
-                      />
-                    ))}
-                  </>
-                )}
-                {title === "Settings" && (
-                  <>
-                    {SettingsList.map((category) => (
-                      <CategoryTitle
-                        key={category.id}
-                        category={category}
-                        uppercase
-                        arrowDown
-                      />
-                    ))}
-                  </>
-                )}
+                <SectionsList title={title} />
               </div>
             )}
           </div>

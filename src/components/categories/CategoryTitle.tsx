@@ -9,6 +9,8 @@ interface CategoryTitleProps {
   uppercase?: boolean;
   bold?: boolean;
   arrowDown?: boolean;
+  arrowRight?: boolean;
+  onClick?: () => void;
 }
 
 const CategoryTitle: React.FC<CategoryTitleProps> = ({
@@ -16,6 +18,8 @@ const CategoryTitle: React.FC<CategoryTitleProps> = ({
   uppercase,
   bold,
   arrowDown,
+  arrowRight,
+  onClick,
 }) => {
   return (
     <Link href={category.link}>
@@ -26,6 +30,7 @@ const CategoryTitle: React.FC<CategoryTitleProps> = ({
           hover:bg-primary-color hover:text-white
           text-primary-color   
         `}
+        onClick={() => onClick && onClick()}
       >
         <h5
           className={`
@@ -37,11 +42,8 @@ const CategoryTitle: React.FC<CategoryTitleProps> = ({
           {category.name}
         </h5>
 
-        {arrowDown ? (
-          <BsChevronDown size="16px" />
-        ) : (
-          <HiMiniChevronRight size="18px" />
-        )}
+        {arrowDown && <BsChevronDown size="16px" />}
+        {arrowRight && <HiMiniChevronRight size="18px" />}
       </div>
     </Link>
   );
