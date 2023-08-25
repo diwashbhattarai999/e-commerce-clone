@@ -6,7 +6,6 @@ import { BiStoreAlt } from "react-icons/bi";
 import { MdOutlineCategory } from "react-icons/md";
 import { PiCaretDownThin } from "react-icons/pi";
 
-import { useEffect } from "react";
 import Categories from "@/components/categories/Categories";
 import Cart from "../Cart";
 
@@ -16,6 +15,8 @@ import {
   toggleFeature,
 } from "@/Redux/slices/featureToggleSlice";
 import MobileBottom from "./MobileBottom";
+import useBodyOverflow from "@/hooks/useBodyOverflow";
+import SignIn from "@/components/register/SignIn";
 
 type BottomProp = {
   isScroll?: boolean;
@@ -28,18 +29,7 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
   const isOpenSignUp = useSelector(selectToggleFeatureState("signUp"));
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (isOpenSignIn || isOpenSignUp) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    // Clean up: Reset overflow when the component unmounts
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isOpenSignIn, isOpenSignUp]);
+  useBodyOverflow(isOpenSignIn || isOpenSignUp ? "hidden" : "auto");
 
   const handleCategories = () => {
     dispatch(toggleFeature({ featureName: "categories" }));

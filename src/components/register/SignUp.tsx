@@ -7,7 +7,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import RegisterHeading from "./RegisterHeading";
 import Input from "./Input";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import useClickOutside from "@/hooks/useClickOutside";
 
 interface items {
   id: number;
@@ -44,6 +45,8 @@ const itemLists: items[] = [
 ];
 
 const SignUp = () => {
+  const signUpRef = useRef(null);
+
   const isOpenSignUp = useSelector(selectToggleFeatureState("signUp"));
   const dispatch = useDispatch();
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -52,6 +55,10 @@ const SignUp = () => {
     dispatch(toggleFeature({ featureName: "signUp" }));
     dispatch(toggleFeature({ featureName: "signIn" }));
   };
+
+  useClickOutside(signUpRef, () => {
+    if (isOpenSignUp) dispatch(toggleFeature({ featureName: "signUp" }));
+  });
 
   useEffect(() => {
     setIsTransitioning(isOpenSignUp);
@@ -73,8 +80,7 @@ const SignUp = () => {
           className={`
               bg-white text-black 
               w-full max-w-[600px] h-fit
-              my-auto tablet:my-14 mx-auto
-              p-5 tablet:p-8
+              my-auto tablet:my-14 mx-auto       
               transition-all duration-300 
               ${
                 isTransitioning
@@ -83,17 +89,19 @@ const SignUp = () => {
               }
           `}
         >
-          <RegisterHeading title="Create New Account" name="signup" />
-          <div className="mt-5 tablet:mt-6">
-            <Input items={itemLists} buttonText="Create an Account" />
-            <div className="pt-2 pl-2 text-lg">
-              Already registered?{" "}
-              <span
-                className="text-primary-color font-semibold cursor-pointer"
-                onClick={handleSignIn}
-              >
-                Sign In
-              </span>
+          <div className="p-5 tablet:p-8" ref={signUpRef}>
+            <RegisterHeading title="Create New Account" name="signup" />
+            <div className="mt-5 tablet:mt-6">
+              <Input items={itemLists} buttonText="Create an Account" />
+              <div className="pt-2 pl-2 text-lg">
+                Already registered?{" "}
+                <span
+                  className="text-primary-color font-semibold cursor-pointer"
+                  onClick={handleSignIn}
+                >
+                  Sign In
+                </span>
+              </div>
             </div>
           </div>
         </div>

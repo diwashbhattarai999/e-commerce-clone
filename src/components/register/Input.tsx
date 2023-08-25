@@ -37,7 +37,7 @@ const Input: React.FC<InputProps> = ({ items, buttonText }) => {
           </div>
         </div>
       ))}
-      <Button center full/>
+      <Button buttonText={buttonText} center full />
     </form>
   );
 };
