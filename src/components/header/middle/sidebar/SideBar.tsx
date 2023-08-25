@@ -8,10 +8,8 @@ import {
   selectToggleFeatureState,
   toggleFeature,
 } from "@/Redux/slices/featureToggleSlice";
-import initialSections, { AccountList, SettingsList } from "./SideBarList";
-import CategoryTitle from "@/components/categories/CategoryTitle";
-import categoryData from "@/components/categories/CategoryList";
-import Category from "@/components/categories/Category";
+import initialSections from "./SideBarList";
+
 import SectionsList from "./SectionsList";
 
 const SideBar = () => {
@@ -58,7 +56,10 @@ const SideBar = () => {
             {active && (
               <div
                 className="
-                absolute w-full top-[4.28rem] left-0
+                absolute top-[4.28rem] left-0
+                w-full overflow-y-auto
+                max-h-[93vh]
+                pb-8 pt-[1px]
               "
               >
                 <SectionsList title={title} />

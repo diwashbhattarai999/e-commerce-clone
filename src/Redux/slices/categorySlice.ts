@@ -3,11 +3,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface CategoryState {
-  activeStates: number;
+  activeStates: number | null;
 }
 
 const initialState: CategoryState = {
-  activeStates: 1,
+  activeStates: null,
 };
 
 const categorySlice = createSlice({
@@ -17,8 +17,13 @@ const categorySlice = createSlice({
     setActiveStates: (state, action: PayloadAction<number>) => {
       state.activeStates = action.payload;
     },
+    toggleActiveStates: (state, action: PayloadAction<number>) => {
+      if (state.activeStates === action.payload) {
+        state.activeStates = null;
+      } else state.activeStates = action.payload;
+    },
   },
 });
 
-export const { setActiveStates } = categorySlice.actions;
+export const { setActiveStates, toggleActiveStates } = categorySlice.actions;
 export default categorySlice.reducer;

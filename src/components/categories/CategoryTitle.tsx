@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { HiMiniChevronRight } from "react-icons/hi2";
-import { BsChevronDown } from "react-icons/bs";
+import { BsChevronDown, BsChevronUp, BsChevronRight } from "react-icons/bs";
 import { CategoryItem } from "./CategoryList";
 import { List } from "../header/middle/sidebar/SideBarList";
 
@@ -8,18 +7,18 @@ interface CategoryTitleProps {
   category: CategoryItem | List;
   uppercase?: boolean;
   bold?: boolean;
-  arrowDown?: boolean;
-  arrowRight?: boolean;
+  arrow?: string;
   onClick?: () => void;
+  onIconClick?: () => void;
 }
 
 const CategoryTitle: React.FC<CategoryTitleProps> = ({
   category,
   uppercase,
   bold,
-  arrowDown,
-  arrowRight,
+  arrow,
   onClick,
+  onIconClick,
 }) => {
   return (
     <Link href={category.link}>
@@ -42,8 +41,24 @@ const CategoryTitle: React.FC<CategoryTitleProps> = ({
           {category.name}
         </h5>
 
-        {arrowDown && <BsChevronDown size="16px" />}
-        {arrowRight && <HiMiniChevronRight size="18px" />}
+        {arrow === "arrowDown" && (
+          <BsChevronDown
+            size="18px"
+            onClick={() => onIconClick && onIconClick()}
+          />
+        )}
+        {arrow === "arrowRight" && (
+          <BsChevronRight
+            size="18px"
+            onClick={() => onIconClick && onIconClick()}
+          />
+        )}
+        {arrow === "arrowUp" && (
+          <BsChevronUp
+            size="18px"
+            onClick={() => onIconClick && onIconClick()}
+          />
+        )}
       </div>
     </Link>
   );
