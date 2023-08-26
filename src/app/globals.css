@@ -17,20 +17,6 @@
   --content-background-color: #ffffff;
   --text-primary-color: #4b4453;
   --text-secondary-color: #4b4453;
-  --spacing-base: 4px;
-  --spacing-0x: 0px;
-  --spacing-1x: 4px;
-  --spacing-2x: 8px;
-  --spacing-3x: 12px;
-  --spacing-4x: 16px;
-  --spacing-5x: 20px;
-  --spacing-6x: 24px;
-  --spacing-7x: 28px;
-  --spacing-8x: 32px;
-  --spacing-9x: 36px;
-  --spacing-10x: 40px;
-  --spacing-11x: 44px;
-  --spacing-12x: 48px;
 }
 
 * {

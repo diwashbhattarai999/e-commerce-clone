@@ -5,20 +5,17 @@ import categoryData, {
 } from "@/components/categories/CategoryList";
 import CategoryTitle from "@/components/categories/CategoryTitle";
 import { AccountList, List, SettingsList } from "./SideBarList";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleFeature } from "@/Redux/slices/featureToggleSlice";
-import { RootState } from "@/Redux/store";
-import { toggleActiveStates } from "@/Redux/slices/categorySlice";
 import MenuCategoryItems from "@/components/categories/MenuCategoryItems";
+import { useState } from "react";
 
 interface SectionsListProps {
   title: string;
 }
 
 const SectionsList: React.FC<SectionsListProps> = ({ title }) => {
-  const activeState = useSelector(
-    (state: RootState) => state.categoryReducer.activeStates
-  );
+  const [activeState, setActiveState] = useState<number | null>(null);
   const dispatch = useDispatch();
 
   const handleAccountClick = (category: List) => {
@@ -32,7 +29,9 @@ const SectionsList: React.FC<SectionsListProps> = ({ title }) => {
   };
 
   const handleMenuClick = (category: CategoryItem) => {
-    dispatch(toggleActiveStates(category.id));
+    if (activeState === category.id) {
+      setActiveState(null);
+    } else setActiveState(category.id);
   };
 
   const MenuContent = (
@@ -40,9 +39,8 @@ const SectionsList: React.FC<SectionsListProps> = ({ title }) => {
       {categoryData.map((category) => {
         const arrow = activeState === category.id ? "arrowUp" : "arrowDown";
         return (
-          <>
+          <div key={category.id}>
             <CategoryTitle
-              key={category.id}
               category={category}
               uppercase
               arrow={arrow}
@@ -51,13 +49,13 @@ const SectionsList: React.FC<SectionsListProps> = ({ title }) => {
 
             <ul
               className={`
-            ${activeState === category.id ? "" : "hidden"} 
-            px-4
-          `}
+                ${activeState === category.id ? "" : "hidden"} 
+                px-4
+              `}
             >
-              <MenuCategoryItems menu={category.menu} />
+              <MenuCategoryItems menu={category.menu} leftArrow small/>
             </ul>
-          </>
+          </div>
         );
       })}
     </>

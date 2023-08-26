@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import { setActiveStates } from "@/Redux/slices/categorySlice";
 import CategoryTitle from "./CategoryTitle";
-import { useEffect } from "react";
 
 interface CategoryProps {
   category: CategoryItem;
@@ -15,9 +14,6 @@ const Category: React.FC<CategoryProps> = ({ category }) => {
   const activeStates = useSelector(
     (state: RootState) => state.categoryReducer.activeStates
   );
-  useEffect(() => {
-    dispatch(setActiveStates(1));
-  }, [dispatch]);
 
   const hanldeMouseEnter = () => {
     dispatch(setActiveStates(category.id));
@@ -33,7 +29,7 @@ const Category: React.FC<CategoryProps> = ({ category }) => {
       onMouseEnter={hanldeMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <CategoryTitle category={category} bold arrowRight />
+      <CategoryTitle category={category} bold arrow="arrowRight" />
       <MenuCategory
         menu={category.menu}
         isActive={activeStates === category.id}

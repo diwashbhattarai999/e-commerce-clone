@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 interface MenuItemProps {
-  onClick?: () => void;
   label: string;
   border_right?: boolean;
   Icon?: React.ElementType;
   IconRight?: React.ElementType;
+  onClick?: () => void;
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({
@@ -18,7 +18,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
   return (
     <div
       className="
-          px-2          
+          px-2         
           after:block after:content-[''] after:border-b-[3px] 
           after:h-2 after:border-b-primary-color after:scale-x-0 
           after:transition after:duration-500 hover:after:scale-x-100
@@ -30,9 +30,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
     >
       <div
         className={`
-            flex 
-            gap-1 
-            items-center 
+            flex gap-1 items-center
             ${border_right && "pr-2 border-r border-r-current"}
           `}
       >

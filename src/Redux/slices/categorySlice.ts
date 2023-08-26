@@ -7,7 +7,7 @@ export interface CategoryState {
 }
 
 const initialState: CategoryState = {
-  activeStates: null,
+  activeStates: 1,
 };
 
 const categorySlice = createSlice({

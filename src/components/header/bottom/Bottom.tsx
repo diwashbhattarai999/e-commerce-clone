@@ -50,14 +50,22 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
             laptop:flex items-center w-full justify-center 
             text-sm 
             border-b-2 border-[#D5D5D5] 
-            pb-2 pt-4
+            pt-4
             relative
           "
       >
         <div className="flex items-center flex-1 justify-center">
-          <MenuItem Icon={BsTag} label="Brands" />
-          <MenuItem Icon={BiStoreAlt} label="Stores" />
-          <div>
+          <div className="pb-2">
+            <MenuItem Icon={BsTag} label="Brands" />
+          </div>
+          <div className="pb-2">
+            <MenuItem Icon={BiStoreAlt} label="Stores" />
+          </div>
+          <div
+            className="pb-2"
+            onMouseEnter={handleCategories}
+            onMouseLeave={handleCategories}
+          >
             <MenuItem
               Icon={MdOutlineCategory}
               IconRight={PiCaretDownThin}
@@ -66,12 +74,16 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
             />
             {isOpenCategories && <Categories />}
           </div>
-          <MenuItem
-            border_right={true}
-            label="Sign In"
-            onClick={handleSignIn}
-          />
-          <MenuItem label="Sign Up" onClick={handleSignUp} />
+          <div className="pb-2">
+            <MenuItem
+              border_right
+              label="Sign In"
+              onClick={handleSignIn}
+            />
+          </div>
+          <div className="pb-2">
+            <MenuItem label="Sign Up" onClick={handleSignUp} />
+          </div>
         </div>
         <div className="hidden laptop:block">{isScroll && <Cart />}</div>
       </div>
