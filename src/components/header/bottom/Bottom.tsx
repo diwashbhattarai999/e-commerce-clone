@@ -1,5 +1,8 @@
 "use client";
 
+import { useSession } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
+
 import MenuItem from "../MenuItem";
 import { BsTag } from "react-icons/bs";
 import { BiStoreAlt } from "react-icons/bi";
@@ -11,36 +14,33 @@ import Cart from "../Cart";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
+  FeatureToggleState,
   selectToggleFeatureState,
   toggleFeature,
 } from "@/Redux/slices/featureToggleSlice";
 import MobileBottom from "./MobileBottom";
 import useBodyOverflow from "@/hooks/useBodyOverflow";
-import SignIn from "@/components/register/SignIn";
+import Account from "@/components/account/Account";
 
 type BottomProp = {
   isScroll?: boolean;
 };
 
 const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
-  const isOpenCategories = useSelector(selectToggleFeatureState("categories"));
+  const dispatch = useDispatch();
 
+  const isOpenCategories = useSelector(selectToggleFeatureState("categories"));
   const isOpenSignIn = useSelector(selectToggleFeatureState("signIn"));
   const isOpenSignUp = useSelector(selectToggleFeatureState("signUp"));
-  const dispatch = useDispatch();
+  const isOpenAccount = useSelector(selectToggleFeatureState("account"));
 
   useBodyOverflow(isOpenSignIn || isOpenSignUp ? "hidden" : "auto");
 
-  const handleCategories = () => {
-    dispatch(toggleFeature({ featureName: "categories" }));
+  const handleMenuItem = (name: keyof FeatureToggleState) => {
+    dispatch(toggleFeature({ featureName: name }));
   };
 
-  const handleSignIn = () => {
-    dispatch(toggleFeature({ featureName: "signIn" }));
-  };
-  const handleSignUp = () => {
-    dispatch(toggleFeature({ featureName: "signUp" }));
-  };
+  const { data: session } = useSession();
 
   return (
     <>
@@ -55,35 +55,52 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
           "
       >
         <div className="flex items-center flex-1 justify-center">
-          <div className="pb-2">
-            <MenuItem Icon={BsTag} label="Brands" />
-          </div>
-          <div className="pb-2">
-            <MenuItem Icon={BiStoreAlt} label="Stores" />
-          </div>
+          <MenuItem Icon={BsTag} label="Brands" />
+          <MenuItem Icon={BiStoreAlt} label="Stores" />
+
           <div
-            className="pb-2"
-            onMouseEnter={handleCategories}
-            onMouseLeave={handleCategories}
+            onMouseEnter={() => handleMenuItem("categories")}
+            onMouseLeave={() => handleMenuItem("categories")}
           >
             <MenuItem
               Icon={MdOutlineCategory}
               IconRight={PiCaretDownThin}
               label="Categories"
-              onClick={handleCategories}
+              onClick={() => handleMenuItem("categories")}
             />
             {isOpenCategories && <Categories />}
           </div>
-          <div className="pb-2">
-            <MenuItem
-              border_right
-              label="Sign In"
-              onClick={handleSignIn}
-            />
-          </div>
-          <div className="pb-2">
-            <MenuItem label="Sign Up" onClick={handleSignUp} />
-          </div>
+          {!session?.user && (
+            <>
+              <MenuItem
+                border_right
+                label="Sign In"
+                onClick={() => handleMenuItem("signIn")}
+              />
+              <MenuItem
+                label="Sign Up"
+                onClick={() => handleMenuItem("signUp")}
+              />
+            </>
+          )}
+          {session?.user && (
+            <>
+              <div
+                onMouseEnter={() => handleMenuItem("account")}
+                onMouseLeave={() => handleMenuItem("account")}
+                className=""
+              >
+                <MenuItem
+                  Icon={MdOutlineCategory}
+                  IconRight={PiCaretDownThin}
+                  label="Account"
+                  onClick={() => handleMenuItem("account")}
+                />
+                {isOpenAccount && <Account />}
+              </div>
+              <MenuItem label="Sign Out" onClick={() => signOut()} />
+            </>
+          )}
         </div>
         <div className="hidden laptop:block">{isScroll && <Cart />}</div>
       </div>

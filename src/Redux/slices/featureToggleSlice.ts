@@ -10,6 +10,7 @@ export interface FeatureToggleState {
   signUp: boolean;
   categories: boolean;
   sidebar: boolean;
+  account: boolean;
 }
 
 const initialState: FeatureToggleState = {
@@ -19,6 +20,7 @@ const initialState: FeatureToggleState = {
   signUp: false,
   categories: false,
   sidebar: false,
+  account: false,
 };
 
 const featureToggleSlice = createSlice({

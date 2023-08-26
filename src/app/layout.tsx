@@ -2,11 +2,16 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
+import { ReduxProvider } from "@/Redux/provider";
+import SProvider from "@/components/SProvider";
+
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import { Providers } from "@/Redux/provider";
 import SignIn from "@/components/register/SignIn";
 import SignUp from "@/components/register/SignUp";
+
+import { getServerSession } from "next-auth/next";
+import { options } from "./api/auth/[...nextauth]/options";
 
 export const metadata: Metadata = {
   title: "Sastodeal Clone",
@@ -20,27 +25,31 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(options);
+
   return (
     <html lang="en" className={poppins.className}>
       <body className="bg-base-background-color">
-        <Providers>
-          <div className="page-wrapper flex flex-col min-h-screen ">
-            <div className="flex-1">
-              <SignIn />
-              <SignUp />
-              <Header />
-              <div className="mt-[7.3rem] mobile:mt-[7.8rem] tablet:mt-32 laptop:mt-44">
-                {children}
+        <SProvider session={session}>
+          <ReduxProvider>
+            <div className="page-wrapper flex flex-col min-h-screen ">
+              <div className="flex-1">
+                <SignIn />
+                <SignUp />
+                <Header />
+                <div className="mt-[7.3rem] mobile:mt-[7.8rem] tablet:mt-32 laptop:mt-44">
+                  {children}
+                </div>
               </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        </Providers>
+          </ReduxProvider>
+        </SProvider>
       </body>
     </html>
   );

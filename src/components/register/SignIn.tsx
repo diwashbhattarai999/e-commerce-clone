@@ -5,12 +5,15 @@ import {
   toggleFeature,
 } from "@/Redux/slices/featureToggleSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Input from "./Input";
+import { signIn } from "next-auth/react";
 
-import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import Heading from "./RegisterHeading";
 import { useEffect, useRef, useState } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
+
+import Input from "./Input";
+import Heading from "./RegisterHeading";
+
+import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
 interface items {
   id: number;
@@ -116,7 +119,9 @@ const SignIn = () => {
                         rounded-full w-[60px] h-[60px]
                         text-2xl bg-[#3b5998]
                         flex items-center justify-center
-                      "
+                        cursor-pointer
+                    "
+                    onClick={() => signIn("facebook")}
                   >
                     <FaFacebookF color="white" />
                   </div>
@@ -126,7 +131,9 @@ const SignIn = () => {
                         rounded-full w-[60px] h-[60px]
                         text-2xl bg-[#dd4b39]
                         flex items-center justify-center
+                        cursor-pointer
                       "
+                    onClick={() => signIn("google")}
                   >
                     <FaGoogle color="white" />
                   </div>

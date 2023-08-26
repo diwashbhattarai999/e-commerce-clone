@@ -1,7 +1,9 @@
 import Container from "@/components/Container";
 import Banner from "@/components/banner/Banner";
 
-export default function Home() {
+export default async function Home() {
+
+
   return (
     <main className="">
       <div className="min-h-screen">
