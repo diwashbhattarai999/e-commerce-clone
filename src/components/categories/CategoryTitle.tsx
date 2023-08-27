@@ -21,46 +21,43 @@ const CategoryTitle: React.FC<CategoryTitleProps> = ({
   onIconClick,
 }) => {
   return (
-    <Link href={category.link}>
-      <div
-        className={`
+    // <Link href={category.link}>
+    <div
+      className={`
           flex items-center justify-between gap-6 
           px-4 py-3
           hover:bg-primary-color hover:text-white
           text-primary-color   
         `}
-        onClick={() => onClick && onClick()}
-      >
-        <h5
-          className={`
+      onClick={() => onClick && onClick()}
+    >
+      <h5
+        className={`
             text-base
             ${bold ? "font-semibold" : "font-medium"}
             ${uppercase && "uppercase"}
           `}
-        >
-          {category.name}
-        </h5>
+      >
+        {category.name}
+      </h5>
 
-        {arrow === "arrowDown" && (
-          <BsChevronDown
-            size="18px"
-            onClick={() => onIconClick && onIconClick()}
-          />
-        )}
-        {arrow === "arrowRight" && (
-          <BsChevronRight
-            size="18px"
-            onClick={() => onIconClick && onIconClick()}
-          />
-        )}
-        {arrow === "arrowUp" && (
-          <BsChevronUp
-            size="18px"
-            onClick={() => onIconClick && onIconClick()}
-          />
-        )}
-      </div>
-    </Link>
+      {arrow === "arrowDown" && (
+        <BsChevronDown
+          size="18px"
+          onClick={() => onIconClick && onIconClick()}
+        />
+      )}
+      {arrow === "arrowRight" && (
+        <BsChevronRight
+          size="18px"
+          onClick={() => onIconClick && onIconClick()}
+        />
+      )}
+      {arrow === "arrowUp" && (
+        <BsChevronUp size="18px" onClick={() => onIconClick && onIconClick()} />
+      )}
+    </div>
+    // </Link>
   );
 };
 

@@ -22,7 +22,7 @@ const categoryData: CategoryItem[] = [
   {
     id: 1,
     name: "Daily Needs",
-    link: "",
+    link: "daily-needs",
     menu: [
       {
         id: 1,
@@ -181,7 +181,7 @@ const categoryData: CategoryItem[] = [
   {
     id: 2,
     name: "Electronics",
-    link: "",
+    link: "electronics",
     menu: [
       {
         id: 1,
@@ -323,7 +323,7 @@ const categoryData: CategoryItem[] = [
   {
     id: 3,
     name: "Books",
-    link: "",
+    link: "books",
     menu: [
       {
         id: 1,
@@ -399,7 +399,7 @@ const categoryData: CategoryItem[] = [
   {
     id: 4,
     name: "Myntra Brands",
-    link: "",
+    link: "myntra-brands",
     menu: [
       {
         id: 1,

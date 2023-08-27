@@ -5,10 +5,10 @@ export default async function Home() {
 
 
   return (
-    <main className="">
+    <main>
       <div className="min-h-screen">
         <Banner />
-        <Container>
+        {/* <Container>
           <h1>Deal Of The Day</h1>
           <h1>Promotion Banner</h1>
           <h1>Popular Brands</h1>
@@ -24,7 +24,7 @@ export default async function Home() {
           <h1>SD Picks</h1>
           <h1>Second Promotion Banner</h1>
           <h1>New Arrivals</h1>
-        </Container>
+        </Container> */}
       </div>
     </main>
   );

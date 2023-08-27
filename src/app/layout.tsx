@@ -42,9 +42,7 @@ export default async function RootLayout({
                 <SignIn />
                 <SignUp />
                 <Header />
-                <div className="mt-[7.3rem] mobile:mt-[7.8rem] tablet:mt-32 laptop:mt-44">
-                  {children}
-                </div>
+                {children}
               </div>
               <Footer />
             </div>
