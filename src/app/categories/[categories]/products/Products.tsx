@@ -3,37 +3,56 @@
 import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 
-const products = [
+type Products = {
+  id: number;
+  name: string;
+  subcategories: string;
+};
+
+const products: Products[] = [
   {
     id: 1,
     name: "Product 1",
+    subcategories: "food-essentials",
   },
   {
     id: 2,
     name: "Product 2",
+    subcategories: "sd-liquors",
   },
   {
     id: 3,
     name: "Product 3",
+    subcategories: "",
   },
   {
     id: 4,
     name: "Product 4",
+    subcategories: "",
   },
   {
     id: 5,
     name: "Product 5",
+    subcategories: "",
   },
   {
     id: 6,
     name: "Product 6",
+    subcategories: "",
   },
 ];
 
 const Products = () => {
   const router = useRouter();
   const params = useParams();
-  const { categories } = params;
+  const { categories, subcategories } = params;
+  console.log(params);
+
+  const handleClick = (product: Products) => {
+    router.push(
+      `/categories/${categories}/${product.subcategories}/product${product.id}`
+    );
+  };
 
   return (
     <div className="bg-white p-4">
@@ -42,9 +61,7 @@ const Products = () => {
           <h1
             key={product.id}
             className="cursor-pointer"
-            onClick={() => {
-              router.push(`/categories/${categories}/product${product.id}`);
-            }}
+            onClick={() => handleClick(product)}
           >
             {product.name}
           </h1>

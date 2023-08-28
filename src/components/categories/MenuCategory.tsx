@@ -1,12 +1,12 @@
-import { MenuItem } from "./CategoryList";
+import { CategoryItem } from "./CategoryList";
 import MenuCategoryItems from "./MenuCategoryItems";
 
 interface subcategoryProps {
-  menu: MenuItem[];
+  category: CategoryItem;
   isActive: boolean;
 }
 
-const MenuCategory: React.FC<subcategoryProps> = ({ menu, isActive }) => {
+const MenuCategory: React.FC<subcategoryProps> = ({ category, isActive }) => {
   return (
     <div
       className={`
@@ -23,7 +23,7 @@ const MenuCategory: React.FC<subcategoryProps> = ({ menu, isActive }) => {
       <div className="max-w-[970px] ml-0 px-[10px] h-full">
         <div className="flex -mx-[10px]">
           <ul className="columns-4 gap-4 max-h-[800px]">
-            <MenuCategoryItems menu={menu} />
+            <MenuCategoryItems category={category} />
           </ul>
         </div>
       </div>

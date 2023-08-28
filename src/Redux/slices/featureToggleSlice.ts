@@ -34,10 +34,25 @@ const featureToggleSlice = createSlice({
       const { featureName } = action.payload;
       state[featureName] = !state[featureName];
     },
+    setFeatureTrue: (
+      state,
+      action: PayloadAction<{ featureName: keyof FeatureToggleState }>
+    ) => {
+      const { featureName } = action.payload;
+      state[featureName] = true;
+    },
+    setFeatureFalse: (
+      state,
+      action: PayloadAction<{ featureName: keyof FeatureToggleState }>
+    ) => {
+      const { featureName } = action.payload;
+      state[featureName] = false;
+    },
   },
 });
 
-export const { toggleFeature } = featureToggleSlice.actions;
+export const { toggleFeature, setFeatureTrue, setFeatureFalse } =
+  featureToggleSlice.actions;
 export const selectToggleFeatureState =
   (featureName: keyof FeatureToggleState) => (state: RootState) =>
     state.featureToggle[featureName];

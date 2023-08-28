@@ -5,7 +5,7 @@ import { RootState } from "@/Redux/store";
 import { setActiveStates } from "@/Redux/slices/categorySlice";
 import CategoryTitle from "./CategoryTitle";
 import { useRouter } from "next/navigation";
-import { toggleFeature } from "@/Redux/slices/featureToggleSlice";
+import { setFeatureFalse } from "@/Redux/slices/featureToggleSlice";
 
 interface CategoryProps {
   category: CategoryItem;
@@ -28,7 +28,8 @@ const Category: React.FC<CategoryProps> = ({ category }) => {
 
   const handleNavigate = () => {
     router.push(`/categories/${category.link}`);
-    dispatch(toggleFeature({ featureName: "categories" }));
+    dispatch(setFeatureFalse({ featureName: "categories" }));
+    dispatch(setFeatureFalse({ featureName: "sidebar" }));
   };
 
   return (
@@ -44,7 +45,7 @@ const Category: React.FC<CategoryProps> = ({ category }) => {
         onClick={handleNavigate}
       />
       <MenuCategory
-        menu={category.menu}
+        category={category}
         isActive={activeStates === category.id}
       />
     </li>

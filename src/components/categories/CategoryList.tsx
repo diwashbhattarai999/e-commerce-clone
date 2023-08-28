@@ -27,7 +27,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 1,
         name: "Food Essentials",
-        link: "",
+        link: "food-essentials",
         subMenu: [
           {
             id: 1,
@@ -64,7 +64,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 2,
         name: "SD Liquors",
-        link: "",
+        link: "sd-liquors",
         subMenu: [
           {
             id: 1,
@@ -96,7 +96,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 3,
         name: "Hair Care",
-        link: "",
+        link: "hair-care",
         subMenu: [
           {
             id: 1,
@@ -118,7 +118,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 4,
         name: "Home Care",
-        link: "",
+        link: "home-care",
         subMenu: [
           {
             id: 1,
@@ -145,7 +145,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 5,
         name: "Personal Care",
-        link: "",
+        link: "personal-care",
         subMenu: [
           {
             id: 1,
@@ -162,7 +162,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 6,
         name: "Pet Care",
-        link: "",
+        link: "pet-care",
         subMenu: [
           {
             id: 1,
@@ -186,7 +186,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 1,
         name: "Mobile Phones & Tablets",
-        link: "",
+        link: "mobile-phones-and-tablets",
         subMenu: [
           {
             id: 1,
@@ -223,7 +223,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 2,
         name: "Large Home Appliances",
-        link: "",
+        link: "large-home-appliances",
         subMenu: [
           {
             id: 1,
@@ -255,7 +255,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 3,
         name: "Televisions",
-        link: "",
+        link: "televisions",
         subMenu: [
           {
             id: 1,
@@ -277,7 +277,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 4,
         name: "Small Home Appliances",
-        link: "",
+        link: "small-home-appliances",
         subMenu: [
           {
             id: 1,
@@ -304,7 +304,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 5,
         name: "Audio Accessories",
-        link: "",
+        link: "audio-accessories",
         subMenu: [
           {
             id: 1,
@@ -328,7 +328,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 1,
         name: "Academics",
-        link: "",
+        link: "academics",
         subMenu: [
           {
             id: 1,
@@ -365,7 +365,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 2,
         name: "Genre",
-        link: "",
+        link: "genre",
         subMenu: [
           {
             id: 1,
@@ -404,22 +404,22 @@ const categoryData: CategoryItem[] = [
       {
         id: 1,
         name: "Myntra Men",
-        link: "",
+        link: "myntra-men",
         subMenu: [
           {
             id: 1,
             name: "Rice & Rice Products",
-            link: "",
+            link: "rice-&-rice-products",
           },
           {
             id: 2,
             name: "Cooking Oils & Vinegar",
-            link: "",
+            link: "cooking-oils-&-vinegar",
           },
           {
             id: 3,
             name: "Flour Products",
-            link: "",
+            link: "flour-products",
           },
           {
             id: 4,
@@ -441,7 +441,7 @@ const categoryData: CategoryItem[] = [
       {
         id: 2,
         name: "Myntra Women",
-        link: "",
+        link: "myntra-women",
         subMenu: [
           {
             id: 1,

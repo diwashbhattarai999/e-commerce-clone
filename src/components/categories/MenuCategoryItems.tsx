@@ -1,29 +1,42 @@
 import Link from "next/link";
-import { MenuItem } from "./CategoryList";
+import { CategoryItem } from "./CategoryList";
 import { BsChevronRight } from "react-icons/bs";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setFeatureFalse } from "@/Redux/slices/featureToggleSlice";
 
 interface MenuCategoryItemsProps {
-  menu: MenuItem[];
+  category: CategoryItem;
   leftArrow?: boolean;
   small?: boolean;
 }
 
 const MenuCategoryItems: React.FC<MenuCategoryItemsProps> = ({
-  menu,
+  category,
   leftArrow,
   small,
 }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleNavigate = (link: string) => {
+    router.push(`/categories/${category.link}/${link}`);
+    dispatch(setFeatureFalse({ featureName: "categories" }));
+    dispatch(setFeatureFalse({ featureName: "sidebar" }));
+  };
+
   return (
     <>
-      {menu.map(({ id, name, link, subMenu }) => (
+      {category?.menu.map(({ id, name, link, subMenu }) => (
         <li key={id} className="w-full mb-5 break-inside-avoid-column">
-          <Link
-            href={link}
+          <div
+            onClick={() => handleNavigate(link)}
             className={`
               py-2 mb-4  
               border-b-2 border-[#d5d5d5]
               max-w-[95%] min-w-[95%]
               flex items-center gap-1
+              cursor-pointer
               ${
                 small
                   ? "font-light text-[#777]"
@@ -34,7 +47,7 @@ const MenuCategoryItems: React.FC<MenuCategoryItemsProps> = ({
           >
             {leftArrow && <BsChevronRight size="12" />}
             <span>{name}</span>
-          </Link>
+          </div>
           <ul className="pb-1">
             {subMenu.map(({ id, name, link }) => (
               <li key={id}>

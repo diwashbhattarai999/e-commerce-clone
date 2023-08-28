@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { toggleFeature } from "@/Redux/slices/featureToggleSlice";
 import MenuCategoryItems from "@/components/categories/MenuCategoryItems";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface SectionsListProps {
   title: string;
@@ -17,6 +18,7 @@ interface SectionsListProps {
 const SectionsList: React.FC<SectionsListProps> = ({ title }) => {
   const [activeState, setActiveState] = useState<number | null>(null);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleAccountClick = (category: List) => {
     dispatch(toggleFeature({ featureName: "sidebar" }));
@@ -38,12 +40,20 @@ const SectionsList: React.FC<SectionsListProps> = ({ title }) => {
     <>
       {categoryData.map((category) => {
         const arrow = activeState === category.id ? "arrowUp" : "arrowDown";
+
+        const handleNavigate = () => {
+          router.push(`/categories/${category.link}`);
+          dispatch(toggleFeature({ featureName: "categories" }));
+          dispatch(toggleFeature({ featureName: "sidebar" }));
+        };
+
         return (
           <div key={category.id}>
             <CategoryTitle
               category={category}
               uppercase
               arrow={arrow}
+              onTitleClick={handleNavigate}
               onIconClick={() => handleMenuClick(category)}
             />
 
@@ -53,7 +63,7 @@ const SectionsList: React.FC<SectionsListProps> = ({ title }) => {
                 px-4
               `}
             >
-              <MenuCategoryItems menu={category.menu} leftArrow small/>
+              <MenuCategoryItems category={category} leftArrow small />
             </ul>
           </div>
         );

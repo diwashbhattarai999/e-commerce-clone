@@ -9,6 +9,7 @@ interface CategoryTitleProps {
   bold?: boolean;
   arrow?: string;
   onClick?: () => void;
+  onTitleClick?: () => void;
   onIconClick?: () => void;
 }
 
@@ -18,6 +19,7 @@ const CategoryTitle: React.FC<CategoryTitleProps> = ({
   bold,
   arrow,
   onClick,
+  onTitleClick,
   onIconClick,
 }) => {
   return (
@@ -27,7 +29,8 @@ const CategoryTitle: React.FC<CategoryTitleProps> = ({
           flex items-center justify-between gap-6 
           px-4 py-3
           hover:bg-primary-color hover:text-white
-          text-primary-color   
+          text-primary-color  
+          cursor-pointer 
         `}
       onClick={() => onClick && onClick()}
     >
@@ -36,7 +39,8 @@ const CategoryTitle: React.FC<CategoryTitleProps> = ({
             text-base
             ${bold ? "font-semibold" : "font-medium"}
             ${uppercase && "uppercase"}
-          `}
+        `}
+        onClick={() => onTitleClick && onTitleClick()}
       >
         {category.name}
       </h5>
