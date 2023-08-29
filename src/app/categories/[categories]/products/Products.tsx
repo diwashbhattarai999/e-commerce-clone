@@ -45,8 +45,7 @@ const products: Products[] = [
 const Products = () => {
   const router = useRouter();
   const params = useParams();
-  const { categories, subcategories } = params;
-  console.log(params);
+  const { categories } = params;
 
   const handleClick = (product: Products) => {
     router.push(

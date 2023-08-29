@@ -7,8 +7,8 @@ import SProvider from "@/components/SProvider";
 
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
-import SignIn from "@/components/register/SignIn";
-import SignUp from "@/components/register/SignUp";
+import LoginModal from "@/components/modal/LoginModal";
+import RegisterModal from "@/components/modal/RegisterModal";
 
 import { getServerSession } from "next-auth/next";
 import { options } from "./api/auth/[...nextauth]/options";
@@ -39,8 +39,8 @@ export default async function RootLayout({
           <ReduxProvider>
             <div className="page-wrapper flex flex-col min-h-screen ">
               <div className="flex-1">
-                <SignIn />
-                <SignUp />
+                <LoginModal />
+                <RegisterModal />
                 <Header />
                 {children}
               </div>

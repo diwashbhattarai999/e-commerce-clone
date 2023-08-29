@@ -13,7 +13,7 @@ const Button: React.FC<ButtonProps> = ({ center, full, buttonText }) => {
             ${full && "w-full"}
           text-white text-base
             bg-accent-color 
-            py-2 px-5
+            py-3 px-5
             rounded-full
             min-h-[40px]
             tracking-[0.01em]

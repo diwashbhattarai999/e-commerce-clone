@@ -1,22 +1,21 @@
 "use client";
 
-import { toggleFeature } from "@/Redux/slices/featureToggleSlice";
+import { setFeatureFalse } from "@/Redux/slices/featureToggleSlice";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch } from "react-redux";
 
 interface HeadingProps {
   title: string;
-  name: string;
 }
 
-const RegisterHeading: React.FC<HeadingProps> = ({ title, name }) => {
+const ModalHeading: React.FC<HeadingProps> = ({ title }) => {
   const dispatch = useDispatch();
 
   const close = () => {
-    if (name === "signin") {
-      dispatch(toggleFeature({ featureName: "signIn" }));
-    } else if (name === "signup") {
-      dispatch(toggleFeature({ featureName: "signUp" }));
+    if (title === "Sign In") {
+      dispatch(setFeatureFalse({ featureName: "signIn" }));
+    } else if (title === "Sign Up") {
+      dispatch(setFeatureFalse({ featureName: "signUp" }));
     }
   };
 
@@ -24,7 +23,7 @@ const RegisterHeading: React.FC<HeadingProps> = ({ title, name }) => {
     <div
       className="
         flex items-center justify-between 
-        pb-2 tablet:pb-4 
+        pb-2 tablet:pb-4 mb-4
         border-b-2 border-[#d4d4d4]
         text-primary-color 
     "
@@ -37,4 +36,4 @@ const RegisterHeading: React.FC<HeadingProps> = ({ title, name }) => {
   );
 };
 
-export default RegisterHeading;
+export default ModalHeading;

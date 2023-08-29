@@ -1,5 +1,5 @@
 import Container from "@/components/Container";
-import ProductFilter from "../products/ProductFilter";
+import ProductFilter from "../../../../components/products/ProductFilter";
 import ProductBanner from "../products/ProductBanner";
 import Products from "../products/Products";
 import { NextPage } from "next";
