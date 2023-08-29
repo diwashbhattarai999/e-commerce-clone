@@ -7,7 +7,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { Formik, Form } from "formik";
 
@@ -32,6 +32,12 @@ const LoginModal = () => {
     dispatch(toggleFeature({ featureName: "signIn" }));
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
+ 
+
   const body = (
     <>
       <div className="flex flex-col tablet:flex-row gap-6 tablet:gap-0 my-8">
@@ -45,8 +51,24 @@ const LoginModal = () => {
           >
             Registered Customers
           </h3>
-          <Input id={1} label="Email" />
-          <Input id={2} label="Password" />
+          <Input
+            id={1}
+            label="Email"
+            type="text"
+            name="login_email"
+            value={user.login_email}
+            placeholder="Email Address"
+            onChange={handleChange}
+          />
+          <Input
+            id={2}
+            label="Password"
+            type="password"
+            name="login_password"
+            value={user.login_password}
+            placeholder="Password"
+            onChange={handleChange}
+          />
         </div>
         <div className="tablet:w-5/12 tablet:pl-6">
           <div

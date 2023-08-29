@@ -1,63 +1,29 @@
-// interface Items {
-//   id: number;
-//   title: string;
-//   type: string;
-// }
-
-// interface InputProps {
-//   items: Items[];
-//   buttonText: string;
-// }
-
-// const Input: React.FC<InputProps> = ({ items, buttonText }) => {
-//   return (
-//     <div>
-//       <label
-//         className="
-//               text-sm after:content-['*'] after:ml-1
-//               after:text-[#e02b27] after:text-base
-//             "
-//       >
-//         {/* {title} */}
-//       </label>
-//       <div>
-//         <input
-//           className="
-//                 text-base
-//                 border-[1px] border-[#686b6f]
-//                 p-2 tablet:p-3
-//                 w-full min-h-[43px] tablet:min-h-[58px]
-//               "
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Input;
-
-import { BiDollar } from "react-icons/bi";
+import { useField } from "formik";
+import { ChangeEvent } from "react";
 
 interface InputProps {
   id: number;
-  label?: any;
-  type?: any;
-  disabled?: any;
-  formatPrice?: any;
-  register?: any;
-  required?: any;
+  label: string;
+  type: string;
+  name: string;
+  value: string;
+  placeholder: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   errors?: any;
 }
 
 const Input: React.FC<InputProps> = ({
   id,
   label,
-  type = "text",
-  disabled,
-  register,
-  required,
+  type,
+  name,
+  value,
+  placeholder,
+  onChange,
   errors,
 }) => {
+  // const [filed, meta] = useField(props)
+
   return (
     <div className="w-full mb-4">
       <label
@@ -70,9 +36,11 @@ const Input: React.FC<InputProps> = ({
         {label}
       </label>
       <input
-        disabled={disabled}
-        placeholder=""
+        placeholder={placeholder}
         type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
         className={`
           text-base
           border-[1px] 
