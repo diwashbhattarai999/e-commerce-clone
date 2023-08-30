@@ -9,13 +9,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "next-auth/react";
 import { ChangeEvent, useState } from "react";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikProps } from "formik";
+// import * as Yup from "yup";
 
 import Input from "./Input";
 import Modal from "./Modal";
 import Button from "../Button";
 
-const initialValues = {
+interface MyFormValues {
+  login_email: string;
+  login_password: string;
+}
+
+interface InputProps {
+  label: string;
+  placeholder: string;
+  type: string;
+  name: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const initialValues: MyFormValues = {
   login_email: "",
   login_password: "",
 };
@@ -36,7 +51,8 @@ const LoginModal = () => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
- 
+
+  // console.log(user);
 
   const body = (
     <>
@@ -51,24 +67,35 @@ const LoginModal = () => {
           >
             Registered Customers
           </h3>
-          <Input
-            id={1}
-            label="Email"
-            type="text"
-            name="login_email"
-            value={user.login_email}
-            placeholder="Email Address"
-            onChange={handleChange}
-          />
-          <Input
-            id={2}
-            label="Password"
-            type="password"
-            name="login_password"
-            value={user.login_password}
-            placeholder="Password"
-            onChange={handleChange}
-          />
+          <Formik
+            enableReinitialize
+            initialValues={{ login_email, login_password }}
+            onSubmit={(values, actions) => {
+              console.log({ values, actions });
+            }}
+          >
+            {(form) => (
+              <Form>
+                <Input
+                  label="Email"
+                  type="text"
+                  name="login_email"
+                  value={user.login_email}
+                  placeholder="Email Address"
+                  onChange={handleChange}
+                />
+                <Input
+                  label="Password"
+                  type="password"
+                  name="login_password"
+                  value={user.login_password}
+                  placeholder="Password"
+                  onChange={handleChange}
+                />
+              </Form>
+            )}
+          </Formik>
+          <Button buttonText="Login" full />
         </div>
         <div className="tablet:w-5/12 tablet:pl-6">
           <div
@@ -113,7 +140,6 @@ const LoginModal = () => {
 
   const footer = (
     <>
-      <Button buttonText="Login" center full />
       <div className="flex flex-col tablet:flex-row items-center justify-center gap-4 mt-4 text-sm text-accent-color font-semibold">
         <span className="cursor-pointer" onClick={handleSignUp}>
           Create New Account?

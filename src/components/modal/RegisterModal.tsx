@@ -48,7 +48,6 @@ const RegisterModal = () => {
     <>
       <div className="my-6">
         <Input
-          id={1}
           label="First Name"
           type="text"
           name="register_firstname"
@@ -57,7 +56,6 @@ const RegisterModal = () => {
           onChange={handleChange}
         />
         <Input
-          id={2}
           label="Last Name"
           type="text"
           name="register_lastname"
@@ -66,7 +64,6 @@ const RegisterModal = () => {
           onChange={handleChange}
         />
         <Input
-          id={3}
           label="Email"
           type="text"
           name="register_email"
@@ -75,7 +72,6 @@ const RegisterModal = () => {
           onChange={handleChange}
         />
         <Input
-          id={4}
           label="Password"
           type="password"
           name="register_password"
@@ -84,7 +80,6 @@ const RegisterModal = () => {
           onChange={handleChange}
         />
         <Input
-          id={5}
           label="Confirm Password"
           type="password"
           name="register_confirm_password"
@@ -92,13 +87,14 @@ const RegisterModal = () => {
           placeholder="Confirm Password"
           onChange={handleChange}
         />
+        <Button buttonText="Create an Account" />
       </div>
     </>
   );
 
   const footer = (
     <>
-      <Button buttonText="Create an Account" />
+      
       <div className="pt-2 pl-2 text-lg">
         Already registered?{" "}
         <span
