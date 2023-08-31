@@ -26,6 +26,9 @@ module.exports = {
         "subcategory-width": "calc(300% + 32px)",
         "sidebar-width": "calc(100% - 54px)",
       },
+      backgroundImage: {
+        "deal-of-the-day": "url(/images/DealOfTheDay.jpg)",
+      },
     },
     screens: {
       mobile: "400px",

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import banner from "@/images/banner/banner.jpg";
+import banner from "public/images/banner/banner.jpg";
 import Countdown from "./Countdown";
 import SubBanner from "./SubBanner";
 

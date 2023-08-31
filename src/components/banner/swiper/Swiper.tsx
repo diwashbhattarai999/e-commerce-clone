@@ -2,9 +2,9 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import sb1 from "@/images/banner/subbanner.png";
-import sb2 from "@/images/banner/subbanner2.png";
-import sb3 from "@/images/banner/subbanner3.png";
+import sb1 from "/public/images/banner/subbanner.png";
+import sb2 from "/public/images/banner/subbanner2.png";
+import sb3 from "/public/images/banner/subbanner3.png";
 
 // Import Swiper styles
 import "swiper/css";

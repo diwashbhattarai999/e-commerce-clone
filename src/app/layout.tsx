@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, DM_Sans, Inter } from "next/font/google";
 
 import { ReduxProvider } from "@/Redux/provider";
 import SProvider from "@/components/SProvider";
@@ -19,8 +19,22 @@ export const metadata: Metadata = {
     "Online shopping in Nepal | Buy online in Nepal | Online store nepal | Online clothing store in Nepal | Sastodeal",
 };
 
+const dM_Sans = DM_Sans({
+  subsets: ["latin"],
+  style: "normal",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
 const poppins = Poppins({
   subsets: ["latin"],
+  style: "normal",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  style: "normal",
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
@@ -33,7 +47,7 @@ export default async function RootLayout({
   const session = await getServerSession(options);
 
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="en" className={dM_Sans.className}>
       <body className="bg-base-background-color">
         <SProvider session={session}>
           <ReduxProvider>

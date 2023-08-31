@@ -2,7 +2,7 @@ import Image from "next/image";
 import Container from "../Container";
 import Links from "./Links";
 import Socials from "./Socials";
-import qr_app from "@/images/footer_qr_app.png";
+import qr_app from "/public/images/footer_qr_app.png";
 
 const Footer = () => {
   return (

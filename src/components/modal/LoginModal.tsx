@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "next-auth/react";
 import { ChangeEvent, useState } from "react";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import { Formik, Form, FormikProps } from "formik";
+import { Formik, Form, FormikProps, useFormik } from "formik";
 // import * as Yup from "yup";
 
 import Input from "./Input";
@@ -19,15 +19,6 @@ import Button from "../Button";
 interface MyFormValues {
   login_email: string;
   login_password: string;
-}
-
-interface InputProps {
-  label: string;
-  placeholder: string;
-  type: string;
-  name: string;
-  value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const initialValues: MyFormValues = {
@@ -54,6 +45,14 @@ const LoginModal = () => {
 
   // console.log(user);
 
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+  console.log(formik);
+
   const body = (
     <>
       <div className="flex flex-col tablet:flex-row gap-6 tablet:gap-0 my-8">
@@ -74,7 +73,7 @@ const LoginModal = () => {
               console.log({ values, actions });
             }}
           >
-            {(form) => (
+            {() => (
               <Form>
                 <Input
                   label="Email"
