@@ -6,30 +6,30 @@ import {
 } from "@/Redux/slices/featureToggleSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-import { signIn } from "next-auth/react";
-import { ChangeEvent, useState } from "react";
+import { ClientSafeProvider, signIn } from "next-auth/react";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import { Formik, Form, FormikProps, useFormik } from "formik";
-// import * as Yup from "yup";
+import { useFormik } from "formik";
+import { loginValidation } from "./schemas";
 
 import Input from "./Input";
 import Modal from "./Modal";
 import Button from "../Button";
 
-interface MyFormValues {
+export interface MyLoginFormValues {
   login_email: string;
   login_password: string;
 }
 
-const initialValues: MyFormValues = {
+const initialValues: MyLoginFormValues = {
   login_email: "",
   login_password: "",
 };
 
-const LoginModal = () => {
-  const [user, setUser] = useState(initialValues);
-  const { login_email, login_password } = user;
+interface LoginModalProps {
+  providers: ClientSafeProvider[];
+}
 
+const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
   const isOpenSignIn = useSelector(selectToggleFeatureState("signIn"));
   const dispatch = useDispatch();
 
@@ -38,20 +38,14 @@ const LoginModal = () => {
     dispatch(toggleFeature({ featureName: "signIn" }));
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  };
-
-  // console.log(user);
-
-  const formik = useFormik({
-    initialValues: initialValues,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
-  console.log(formik);
+  const { errors, handleChange, handleSubmit, handleBlur, values, touched } =
+    useFormik({
+      initialValues,
+      onSubmit: (_, action) => {
+        action.resetForm();
+      },
+      validationSchema: loginValidation,
+    });
 
   const body = (
     <>
@@ -66,35 +60,31 @@ const LoginModal = () => {
           >
             Registered Customers
           </h3>
-          <Formik
-            enableReinitialize
-            initialValues={{ login_email, login_password }}
-            onSubmit={(values, actions) => {
-              console.log({ values, actions });
-            }}
-          >
-            {() => (
-              <Form>
-                <Input
-                  label="Email"
-                  type="text"
-                  name="login_email"
-                  value={user.login_email}
-                  placeholder="Email Address"
-                  onChange={handleChange}
-                />
-                <Input
-                  label="Password"
-                  type="password"
-                  name="login_password"
-                  value={user.login_password}
-                  placeholder="Password"
-                  onChange={handleChange}
-                />
-              </Form>
-            )}
-          </Formik>
-          <Button buttonText="Login" full />
+          <form onSubmit={handleSubmit}>
+            <Input
+              label="Email"
+              type="text"
+              name="login_email"
+              value={values.login_email}
+              placeholder="Email Address"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+            />
+            <Input
+              label="Password"
+              type="password"
+              name="login_password"
+              value={values.login_password}
+              placeholder="Password"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+            />
+            <Button buttonText="Login" full />
+          </form>
         </div>
         <div className="tablet:w-5/12 tablet:pl-6">
           <div
@@ -106,31 +96,35 @@ const LoginModal = () => {
           >
             Or Sign In With
           </div>
-          <div className="flex justify-center tablet:justify-start">
-            <div
-              className="
-                mr-4 mt-2 p-4
-                rounded-full w-[60px] h-[60px]
-                text-2xl bg-[#3b5998]
-                flex items-center justify-center
-                cursor-pointer
-            "
-              onClick={() => signIn("facebook")}
-            >
-              <FaFacebookF color="white" />
-            </div>
-            <div
-              className="
-                mt-2 p-4
-                rounded-full w-[60px] h-[60px]
-                text-2xl bg-[#dd4b39]
-                flex items-center justify-center
-                cursor-pointer
-            "
-              onClick={() => signIn("google")}
-            >
-              <FaGoogle color="white" />
-            </div>
+          <div className="flex justify-center tablet:justify-start gap-4">
+            {providers.map((provider: ClientSafeProvider) => {
+              let providerIcon;
+              if (provider.id === "google") {
+                providerIcon = <FaGoogle color="white" size="24" />;
+              } else if (provider.id === "facebook") {
+                providerIcon = <FaFacebookF color="white" size="24" />;
+              }
+
+              return providerIcon ? (
+                <div
+                  key={provider.id}
+                  className={`
+                      mt-2 p-4
+                      rounded-full w-[60px] h-[60px]
+                      text-2xl 
+                      ${provider.id === "google" && "bg-[#dd4b39]"}
+                      ${provider.id === "facebook" && "bg-[#3b5998]"}
+                      flex items-center justify-center
+                      cursor-pointer
+                    `}
+                  onClick={() => signIn(provider.id)}
+                >
+                  {providerIcon}
+                </div>
+              ) : (
+                <></>
+              );
+            })}
           </div>
         </div>
       </div>

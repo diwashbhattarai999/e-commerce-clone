@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { TimeLeft } from "./Countdown";
+import { TimeLeft } from "./Timer"; 
 
 interface GetRemainingParams {
   nowDayjs: dayjs.Dayjs;
@@ -70,3 +70,8 @@ function padWithZeros(number: number, length: number): string {
 
   return "0".repeat(length - numberString.length) + numberString;
 }
+
+export const calculateTimeLeft = (date: Date) => {
+  const timeInMs = date.getTime();
+  return calculateDiff(timeInMs);
+};

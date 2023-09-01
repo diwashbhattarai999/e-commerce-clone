@@ -1,5 +1,7 @@
-import { useField } from "formik";
+import { FormikErrors, FormikTouched } from "formik";
 import { ChangeEvent } from "react";
+import { MyLoginFormValues } from "./LoginModal";
+import { MyRegisterFormValues } from "./RegisterModal";
 
 interface InputProps {
   label: string;
@@ -8,6 +10,9 @@ interface InputProps {
   name: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: ChangeEvent<HTMLInputElement>) => void;
+  errors: FormikErrors<MyLoginFormValues | MyRegisterFormValues>;
+  touched: FormikTouched<MyLoginFormValues | MyRegisterFormValues>;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -17,11 +22,17 @@ const Input: React.FC<InputProps> = ({
   name,
   value,
   onChange,
+  onBlur,
+  errors,
+  touched,
 }) => {
-  // const [field, meta] = useField(props);
+  const error =
+    errors[name as keyof (MyLoginFormValues | MyRegisterFormValues)];
+  const isTouched =
+    touched[name as keyof (MyLoginFormValues | MyRegisterFormValues)];
 
   return (
-    <div className="w-full mb-4">
+    <div className={`w-full ${errors ? "" : "mb-4"}`}>
       <label
         className={`
           text-sm after:content-['*'] after:ml-1
@@ -36,14 +47,28 @@ const Input: React.FC<InputProps> = ({
         name={name}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         className={`
           text-base
-          border-[1px] 
+          border
           p-2 tablet:p-3
           w-full min-h-[43px] tablet:min-h-[58px]
           bg-white
+          ${
+            errors && error && touched && isTouched
+              ? "border-rose-500"
+              : "border-neutral-300"
+          }
+          ${
+            errors && error && touched && isTouched
+              ? "focus:border-rose-500"
+              : "focus:border-black"
+          }
         `}
       />
+      {errors && error && touched && isTouched && (
+        <p className="mb-5 text-red-500">{error}</p>
+      )}
     </div>
   );
 };

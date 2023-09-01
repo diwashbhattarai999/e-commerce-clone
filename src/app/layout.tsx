@@ -12,6 +12,7 @@ import RegisterModal from "@/components/modal/RegisterModal";
 
 import { getServerSession } from "next-auth/next";
 import { options } from "./api/auth/[...nextauth]/options";
+import { getProviders } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Sastodeal Clone",
@@ -45,6 +46,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(options);
+  const providers = await getProviders();
+  const providerArray = providers ? Object.values(providers) : [];
 
   return (
     <html lang="en" className={dM_Sans.className}>
@@ -53,7 +56,7 @@ export default async function RootLayout({
           <ReduxProvider>
             <div className="page-wrapper flex flex-col min-h-screen ">
               <div className="flex-1">
-                <LoginModal />
+                <LoginModal providers={providerArray} />
                 <RegisterModal />
                 <Header />
                 {children}

@@ -19,11 +19,11 @@ export const options: NextAuthOptions = {
       clientId: process.env.FACEBOOK_CLIENT_ID as string,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
     }),
-    Auth0Provider({
-      clientId: process.env.AUTH0_CLIENT_ID as string,
-      clientSecret: process.env.AUTH0_CLIENT_SECRET as string,
-      issuer: process.env.AUTH0_ISSUER,
-    }),
+    // Auth0Provider({
+    //   clientId: process.env.AUTH0_CLIENT_ID as string,
+    //   clientSecret: process.env.AUTH0_CLIENT_SECRET as string,
+    //   issuer: process.env.AUTH0_ISSUER,
+    // }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
