@@ -15,19 +15,19 @@ import Button from "../Button";
 import { registerValidation } from "./schemas";
 
 export interface MyRegisterFormValues {
-  register_firstname: string;
-  register_lastname: string;
-  register_email: string;
-  register_password: string;
-  register_confirm_password: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+  confirm_password: string;
 }
 
 const initialValues: MyRegisterFormValues = {
-  register_firstname: "",
-  register_lastname: "",
-  register_email: "",
-  register_password: "",
-  register_confirm_password: "",
+  firstname: "",
+  lastname: "",
+  email: "",
+  password: "",
+  confirm_password: "",
 };
 
 const RegisterModal = () => {
@@ -55,7 +55,7 @@ const RegisterModal = () => {
           label="First Name"
           type="text"
           name="register_firstname"
-          value={values.register_firstname}
+          value={values.firstname}
           placeholder="First Name"
           onChange={handleChange}
           onBlur={handleBlur}
@@ -66,7 +66,7 @@ const RegisterModal = () => {
           label="Last Name"
           type="text"
           name="register_lastname"
-          value={values.register_lastname}
+          value={values.lastname}
           placeholder="Last Name"
           onChange={handleChange}
           onBlur={handleBlur}
@@ -77,7 +77,7 @@ const RegisterModal = () => {
           label="Email"
           type="text"
           name="register_email"
-          value={values.register_email}
+          value={values.email}
           placeholder="Email Address"
           onChange={handleChange}
           onBlur={handleBlur}
@@ -88,7 +88,7 @@ const RegisterModal = () => {
           label="Password"
           type="password"
           name="register_password"
-          value={values.register_password}
+          value={values.password}
           placeholder="Password"
           onChange={handleChange}
           onBlur={handleBlur}
@@ -99,7 +99,7 @@ const RegisterModal = () => {
           label="Confirm Password"
           type="password"
           name="register_confirm_password"
-          value={values.register_confirm_password}
+          value={values.confirm_password}
           placeholder="Confirm Password"
           onChange={handleChange}
           onBlur={handleBlur}
