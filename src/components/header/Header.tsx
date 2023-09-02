@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <div
       className={`
-        pt-2 bg-content-background-color w-full top-0 z-40
+        pt-2 bg-content-background-color w-full top-0 z-30
         transition-all duration-300 ease-in-out
         ${isScroll ? "fixed" : "relative"}  
       `}

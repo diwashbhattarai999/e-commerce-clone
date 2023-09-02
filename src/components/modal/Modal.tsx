@@ -9,17 +9,23 @@ import {
   setFeatureFalse,
 } from "@/Redux/slices/featureToggleSlice";
 import useClickOutside from "@/hooks/useClickOutside";
+import DLoader from "../loaders/DLoader";
 
 interface ModalProps {
-  isOpen: any;
+  isOpen: boolean;
   title: string;
   body: any;
   footer: any;
-  //   disabled: any;
-  //   onSubmit: any;
+  loading: boolean;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, title, body, footer }) => {
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  title,
+  body,
+  footer,
+  loading,
+}) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const modalBoxRef = useRef<HTMLDivElement | null>(null);
 
@@ -35,24 +41,17 @@ const Modal: React.FC<ModalProps> = ({ isOpen, title, body, footer }) => {
   useClickOutside(modalBoxRef, () => {
     if (isOpen) dispatch(setFeatureFalse({ featureName }));
   });
-
-  //   const handleSubmit = useCallback(() => {
-  //     if (disabled) {
-  //       return;
-  //     }
-
-  //     onSubmit();
-  //   }, [disabled, onSubmit]);
-
+  
   return (
     <>
+      {loading && <DLoader loading={loading} />}
       <div
         className={`
             w-full min-h-screen h-full
             flex justify-center
             fixed -top-0 -left-0
             bg-black/[0.6]
-            z-50 overflow-x-hidden overflow-y-auto inset-0
+            z-40 overflow-x-hidden overflow-y-auto inset-0
             ${isOpen ? "" : "hidden"}
           `}
       >

@@ -4,12 +4,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import cartCounterReducer from "./slices/cartCounterSlice";
 import featureToggleReducer from "./slices/featureToggleSlice";
 import categoryReducer from "./slices/categorySlice";
+import userReducer from "./slices/userSlice";
 
 export const store = configureStore({
   reducer: {
     cartCounterReducer,
     featureToggle: featureToggleReducer,
     categoryReducer,
+    user: userReducer,
   },
 });
 

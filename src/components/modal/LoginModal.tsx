@@ -8,12 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { ClientSafeProvider, signIn } from "next-auth/react";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
-import { useFormik } from "formik";
+import { Form, Formik } from "formik";
 import { loginValidation } from "./schemas";
 
 import Input from "./Input";
 import Modal from "./Modal";
 import Button from "../Button";
+import { RootState } from "@/Redux/store";
+import { setUser } from "@/Redux/slices/userSlice";
+import { ChangeEvent, useState } from "react";
 
 export interface MyLoginFormValues {
   login_email: string;
@@ -30,6 +33,9 @@ interface LoginModalProps {
 }
 
 const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
+  const user = useSelector((state: RootState) => state.user);
+  const [loading, setLoading] = useState(false);
+
   const isOpenSignIn = useSelector(selectToggleFeatureState("signIn"));
   const dispatch = useDispatch();
 
@@ -38,14 +44,14 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
     dispatch(toggleFeature({ featureName: "signIn" }));
   };
 
-  const { errors, handleChange, handleSubmit, handleBlur, values, touched } =
-    useFormik({
-      initialValues,
-      onSubmit: (_, action) => {
-        action.resetForm();
-      },
-      validationSchema: loginValidation,
-    });
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === "login_email" || name === "login_password") {
+      dispatch(setUser({ ...user, [name]: value }));
+    }
+  };
+
+  const handleSignIn = async () => {};
 
   const body = (
     <>
@@ -60,31 +66,40 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
           >
             Registered Customers
           </h3>
-          <form onSubmit={handleSubmit}>
-            <Input
-              label="Email"
-              type="text"
-              name="login_email"
-              value={values.login_email}
-              placeholder="Email Address"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              errors={errors}
-              touched={touched}
-            />
-            <Input
-              label="Password"
-              type="password"
-              name="login_password"
-              value={values.login_password}
-              placeholder="Password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              errors={errors}
-              touched={touched}
-            />
-            <Button buttonText="Login" full />
-          </form>
+          <Formik
+            enableReinitialize
+            initialValues={user}
+            validationSchema={loginValidation}
+            onSubmit={() => {
+              handleSignIn();
+            }}
+          >
+            {({ errors, handleBlur, touched }) => (
+              <Form>
+                <Input
+                  label="Email"
+                  type="text"
+                  name="login_email"
+                  placeholder="Email Address"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  errors={errors}
+                  touched={touched}
+                />
+                <Input
+                  label="Password"
+                  type="password"
+                  name="login_password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  errors={errors}
+                  touched={touched}
+                />
+                <Button buttonText="Login" full />
+              </Form>
+            )}
+          </Formik>
         </div>
         <div className="tablet:w-5/12 tablet:pl-6">
           <div
@@ -121,9 +136,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
                 >
                   {providerIcon}
                 </div>
-              ) : (
-                <></>
-              );
+              ) : null;
             })}
           </div>
         </div>
@@ -149,6 +162,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
         isOpen={isOpenSignIn}
         body={body}
         footer={footer}
+        loading={loading}
       />
     </>
   );

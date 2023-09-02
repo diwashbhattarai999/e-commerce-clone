@@ -40,7 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <Image
               src={imgSrc}
               alt={title}
-              layout="fill"
+              fill={true}
               className="w-full h-full object-contain m-auto"
             />
           </Link>

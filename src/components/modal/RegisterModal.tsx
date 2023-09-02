@@ -2,112 +2,127 @@
 
 import {
   selectToggleFeatureState,
+  setFeatureFalse,
   toggleFeature,
 } from "@/Redux/slices/featureToggleSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ChangeEvent, useState } from "react";
-import { Formik, Form, useFormik } from "formik";
+import { Formik, Form } from "formik";
 
 import Input from "./Input";
 import Modal from "./Modal";
 import Button from "../Button";
 import { registerValidation } from "./schemas";
-
-export interface MyRegisterFormValues {
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-  confirm_password: string;
-}
-
-const initialValues: MyRegisterFormValues = {
-  firstname: "",
-  lastname: "",
-  email: "",
-  password: "",
-  confirm_password: "",
-};
+import axios from "axios";
+import { RootState } from "@/Redux/store";
+import { setUser } from "@/Redux/slices/userSlice";
+import { useRouter } from "next/navigation";
 
 const RegisterModal = () => {
+  const [loading, setLoading] = useState(false);
+  const user = useSelector((state: RootState) => state.user);
   const isOpenSignUp = useSelector(selectToggleFeatureState("signUp"));
+
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  const { name, email, password, sucess, error } = user;
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    dispatch(setUser({ ...user, [name]: value }));
+  };
 
   const handleSignIn = () => {
     dispatch(toggleFeature({ featureName: "signUp" }));
     dispatch(toggleFeature({ featureName: "signIn" }));
   };
 
-  const { errors, handleChange, handleSubmit, handleBlur, values, touched } =
-    useFormik({
-      initialValues,
-      onSubmit: (_, action) => {
-        action.resetForm();
-      },
-      validationSchema: registerValidation,
-    });
+  const handleSignUp = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.post("/api/auth/signup", {
+        name,
+        email,
+        password,
+      });
+      dispatch(setUser({ ...user, sucess: data.message, error: "" }));
+      setLoading(false);
+      setTimeout(() => {
+        dispatch(setFeatureFalse({ featureName: "signUp" }));
+        router.push("/");
+      }, 2000);
+    } catch (error) {
+      setLoading(false);
+      if (axios.isAxiosError(error)) {
+        dispatch(
+          setUser({
+            ...user,
+            sucess: "",
+            error: error.response?.data?.message,
+          })
+        );
+      }
+    }
+  };
 
   const body = (
     <>
-      <form onSubmit={handleSubmit} className="my-6">
-        <Input
-          label="First Name"
-          type="text"
-          name="register_firstname"
-          value={values.firstname}
-          placeholder="First Name"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          errors={errors}
-          touched={touched}
-        />
-        <Input
-          label="Last Name"
-          type="text"
-          name="register_lastname"
-          value={values.lastname}
-          placeholder="Last Name"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          errors={errors}
-          touched={touched}
-        />
-        <Input
-          label="Email"
-          type="text"
-          name="register_email"
-          value={values.email}
-          placeholder="Email Address"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          errors={errors}
-          touched={touched}
-        />
-        <Input
-          label="Password"
-          type="password"
-          name="register_password"
-          value={values.password}
-          placeholder="Password"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          errors={errors}
-          touched={touched}
-        />
-        <Input
-          label="Confirm Password"
-          type="password"
-          name="register_confirm_password"
-          value={values.confirm_password}
-          placeholder="Confirm Password"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          errors={errors}
-          touched={touched}
-        />
-        <Button buttonText="Create an Account" />
-      </form>
+      <Formik
+        enableReinitialize
+        initialValues={user}
+        validationSchema={registerValidation}
+        onSubmit={handleSignUp}
+      >
+        {({ errors, touched, handleBlur }) => (
+          <Form className="my-6">
+            <Input
+              label="Full Name"
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+            />
+            <Input
+              label="Email"
+              type="text"
+              name="email"
+              placeholder="Email Address"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+            />
+            <Input
+              label="Password"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+            />
+            <Input
+              label="Confirm Password"
+              type="password"
+              name="confirm_password"
+              placeholder="Confirm Password"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+            />
+            <Button buttonText="Create an Account" />
+          </Form>
+        )}
+      </Formik>
+      <div>{error && <span className="text-red-500">{error}</span>}</div>
+      <div>{sucess && <span className="text-green-500">{sucess}</span>}</div>
     </>
   );
 
@@ -132,6 +147,7 @@ const RegisterModal = () => {
         isOpen={isOpenSignUp}
         body={body}
         footer={footer}
+        loading={loading}
       />
     </>
   );
