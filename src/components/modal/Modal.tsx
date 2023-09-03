@@ -38,10 +38,14 @@ const Modal: React.FC<ModalProps> = ({
   let featureName: keyof FeatureToggleState = "signIn";
   if (title === "Sign Up") featureName = "signUp";
 
-  useClickOutside(modalBoxRef, () => {
-    if (isOpen) dispatch(setFeatureFalse({ featureName }));
-  });
-  
+  useClickOutside(
+    modalBoxRef,
+    () => {
+      if (isOpen) dispatch(setFeatureFalse({ featureName }));
+    },
+    loading
+  );
+
   return (
     <>
       {loading && <DLoader loading={loading} />}

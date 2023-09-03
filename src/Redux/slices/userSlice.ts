@@ -5,6 +5,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface UserState {
   login_email: string;
   login_password: string;
+  login_error: string;
   name: string;
   email: string;
   password: string;
@@ -16,6 +17,7 @@ export interface UserState {
 const initialState: UserState = {
   login_email: "",
   login_password: "",
+  login_error: "",
   name: "",
   email: "",
   password: "",

@@ -2,11 +2,16 @@
 
 import {
   selectToggleFeatureState,
+  setFeatureFalse,
   toggleFeature,
 } from "@/Redux/slices/featureToggleSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+import { ChangeEvent, useState } from "react";
+import { RootState } from "@/Redux/store";
+import { setUser } from "@/Redux/slices/userSlice";
 import { ClientSafeProvider, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { Form, Formik } from "formik";
 import { loginValidation } from "./schemas";
@@ -14,19 +19,6 @@ import { loginValidation } from "./schemas";
 import Input from "./Input";
 import Modal from "./Modal";
 import Button from "../Button";
-import { RootState } from "@/Redux/store";
-import { setUser } from "@/Redux/slices/userSlice";
-import { ChangeEvent, useState } from "react";
-
-export interface MyLoginFormValues {
-  login_email: string;
-  login_password: string;
-}
-
-const initialValues: MyLoginFormValues = {
-  login_email: "",
-  login_password: "",
-};
 
 interface LoginModalProps {
   providers: ClientSafeProvider[];
@@ -36,8 +28,11 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
   const user = useSelector((state: RootState) => state.user);
   const [loading, setLoading] = useState(false);
 
+  const { login_email, login_password, login_error } = user;
+
   const isOpenSignIn = useSelector(selectToggleFeatureState("signIn"));
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleSignUp = () => {
     dispatch(toggleFeature({ featureName: "signUp" }));
@@ -51,7 +46,24 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
     }
   };
 
-  const handleSignIn = async () => {};
+  const handleSignIn = async () => {
+    setLoading(true);
+    let options = {
+      redirect: false,
+      email: login_email,
+      password: login_password,
+    };
+    const res = await signIn("credentials", options);
+    dispatch(setUser({ ...user, sucess: "", error: "" }));
+    if (res?.error) {
+      setLoading(false);
+      dispatch(setUser({ ...user, login_error: res?.error }));
+    } else {
+      setLoading(false);
+      dispatch(setFeatureFalse({ featureName: "signIn" }));
+      return router.push("/");
+    }
+  };
 
   const body = (
     <>
@@ -100,6 +112,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
               </Form>
             )}
           </Formik>
+          <div>
+            {login_error && <span className="text-red-500">{login_error}</span>}
+          </div>
         </div>
         <div className="tablet:w-5/12 tablet:pl-6">
           <div
@@ -120,6 +135,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
                 providerIcon = <FaFacebookF color="white" size="24" />;
               }
 
+              //Only show google and facebook
               return providerIcon ? (
                 <div
                   key={provider.id}
@@ -151,6 +167,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
           Create New Account?
         </span>
         <span className="cursor-pointer">Forgot Your Password?</span>
+      </div>
+      <div className="grid place-items-center text-red-500 font-bold text-lg">
+        <span>Demo Account:</span>
+        <div className="flex gap-2">
+          <span>Email: demo@example.com</span>
+          <span>Password: 123456</span>
+        </div>
       </div>
     </>
   );

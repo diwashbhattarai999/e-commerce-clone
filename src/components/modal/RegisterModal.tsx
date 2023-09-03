@@ -1,23 +1,26 @@
 "use client";
 
+import { ChangeEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+
 import {
   selectToggleFeatureState,
   setFeatureFalse,
   toggleFeature,
 } from "@/Redux/slices/featureToggleSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/Redux/store";
+import { setUser } from "@/Redux/slices/userSlice";
 
-import { ChangeEvent, useState } from "react";
 import { Formik, Form } from "formik";
+import axios from "axios";
 
 import Input from "./Input";
 import Modal from "./Modal";
 import Button from "../Button";
+
 import { registerValidation } from "./schemas";
-import axios from "axios";
-import { RootState } from "@/Redux/store";
-import { setUser } from "@/Redux/slices/userSlice";
-import { useRouter } from "next/navigation";
 
 const RegisterModal = () => {
   const [loading, setLoading] = useState(false);
@@ -40,6 +43,7 @@ const RegisterModal = () => {
   };
 
   const handleSignUp = async () => {
+    console.log("hello");
     try {
       setLoading(true);
       const { data } = await axios.post("/api/auth/signup", {
@@ -49,7 +53,13 @@ const RegisterModal = () => {
       });
       dispatch(setUser({ ...user, sucess: data.message, error: "" }));
       setLoading(false);
-      setTimeout(() => {
+      setTimeout(async () => {
+        let options = {
+          redirect: false,
+          email: email,
+          password: password,
+        };
+        await signIn("credentials", options);
         dispatch(setFeatureFalse({ featureName: "signUp" }));
         router.push("/");
       }, 2000);
@@ -67,13 +77,16 @@ const RegisterModal = () => {
     }
   };
 
+  const { data: session } = useSession();
+  console.log(session);
+
   const body = (
     <>
       <Formik
         enableReinitialize
         initialValues={user}
-        validationSchema={registerValidation}
         onSubmit={handleSignUp}
+        validationSchema={registerValidation}
       >
         {({ errors, touched, handleBlur }) => (
           <Form className="my-6">
