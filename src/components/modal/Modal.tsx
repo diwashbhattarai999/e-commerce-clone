@@ -9,7 +9,7 @@ import {
   setFeatureFalse,
 } from "@/Redux/slices/featureToggleSlice";
 import useClickOutside from "@/hooks/useClickOutside";
-import DLoader from "../loaders/DLoader";
+import Loader from "../loaders/Loader";
 
 interface ModalProps {
   isOpen: boolean;
@@ -48,7 +48,7 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      {loading && <DLoader loading={loading} />}
+      {loading && <Loader loading={loading} />}
       <div
         className={`
             w-full min-h-screen h-full

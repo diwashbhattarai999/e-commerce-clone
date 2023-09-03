@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Poppins, DM_Sans, Inter } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 
 import { ReduxProvider } from "@/Redux/provider";
 import SProvider from "@/components/SProvider";
@@ -21,19 +21,6 @@ export const metadata: Metadata = {
 };
 
 const dM_Sans = DM_Sans({
-  subsets: ["latin"],
-  style: "normal",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-const poppins = Poppins({
-  subsets: ["latin"],
-  style: "normal",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const inter = Inter({
   subsets: ["latin"],
   style: "normal",
   display: "swap",

@@ -77,9 +77,6 @@ const RegisterModal = () => {
     }
   };
 
-  const { data: session } = useSession();
-  console.log(session);
-
   const body = (
     <>
       <Formik

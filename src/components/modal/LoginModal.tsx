@@ -61,7 +61,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
     } else {
       setLoading(false);
       dispatch(setFeatureFalse({ featureName: "signIn" }));
-      return router.push("/");
     }
   };
 
