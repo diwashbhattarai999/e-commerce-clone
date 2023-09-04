@@ -70,6 +70,20 @@ const ForgotModal = () => {
 
   const body = (
     <>
+      {forgot_error && (
+        <div className="mb-2 px-2 py-4 bg-[#e5efe5] flex gap-2 items-center">
+          <span>❌</span>
+          <span className="text-red-500">{forgot_error}</span>
+        </div>
+      )}
+
+      {forgot_sucess && (
+        <div className="mb-2 px-2 py-4 bg-[#e5efe5] flex gap-2 items-center">
+          <span>✅</span>
+          <span className="text-[#006400]">{forgot_sucess}</span>
+        </div>
+      )}
+
       <div className="mb-5 text-gray-color text-sm">
         Please enter your email address below to receive a password reset link.
       </div>
@@ -103,16 +117,6 @@ const ForgotModal = () => {
               errors={errors}
               touched={touched}
             /> */}
-            <div>
-              {forgot_error && (
-                <span className="text-red-500">{forgot_error}</span>
-              )}
-            </div>
-            <div>
-              {forgot_sucess && (
-                <span className="text-green-500">{forgot_sucess}</span>
-              )}
-            </div>
             <div className="flex items-center gap-4">
               <Button buttonText="Submit" />
               <div

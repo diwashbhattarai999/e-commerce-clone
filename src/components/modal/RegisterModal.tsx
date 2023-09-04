@@ -79,6 +79,18 @@ const RegisterModal = () => {
 
   const body = (
     <>
+      {error && (
+        <div className="mb-2 px-2 py-4 bg-[#e5efe5] flex gap-2 items-center">
+          <span>❌</span>
+          <span className="text-red-500">{error}</span>
+        </div>
+      )}
+      {sucess && (
+        <div className="mb-2 px-2 py-4 bg-[#e5efe5] flex gap-2 items-center">
+          <span>✅</span>
+          <span className="text-green-500">{sucess}</span>
+        </div>
+      )}
       <Formik
         enableReinitialize
         initialValues={user}
@@ -131,8 +143,6 @@ const RegisterModal = () => {
           </Form>
         )}
       </Formik>
-      <div>{error && <span className="text-red-500">{error}</span>}</div>
-      <div>{sucess && <span className="text-green-500">{sucess}</span>}</div>
     </>
   );
 

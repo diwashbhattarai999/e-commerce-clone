@@ -70,6 +70,12 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
 
   const body = (
     <>
+      {login_error && (
+        <div className="mb-2 px-2 py-4 bg-[#e5efe5] flex gap-2 items-center">
+          <span>❌</span>
+          <span className="text-red-500">{login_error}</span>
+        </div>
+      )}
       <div className="flex flex-col tablet:flex-row gap-6 tablet:gap-0 my-8">
         <div className="tablet:w-7/12 tablet:pr-6">
           <h3
@@ -115,9 +121,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
               </Form>
             )}
           </Formik>
-          <div>
-            {login_error && <span className="text-red-500">{login_error}</span>}
-          </div>
         </div>
         <div className="tablet:w-5/12 tablet:pl-6">
           <div
@@ -173,7 +176,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
           Forgot Your Password?
         </span>
       </div>
-      <div className="grid place-items-center text-red-500 font-bold text-lg">
+      <div className="grid place-items-center bg-[#e5efe5] py-2 my-4 text-red-500 font-bold text-lg">
         <span>Demo Account:</span>
         <div className="flex gap-2">
           <span>Email: demo@example.com</span>

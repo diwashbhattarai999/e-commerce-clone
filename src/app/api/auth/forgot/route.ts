@@ -37,7 +37,7 @@ export const POST = async (req: Request) => {
     await db.disconnectDB();
 
     return NextResponse.json({
-      message: "An email has been sent to you, use it to reset your password",
+      message: "An email has been sent to you with a link to reset your password",
     });
   } catch (error) {
     return NextResponse.json({ message: error }, { status: 500 });
