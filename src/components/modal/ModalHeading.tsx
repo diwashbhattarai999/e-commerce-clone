@@ -16,6 +16,8 @@ const ModalHeading: React.FC<HeadingProps> = ({ title }) => {
       dispatch(setFeatureFalse({ featureName: "signIn" }));
     } else if (title === "Sign Up") {
       dispatch(setFeatureFalse({ featureName: "signUp" }));
+    } else if (title === "Forgot Password") {
+      dispatch(setFeatureFalse({ featureName: "forgot" }));
     }
   };
 

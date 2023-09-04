@@ -8,6 +8,7 @@ export interface FeatureToggleState {
   cart: boolean;
   signIn: boolean;
   signUp: boolean;
+  forgot: boolean;
   categories: boolean;
   sidebar: boolean;
   account: boolean;
@@ -18,6 +19,7 @@ const initialState: FeatureToggleState = {
   cart: false,
   signIn: false,
   signUp: false,
+  forgot: false,
   categories: false,
   sidebar: false,
   account: false,

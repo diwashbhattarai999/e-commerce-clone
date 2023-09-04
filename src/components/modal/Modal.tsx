@@ -37,6 +37,7 @@ const Modal: React.FC<ModalProps> = ({
 
   let featureName: keyof FeatureToggleState = "signIn";
   if (title === "Sign Up") featureName = "signUp";
+  else if (title === "Forgot Password") featureName = "forgot";
 
   useClickOutside(
     modalBoxRef,

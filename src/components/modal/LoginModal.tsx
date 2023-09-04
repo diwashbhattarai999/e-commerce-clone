@@ -3,6 +3,7 @@
 import {
   selectToggleFeatureState,
   setFeatureFalse,
+  setFeatureTrue,
   toggleFeature,
 } from "@/Redux/slices/featureToggleSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +11,6 @@ import { ChangeEvent, useState } from "react";
 import { RootState } from "@/Redux/store";
 import { setUser } from "@/Redux/slices/userSlice";
 import { ClientSafeProvider, signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import { Form, Formik } from "formik";
@@ -32,11 +32,15 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
 
   const isOpenSignIn = useSelector(selectToggleFeatureState("signIn"));
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const handleSignUp = () => {
-    dispatch(toggleFeature({ featureName: "signUp" }));
-    dispatch(toggleFeature({ featureName: "signIn" }));
+    dispatch(setFeatureTrue({ featureName: "signUp" }));
+    dispatch(setFeatureFalse({ featureName: "signIn" }));
+  };
+
+  const handleForgot = () => {
+    dispatch(setFeatureTrue({ featureName: "forgot" }));
+    dispatch(setFeatureFalse({ featureName: "signIn" }));
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -165,7 +169,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
         <span className="cursor-pointer" onClick={handleSignUp}>
           Create New Account?
         </span>
-        <span className="cursor-pointer">Forgot Your Password?</span>
+        <span className="cursor-pointer" onClick={handleForgot}>
+          Forgot Your Password?
+        </span>
       </div>
       <div className="grid place-items-center text-red-500 font-bold text-lg">
         <span>Demo Account:</span>

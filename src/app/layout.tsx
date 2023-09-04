@@ -13,6 +13,7 @@ import RegisterModal from "@/components/modal/RegisterModal";
 import { getServerSession } from "next-auth/next";
 import { options } from "./api/auth/[...nextauth]/options";
 import { getProviders } from "next-auth/react";
+import ForgotModal from "@/components/modal/ForgotModal";
 
 export const metadata: Metadata = {
   title: "Sastodeal Clone",
@@ -45,6 +46,7 @@ export default async function RootLayout({
               <div className="flex-1">
                 <LoginModal providers={providerArray} />
                 <RegisterModal />
+                <ForgotModal />
                 <Header />
                 {children}
               </div>

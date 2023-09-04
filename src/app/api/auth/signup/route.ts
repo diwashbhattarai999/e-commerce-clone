@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { createActivationToken } from "@/utils/tokens";
 import { sendEmails } from "@/utils/sendEmails";
+import activateEmailTemplate from "@/emails/activateEmailTemplate";
 
 export const POST = async (req: Request) => {
   try {
@@ -39,7 +40,7 @@ export const POST = async (req: Request) => {
       id: addedUser._id.toString(),
     });
     const url = `${process.env.BASE_URL}/activate/${activation_token}`;
-    sendEmails(email, url, "", "Activate your account");
+    sendEmails(email, url, "", "Activate your account", activateEmailTemplate);
     await db.disconnectDB();
     return NextResponse.json({
       message: "Register sucess! Please activate your email to start.",

@@ -33,8 +33,11 @@ const Bottom: React.FC<BottomProp> = ({ isScroll }) => {
   const isOpenSignIn = useSelector(selectToggleFeatureState("signIn"));
   const isOpenSignUp = useSelector(selectToggleFeatureState("signUp"));
   const isOpenAccount = useSelector(selectToggleFeatureState("account"));
+  const isOpenForgot = useSelector(selectToggleFeatureState("forgot"));
 
-  useBodyOverflow(isOpenSignIn || isOpenSignUp ? "hidden" : "auto");
+  useBodyOverflow(
+    isOpenSignIn || isOpenSignUp || isOpenForgot ? "hidden" : "auto"
+  );
 
   const handleMenuItem = (name: keyof FeatureToggleState) => {
     dispatch(toggleFeature({ featureName: name }));

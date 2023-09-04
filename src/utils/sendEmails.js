@@ -21,7 +21,7 @@ const oauth2Client = new OAuth2(
 
 //send email
 
-export const sendEmails = (to, url, txt, subject) => {
+export const sendEmails = (to, url, txt, subject, template) => {
   oauth2Client.setCredentials({ refresh_token: MAILING_SERVICE_REFRESH_TOKEN });
   const accessToken = oauth2Client.getAccessToken();
   const smtpTransport = nodemailer.createTransport({
@@ -39,7 +39,7 @@ export const sendEmails = (to, url, txt, subject) => {
     from: SENDER_EMAIL_ADDRESS,
     to,
     subject,
-    html: activateEmailTemplate(to, url),
+    html: template(to, url),
   };
   smtpTransport.sendMail(mailOptions, (err, infos) => {
     if (err) return err;

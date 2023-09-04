@@ -12,6 +12,9 @@ export interface UserState {
   confirm_password: string;
   sucess: string;
   error: string;
+  forgot_email: string;
+  forgot_error: string;
+  forgot_sucess: string;
 }
 
 const initialState: UserState = {
@@ -24,6 +27,9 @@ const initialState: UserState = {
   confirm_password: "",
   sucess: "",
   error: "",
+  forgot_email: "",
+  forgot_error: "",
+  forgot_sucess: "",
 };
 
 const userSlice = createSlice({
