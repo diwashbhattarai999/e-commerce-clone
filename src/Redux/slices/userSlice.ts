@@ -15,6 +15,9 @@ export interface UserState {
   forgot_email: string;
   forgot_error: string;
   forgot_sucess: string;
+  reset_password: string;
+  reset_confirm_password: string;
+  reset_error: string;
 }
 
 const initialState: UserState = {
@@ -30,6 +33,9 @@ const initialState: UserState = {
   forgot_email: "",
   forgot_error: "",
   forgot_sucess: "",
+  reset_password: "",
+  reset_confirm_password: "",
+  reset_error: "",
 };
 
 const userSlice = createSlice({

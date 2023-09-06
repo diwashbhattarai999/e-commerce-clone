@@ -1,18 +1,33 @@
 import Container from "@/components/Container";
-import Loader from "@/components/loaders/Loader";
 import ResetForm from "./ResetForm";
 import jwt from "jsonwebtoken";
+import { getServerSession } from "next-auth/next";
+import { options } from "@/app/api/auth/[...nextauth]/options";
+import { redirect } from "next/navigation";
 
-const page = ({ params }: { params: { id: string } }) => {
-  const loading = false;
-  const id = params.id;
-  const TOKEN_SECRET = process.env.RESET_TOKEN_SECRET as string;
-  const user_id = jwt.verify(id, TOKEN_SECRET);
+const page = async ({ params }: { params: { token: string } }) => {
+  let jwt_error = "";
+  const { token } = params;
+  const session = await getServerSession(options);
+  if (session) {
+    redirect("/");
+  }
+
+  let user_id: any = null;
+
+  try {
+    user_id = jwt.verify(token, process.env.RESET_TOKEN_SECRET as string);
+  } catch (error: any) {
+    if (error.name === "TokenExpiredError") {
+      console.log("Token expired: ", error.message);
+    } else {
+      console.log("JWT verification failed: ", error.message);
+    }
+    jwt_error = error.message;
+  }
 
   return (
     <>
-      {loading && <Loader loading={loading} />}
-
       <div className="text-black mt-44 laptop:mt-56 mb-20 h-full">
         <Container>
           <div className="max-w-[640px] mx-auto">
@@ -34,7 +49,7 @@ const page = ({ params }: { params: { id: string } }) => {
             >
               Set up a new password
             </h3>
-            <ResetForm user_id={user_id} />
+            <ResetForm id={user_id?.id} jwt_error={jwt_error}/>
           </div>
         </Container>
       </div>

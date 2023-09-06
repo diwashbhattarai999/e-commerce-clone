@@ -38,12 +38,12 @@ export const forgotValidation = Yup.object({
 });
 
 export const resetValidation = Yup.object({
-  password: Yup.string()
+  reset_password: Yup.string()
     .required("Please enter a new password.")
     .min(6, "Password must be atleast 6 characters.")
     .max(36, "Password can't be more than 36 characters."),
 
-  confirm_password: Yup.string()
+  reset_confirm_password: Yup.string()
     .required("Confirm your new password.")
-    .oneOf([Yup.ref("password")], "Passwords must match."),
+    .oneOf([Yup.ref("reset_password")], "Passwords must match."),
 });
