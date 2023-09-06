@@ -12,27 +12,26 @@ const Header = () => {
   //On scroll --------------------
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY <= 100) {
-        setIsScroll(false);
-      } else {
+      if (window.scrollY > 130) {
         setIsScroll(true);
+      } else {
+        setIsScroll(false);
       }
     };
 
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-      // CleanUp Function
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-  }, [isScroll]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div
       className={`
         pt-2 bg-content-background-color w-full top-0 z-30
         transition-all duration-300 ease-in-out
-        ${isScroll ? "fixed" : "relative"}  
+        fixed  
       `}
     >
       <Container>

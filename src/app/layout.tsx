@@ -48,7 +48,9 @@ export default async function RootLayout({
                 <RegisterModal />
                 <ForgotModal />
                 <Header />
-                {children}
+                <div className="mt-[7.6rem] tablet:mt-[8.5rem] laptop:mt-[11.4rem]">
+                  {children}
+                </div>
               </div>
               <Footer />
             </div>

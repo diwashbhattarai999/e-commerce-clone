@@ -123,10 +123,11 @@ const ForgotModal = () => {
                 className="
                   flex items-center justify-center gap-1 
                   text-base text-accent-color font-semibold
+                  cursor-pointer
                 "
               >
                 <BsFillArrowLeftCircleFill />
-                <span className="cursor-pointer" onClick={handleGoBack}>
+                <span onClick={handleGoBack}>
                   Go back
                 </span>
               </div>

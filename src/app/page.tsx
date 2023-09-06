@@ -4,7 +4,7 @@ import DealOfTheDay from "@/components/dealOfTheDay/DealOfTheDay";
 
 export default async function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="">
       <Banner />
       <DealOfTheDay />
       {/* <h1>Promotion Banner</h1>

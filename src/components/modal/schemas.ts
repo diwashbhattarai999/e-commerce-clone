@@ -36,3 +36,14 @@ export const forgotValidation = Yup.object({
     .required("Email address is required.")
     .email("Please enter a valid address."),
 });
+
+export const resetValidation = Yup.object({
+  password: Yup.string()
+    .required("Please enter a new password.")
+    .min(6, "Password must be atleast 6 characters.")
+    .max(36, "Password can't be more than 36 characters."),
+
+  confirm_password: Yup.string()
+    .required("Confirm your new password.")
+    .oneOf([Yup.ref("password")], "Passwords must match."),
+});
