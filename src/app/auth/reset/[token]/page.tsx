@@ -6,7 +6,7 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 import { redirect } from "next/navigation";
 
 const page = async ({ params }: { params: { token: string } }) => {
-  let jwt_error = "";
+  let jwt_error = false;
   const { token } = params;
   const session = await getServerSession(options);
   if (session) {
@@ -19,11 +19,10 @@ const page = async ({ params }: { params: { token: string } }) => {
     user_id = jwt.verify(token, process.env.RESET_TOKEN_SECRET as string);
   } catch (error: any) {
     if (error.name === "TokenExpiredError") {
-      console.log("Token expired: ", error.message);
+      jwt_error = true;
     } else {
-      console.log("JWT verification failed: ", error.message);
+      redirect("/");
     }
-    jwt_error = error.message;
   }
 
   return (
@@ -49,7 +48,7 @@ const page = async ({ params }: { params: { token: string } }) => {
             >
               Set up a new password
             </h3>
-            <ResetForm id={user_id?.id} jwt_error={jwt_error}/>
+            <ResetForm id={user_id?.id} jwt_error={jwt_error} />
           </div>
         </Container>
       </div>

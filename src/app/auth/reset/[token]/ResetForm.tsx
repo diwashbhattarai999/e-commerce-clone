@@ -16,10 +16,11 @@ import Link from "next/link";
 import Input from "@/components/modal/Input";
 import Button from "@/components/Button";
 import Loader from "@/components/loaders/Loader";
+import { setFeatureTrue } from "@/store/slices/featureToggleSlice";
 
 interface ResetFormProps {
   id: string;
-  jwt_error: string;
+  jwt_error: boolean;
 }
 
 const ResetForm: React.FC<ResetFormProps> = ({ id, jwt_error }) => {
@@ -65,54 +66,68 @@ const ResetForm: React.FC<ResetFormProps> = ({ id, jwt_error }) => {
     }
   };
 
+  const handleforgot = () => {
+    dispatch(setFeatureTrue({ featureName: "forgot" }));
+  };
+
   return (
     <>
       {loading && <Loader loading={loading} />}
-      {jwt_error === "jwt expired" && (
+      {jwt_error && (
         <>
           <div className="mb-2 px-2 py-4 bg-[#e5efe5] flex gap-2 items-center">
             <span>❌</span>
             <span className="text-red-500">
-              Your password reset url has expired. Please goto{" "}
-              <Link href="/">forgot password</Link>
+              Your password reset link has expired. Please goto{" "}
+              <span
+                onClick={handleforgot}
+                className="text-blue-600 cursor-pointer"
+              >
+                forgot password
+              </span>{" "}
+              to get new link
             </span>
           </div>
         </>
       )}
-      <Formik
-        enableReinitialize
-        initialValues={user}
-        validationSchema={resetValidation}
-        onSubmit={() => {
-          handleReset();
-        }}
-      >
-        {({ errors, handleBlur, touched }) => (
-          <Form>
-            <Input
-              label="Password"
-              type="password"
-              name="reset_password"
-              placeholder="Password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              errors={errors}
-              touched={touched}
-            />
-            <Input
-              label="Confirm Password"
-              type="password"
-              name="reset_confirm_password"
-              placeholder="Confirm Password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              errors={errors}
-              touched={touched}
-            />
-            <Button buttonText="Reset Password" full />
-          </Form>
-        )}
-      </Formik>
+      <div className={`${jwt_error && "cursor-not-allowed"}`}>
+        <Formik
+          enableReinitialize
+          initialValues={user}
+          validationSchema={resetValidation}
+          onSubmit={() => {
+            if (!jwt_error) {
+              handleReset();
+            }
+          }}
+        >
+          {({ errors, handleBlur, touched }) => (
+            <Form>
+              <Input
+                label="Password"
+                type="password"
+                name="reset_password"
+                placeholder="Password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors}
+                touched={touched}
+              />
+              <Input
+                label="Confirm Password"
+                type="password"
+                name="reset_confirm_password"
+                placeholder="Confirm Password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors}
+                touched={touched}
+              />
+              <Button buttonText="Reset Password" full error={jwt_error} />
+            </Form>
+          )}
+        </Formik>
+      </div>
     </>
   );
 };
