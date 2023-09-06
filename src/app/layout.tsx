@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 
-import { ReduxProvider } from "@/Redux/provider";
+import { ReduxProvider } from "@/store/provider";
 import SProvider from "@/components/SProvider";
 
 import Header from "@/components/header/Header";

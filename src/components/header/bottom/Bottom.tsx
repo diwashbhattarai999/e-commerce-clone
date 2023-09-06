@@ -17,7 +17,7 @@ import {
   FeatureToggleState,
   selectToggleFeatureState,
   toggleFeature,
-} from "@/Redux/slices/featureToggleSlice";
+} from "@/store/slices/featureToggleSlice";
 import MobileBottom from "./MobileBottom";
 import useBodyOverflow from "@/hooks/useBodyOverflow";
 import Account from "@/components/account/Account";

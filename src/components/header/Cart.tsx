@@ -1,13 +1,13 @@
 "use client";
 
-import { RootState } from "@/Redux/store";
+import { RootState } from "@/store/store";
 import { useSelector, useDispatch } from "react-redux";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { PiCaretDownThin } from "react-icons/pi";
 import {
   selectToggleFeatureState,
   toggleFeature,
-} from "@/Redux/slices/featureToggleSlice";
+} from "@/store/slices/featureToggleSlice";
 
 const Cart = () => {
   const cart = useSelector(selectToggleFeatureState("cart"));

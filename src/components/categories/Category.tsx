@@ -1,11 +1,11 @@
 import { CategoryItem } from "./CategoryList";
 import MenuCategory from "./MenuCategory";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/Redux/store";
-import { setActiveStates } from "@/Redux/slices/categorySlice";
+import { RootState } from "@/store/store";
+import { setActiveStates } from "@/store/slices/categorySlice";
 import CategoryTitle from "./CategoryTitle";
 import { useRouter } from "next/navigation";
-import { setFeatureFalse } from "@/Redux/slices/featureToggleSlice";
+import { setFeatureFalse } from "@/store/slices/featureToggleSlice";
 
 interface CategoryProps {
   category: CategoryItem;

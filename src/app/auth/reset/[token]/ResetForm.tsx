@@ -6,13 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetValidation } from "@/components/modal/schemas";
 import { Form, Formik } from "formik";
 
-import { RootState } from "@/Redux/store";
-import { setUser } from "@/Redux/slices/userSlice";
+import { RootState } from "@/store/store";
+import { setUser } from "@/store/slices/userSlice";
 
 import axios from "axios";
 import { signIn } from "next-auth/react";
-import {Link} from "next/link"
-
+import Link from "next/link";
 
 import Input from "@/components/modal/Input";
 import Button from "@/components/Button";
@@ -73,7 +72,10 @@ const ResetForm: React.FC<ResetFormProps> = ({ id, jwt_error }) => {
         <>
           <div className="mb-2 px-2 py-4 bg-[#e5efe5] flex gap-2 items-center">
             <span>❌</span>
-            <span className="text-red-500">Your password reset url has expired. Please goto <Link href={}>forgot password</Link></Link></span>
+            <span className="text-red-500">
+              Your password reset url has expired. Please goto{" "}
+              <Link href="/">forgot password</Link>
+            </span>
           </div>
         </>
       )}

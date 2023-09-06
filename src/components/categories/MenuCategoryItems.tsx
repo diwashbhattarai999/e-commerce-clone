@@ -3,7 +3,7 @@ import { CategoryItem } from "./CategoryList";
 import { BsChevronRight } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { setFeatureFalse } from "@/Redux/slices/featureToggleSlice";
+import { setFeatureFalse } from "@/store/slices/featureToggleSlice";
 
 interface MenuCategoryItemsProps {
   category: CategoryItem;

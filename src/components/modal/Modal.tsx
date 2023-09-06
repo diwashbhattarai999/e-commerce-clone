@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import {
   FeatureToggleState,
   setFeatureFalse,
-} from "@/Redux/slices/featureToggleSlice";
+} from "@/store/slices/featureToggleSlice";
 import useClickOutside from "@/hooks/useClickOutside";
 import Loader from "../loaders/Loader";
 

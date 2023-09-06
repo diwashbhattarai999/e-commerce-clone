@@ -6,7 +6,7 @@ import categoryData, {
 import CategoryTitle from "@/components/categories/CategoryTitle";
 import { AccountList, List, SettingsList } from "./SideBarList";
 import { useDispatch } from "react-redux";
-import { toggleFeature } from "@/Redux/slices/featureToggleSlice";
+import { toggleFeature } from "@/store/slices/featureToggleSlice";
 import MenuCategoryItems from "@/components/categories/MenuCategoryItems";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

@@ -5,11 +5,11 @@ import {
   setFeatureFalse,
   setFeatureTrue,
   toggleFeature,
-} from "@/Redux/slices/featureToggleSlice";
+} from "@/store/slices/featureToggleSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ChangeEvent, useState } from "react";
-import { RootState } from "@/Redux/store";
-import { setUser } from "@/Redux/slices/userSlice";
+import { RootState } from "@/store/store";
+import { setUser } from "@/store/slices/userSlice";
 import { ClientSafeProvider, signIn } from "next-auth/react";
 
 import { FaFacebookF, FaGoogle } from "react-icons/fa";

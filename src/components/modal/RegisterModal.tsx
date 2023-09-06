@@ -9,9 +9,9 @@ import {
   selectToggleFeatureState,
   setFeatureFalse,
   toggleFeature,
-} from "@/Redux/slices/featureToggleSlice";
-import { RootState } from "@/Redux/store";
-import { setUser } from "@/Redux/slices/userSlice";
+} from "@/store/slices/featureToggleSlice";
+import { RootState } from "@/store/store";
+import { setUser } from "@/store/slices/userSlice";
 
 import { Formik, Form } from "formik";
 import axios from "axios";

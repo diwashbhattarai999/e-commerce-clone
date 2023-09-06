@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectToggleFeatureState,
   toggleFeature,
-} from "@/Redux/slices/featureToggleSlice";
+} from "@/store/slices/featureToggleSlice";
 import initialSections from "./SideBarList";
 
 import SectionsList from "./SectionsList";

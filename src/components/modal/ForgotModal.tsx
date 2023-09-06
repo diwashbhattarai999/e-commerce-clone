@@ -10,15 +10,15 @@ import {
   selectToggleFeatureState,
   setFeatureFalse,
   setFeatureTrue,
-} from "@/Redux/slices/featureToggleSlice";
+} from "@/store/slices/featureToggleSlice";
 
 import Input from "./Input";
 import Modal from "./Modal";
 import Button from "../Button";
 import { forgotValidation } from "./schemas";
 import useBodyOverflow from "@/hooks/useBodyOverflow";
-import { RootState } from "@/Redux/store";
-import { setUser } from "@/Redux/slices/userSlice";
+import { RootState } from "@/store/store";
+import { setUser } from "@/store/slices/userSlice";
 import axios from "axios";
 
 const ForgotModal = () => {
