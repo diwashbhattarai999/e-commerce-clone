@@ -1,12 +1,25 @@
-import Container from "@/components/Container";
 import Banner from "@/components/banner/Banner";
 import DealOfTheDay from "@/components/dealOfTheDay/DealOfTheDay";
+import NewArrivals from "@/components/products/NewArrivals";
+import Product from "@/models/Products";
+import db from "@/utils/db";
 
 export default async function Home() {
+  let allProducts = [];
+  try {
+    await db.connectDB();
+
+    let products = await Product.find().sort({ createdAt: -1 }).lean();
+    allProducts = JSON.parse(JSON.stringify(products));
+  } catch (error) {
+    console.log("Error", error);
+  }
+
   return (
-    <main className="">
+    <main>
       <Banner />
       <DealOfTheDay />
+      <NewArrivals products={allProducts} />
       {/* <h1>Promotion Banner</h1>
         <h1>Popular Brands</h1> */}
       {/* <h1>Reviews</h1>
