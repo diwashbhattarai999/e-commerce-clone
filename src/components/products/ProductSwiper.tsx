@@ -47,7 +47,7 @@ const ProductSwiper: React.FC<ProductSwiperProps> = ({ images }) => {
         modules={[Autoplay]}
         spaceBetween={1}
       >
-        {images.map((img) => (
+        {images?.map((img) => (
           <SwiperSlide key={img.url}>
             <Image src={img.url} alt="" width={600} height={600} />
           </SwiperSlide>

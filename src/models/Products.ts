@@ -1,5 +1,67 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
+import { CategoryType } from "./Category";
+import { subCategoryType } from "./SubCategory";
+
+export interface subProductType {
+  sku: string;
+  images: {
+    url: string;
+    public_url: string;
+  }[];
+  description_images: any[];
+  color: {
+    color: string;
+    image: string;
+  };
+  sizes: {
+    size: string;
+    qty: number;
+    price: number;
+    _id: string;
+  }[];
+  discount: number;
+  _id: string;
+}
+
+export interface ProductType {
+  _id: string;
+  name: string;
+  description: string;
+  brand: string;
+  slug: string;
+  category: CategoryType;
+  subCategories: subCategoryType[];
+  details: {
+    name: string;
+    value: string;
+    _id: string;
+  }[];
+  questions: any[];
+  subProducts: subProductType[];
+  numReviews: number;
+  rating: number;
+  refundPolicy: string;
+  reviews: {
+    reviewBy: string;
+    rating: string;
+    review: string;
+    size: string;
+    style: {
+      color: string;
+      image: string;
+    };
+    fit: string;
+    images: {
+      url: string;
+      public_url: string;
+    }[];
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+  }[];
+  shipping: string;
+}
 
 const reviewSchema = new mongoose.Schema({
   reviewBy: {
@@ -48,7 +110,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      lowercase: true,
+      // lowercase: true,
     },
     category: {
       type: ObjectId,
@@ -94,6 +156,7 @@ const productSchema = new mongoose.Schema(
     },
     subProducts: [
       {
+        sku: String,
         images: [],
         description_images: [],
         color: {

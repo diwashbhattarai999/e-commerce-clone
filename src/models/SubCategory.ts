@@ -1,5 +1,12 @@
 import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
+import { CategoryType } from "./Category";
+
+export interface subCategoryType {
+  name: string;
+  slug: string;
+  parent: CategoryType;
+}
 
 const subCategorySchema = new mongoose.Schema(
   {
@@ -13,6 +20,7 @@ const subCategorySchema = new mongoose.Schema(
       type: String,
       unique: true,
       lowercase: true,
+      index: true,
     },
     parent: {
       type: ObjectId,

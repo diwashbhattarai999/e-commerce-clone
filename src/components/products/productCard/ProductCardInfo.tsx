@@ -1,11 +1,12 @@
 "use client";
 
 import Button from "@/components/Button";
-import { Product } from "@/components/newArrivals/NewArrivals";
+import { ProductType as ProductType } from "@/models/Products";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ProductCardInfoProps {
-  product: Product;
+  product: ProductType;
   buttonText: string;
   icon?: boolean;
   prices: number[];
@@ -31,9 +32,9 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({
   setActive,
 }) => {
   const productName =
-    product.name.length > 45
-      ? `${product.name.substring(0, 45)}...`
-      : product.name;
+    product?.name.length > 45
+      ? `${product?.name.substring(0, 45)}...`
+      : product?.name;
 
   const productPrice =
     prices?.length === 1
@@ -44,9 +45,11 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({
   return (
     <>
       <div className="pb-1 px-4 text-left text-primary-color relative">
-        <div className="mb-2 text-lg font-normal block cursor-pointer h-[56px]">
-          {productName}
-        </div>
+        <Link href={`/product/${product.slug}?style=${active}`}>
+          <div className="mb-2 text-lg font-normal block cursor-pointer h-[56px]">
+            {productName}
+          </div>
+        </Link>
         <div className="mb-5">
           <span className="text-lg">{productPrice}</span>
           {/* <s className="text-sm text-gray-color">Rs 423</s> */}

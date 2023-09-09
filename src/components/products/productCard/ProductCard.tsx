@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Product } from "../../newArrivals/NewArrivals";
+import { ProductType } from "@/models/Products";
 import ProductCardImg from "./ProductCardImg";
 import ProductCardInfo from "./ProductCardInfo";
 
 interface NewProductCardProps {
-  product: Product;
+  product: ProductType;
   w_full?: boolean;
   buttonText: string;
   icon?: boolean;
@@ -19,9 +19,9 @@ const ProductCard: React.FC<NewProductCardProps> = ({
   icon = false,
 }) => {
   const [active, setActive] = useState(0);
-  const [images, setImages] = useState(product.subProducts[active]?.images);
+  const [images, setImages] = useState(product?.subProducts[active]?.images);
   const [prices, setPrices] = useState(
-    product.subProducts[active]?.sizes
+    product?.subProducts[active]?.sizes
       .map((s) => {
         return s.price;
       })
@@ -30,7 +30,7 @@ const ProductCard: React.FC<NewProductCardProps> = ({
       })
   );
   const [styles, setStyles] = useState(
-    product.subProducts.map((p) => {
+    product?.subProducts.map((p) => {
       return p.color;
     })
   );
@@ -46,7 +46,7 @@ const ProductCard: React.FC<NewProductCardProps> = ({
           return a - b;
         })
     );
-  }, [active, product.subProducts]);
+  }, [active, product?.subProducts]);
 
   return (
     <div

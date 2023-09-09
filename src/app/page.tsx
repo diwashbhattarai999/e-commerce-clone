@@ -7,13 +7,15 @@ import db from "@/utils/db";
 export default async function Home() {
   let allProducts = [];
   try {
-    await db.connectDB();
-
+    db.connectDB();
     let products = await Product.find().sort({ createdAt: -1 }).lean();
     allProducts = JSON.parse(JSON.stringify(products));
   } catch (error) {
     console.log("Error", error);
+  } finally {
+    db.disconnectDB();
   }
+  // console.log(allProducts);
 
   return (
     <main>

@@ -5,10 +5,12 @@ import Products from "./products/Products";
 import { NextPage } from "next";
 
 interface PageParams {
-  categories: string;
+  params: {
+    categories: string;
+  };
 }
 
-const page: NextPage<{ params: PageParams }> = ({ params }) => {
+const page = ({ params }: PageParams) => {
   const { categories } = params;
   return (
     <div className="">

@@ -1,13 +1,13 @@
 "use client";
 
-import { Product } from "@/components/newArrivals/NewArrivals";
+import { ProductType } from "@/models/Products";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import ProductSwiper from "../ProductSwiper";
 
 interface ProductCardImg {
-  product: Product;
+  product: ProductType;
   images: {
     url: string;
     public_url: string;
@@ -25,13 +25,13 @@ const ProductCardImg: React.FC<ProductCardImg> = ({
     setHeartActive((prev) => !prev);
   };
 
-  const discountAmt = product.subProducts[active].discount;
+  const discountAmt = product?.subProducts[active].discount;
 
   return (
     <>
       <div className="min-h-0 relative overflow-hidden mb-4">
         {/* --------------- IMAGE --------------- */}
-        <Link href={`/product/${product.slug}?style=${active}`} className="z-0">
+        <Link href={`/product/${product?.slug}?style=${active}`} className="z-0">
           <ProductSwiper images={images} />
         </Link>
         {/* --------------- WISHLIST --------------- */}
