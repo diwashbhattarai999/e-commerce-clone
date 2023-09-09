@@ -16,7 +16,40 @@ import { Keyboard, Navigation } from "swiper/modules";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const MainSwiper = () => {
+const slides = [
+  {
+    id: 1,
+    src: sb1,
+    alt: "subbanner1",
+  },
+  {
+    id: 2,
+    src: sb2,
+    alt: "subbanner2",
+  },
+  {
+    id: 3,
+    src: sb3,
+    alt: "subbanner3",
+  },
+  {
+    id: 4,
+    src: sb1,
+    alt: "subbanner1",
+  },
+  {
+    id: 5,
+    src: sb2,
+    alt: "subbanner2",
+  },
+  {
+    id: 6,
+    src: sb3,
+    alt: "subbanner3",
+  },
+];
+
+const BannerSwiper = () => {
   const [slidesPerView, setSlidesPerView] = useState(3);
 
   useEffect(() => {
@@ -50,27 +83,14 @@ const MainSwiper = () => {
         modules={[Navigation, Keyboard]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <Image src={sb1} alt="subbanner1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={sb2} alt="subbanner1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={sb3} alt="subbanner1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={sb1} alt="subbanner1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={sb2} alt="subbanner1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={sb3} alt="subbanner1" />
-        </SwiperSlide>
+        {slides.map(({ id, src, alt }) => (
+          <SwiperSlide key={id}>
+            <Image src={src} alt={alt} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );
 };
 
-export default MainSwiper;
+export default BannerSwiper;

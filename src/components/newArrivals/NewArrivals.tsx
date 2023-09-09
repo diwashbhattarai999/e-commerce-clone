@@ -4,7 +4,7 @@ import { BiTimeFive } from "react-icons/bi";
 
 import Container from "../Container";
 import Heading from "../Heading";
-import NewProductCard from "./NewProductCard";
+import ProductCard from "../products/productCard/ProductCard";
 
 export interface Product {
   _id: string;
@@ -72,11 +72,19 @@ const NewArrivals: React.FC<NewArrivalsProps> = ({ products }) => {
     <div>
       <Container>
         <Heading title="New Arrivals" Icon={BiTimeFive} />
-        <div className="products">
+        <div
+          className="
+            flex flex-wrap items-stretch
+            -mx-[10px]
+          "
+        >
           {products.map((product: Product) => (
-            <div key={product._id}>
-              <NewProductCard product={product} />
-            </div>
+            <ProductCard
+              key={product._id}
+              product={product}
+              buttonText="Add to Cart"
+              icon
+            />
           ))}
         </div>
       </Container>

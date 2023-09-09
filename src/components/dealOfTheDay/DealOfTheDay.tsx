@@ -1,9 +1,16 @@
 import Link from "next/link";
 import Container from "../Container";
-import ProductCard from "../products/ProductCard";
 import { BsArrowRight } from "react-icons/bs";
+import ProductCard from "../products/productCard/ProductCard";
+import { Product } from "../newArrivals/NewArrivals";
 
-const DealOfTheDay = () => {
+interface DealOfTheDayProps {
+  products: Product[];
+}
+
+const DealOfTheDay: React.FC<DealOfTheDayProps> = ({ products }) => {
+  const product = products[0];
+
   return (
     <div className="py-8">
       <Container>
@@ -18,15 +25,7 @@ const DealOfTheDay = () => {
           <div className="timer"></div>
           {/* --------------- PRODUCTS --------------- */}
           <div className="max-w-[252px] ml-auto mb-4">
-            <ProductCard
-              imgSrc="/images/kid t2.jpg"
-              link=""
-              savedPrice={520}
-              buttonText="Options"
-              newPrice={180}
-              oldPrice={700}
-              title="Kid Tshirt"
-            />
+            <ProductCard product={product} w_full buttonText="Options" />
           </div>
           {/* --------------- ACTIONS --------------- */}
           <Link

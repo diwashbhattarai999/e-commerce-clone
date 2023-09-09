@@ -1,4 +1,4 @@
-import MainSwiper from "./swiper/Swiper";
+import BannerSwiper from "./BannerSwiper";
 
 const SubBanner = () => {
   return (
@@ -10,7 +10,7 @@ const SubBanner = () => {
     "
     >
       <div className="-mx-[10px] cursor-pointer">
-        <MainSwiper />
+        <BannerSwiper />
       </div>
     </div>
   );

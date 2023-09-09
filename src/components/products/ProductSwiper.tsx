@@ -1,7 +1,7 @@
 "use client";
 
 //Import Swiper React Components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 
 //Import Swiper styles
 
@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 
 //Import required modules
 import { Autoplay } from "swiper/modules";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface ProductSwiperProps {
@@ -22,20 +22,34 @@ interface ProductSwiperProps {
 }
 
 const ProductSwiper: React.FC<ProductSwiperProps> = ({ images }) => {
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<SwiperRef>(null);
+
+  useEffect(() => {
+    swiperRef.current?.swiper.autoplay.stop();
+  }, [swiperRef]);
 
   return (
-    <div>
+    <div
+      onMouseEnter={() => {
+        swiperRef.current?.swiper.autoplay.start();
+      }}
+      onMouseLeave={() => {
+        swiperRef.current?.swiper.autoplay.stop();
+        swiperRef.current?.swiper.slideTo(0);
+      }}
+      className="h-[400px]"
+    >
       <Swiper
         ref={swiperRef}
         centeredSlides={true}
         autoplay={{ delay: 500, stopOnLastSlide: false }}
         speed={500}
         modules={[Autoplay]}
+        spaceBetween={1}
       >
         {images.map((img) => (
           <SwiperSlide key={img.url}>
-            <Image src={img.url} alt="" width={100} height={100}/>
+            <Image src={img.url} alt="" width={600} height={600} />
           </SwiperSlide>
         ))}
       </Swiper>

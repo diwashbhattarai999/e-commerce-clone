@@ -1,6 +1,6 @@
 import Banner from "@/components/banner/Banner";
 import DealOfTheDay from "@/components/dealOfTheDay/DealOfTheDay";
-import NewArrivals from "@/components/products/NewArrivals";
+import NewArrivals from "@/components/newArrivals/NewArrivals";
 import Product from "@/models/Products";
 import db from "@/utils/db";
 
@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <main>
       <Banner />
-      <DealOfTheDay />
+      <DealOfTheDay products={allProducts} />
       <NewArrivals products={allProducts} />
       {/* <h1>Promotion Banner</h1>
         <h1>Popular Brands</h1> */}
