@@ -57,7 +57,7 @@ const Cart = () => {
         <>
           <div
             className="
-            bg-white
+            bg-white shadow-xl
             rotate-45 
             h-4 
             w-4 
@@ -73,13 +73,15 @@ const Cart = () => {
             top-16 
             tablet:top-11
             right-3 
-            py-[30px] px-[20px]
-            tablet:pt-[40px] tablet:pb-[30px] tablet:px-[32px]
+            py-[60px] px-[20px]
+            tablet:pt-[100px] tablet:pb-[90px] tablet:px-[32px]
             shadow-md
             w-[242px]
             mobile:w-[370px]
             tablet:w-[520px]
             text-center
+            z-40
+            border border-gray-100
           "
           >
             You have no items in your shopping cart.
