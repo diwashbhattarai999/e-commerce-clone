@@ -9,20 +9,25 @@ interface BreadCrumbsProps {
 }
 
 const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ product }) => {
-  console.log(product);
+  // console.log(product);
 
   return (
-    <div className="bg-white p-4 mb-2">
-      <ul className="flex items-center gap-1">
+    <div className="bg-white p-2 tablet:p-4 mb-2">
+      <ul className="flex items-center gap-1 text-sm tablet:text-base italic">
         {/* ----- */}
-        <li className="flex items-center gap-2">
-          <Link href="/">Home</Link>
+        <li className="flex items-center gap-2 capitalize">
+          <Link href="/" className="text-secondary-color">
+            Home
+          </Link>
         </li>
 
         {/* ----- */}
-        <li className="flex items-center gap-2">
+        <li className="flex items-center gap-2 capitalize">
           <BsChevronRight size="14px" className="mt-[2px]" />
-          <Link href="/categories/${product?.category.slug}">
+          <Link
+            href="/categories/${product?.category.slug}"
+            className="text-secondary-color"
+          >
             {product?.category.name}
           </Link>
         </li>
@@ -31,20 +36,21 @@ const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ product }) => {
         {product?.subCategories &&
           product?.subCategories?.length > 1 &&
           product?.subCategories.map((sub) => (
-            <li key={sub.slug} className="flex items-center gap-2">
+            <li key={sub.slug} className="flex items-center gap-2 capitalize">
               <BsChevronRight size="14px" className="mt-[2px]" />
-              <Link href="categories/${product?.category.slug}/${product?.subCategories.slug}">
+              <Link
+                href="categories/${product?.category.slug}/${product?.subCategories.slug}"
+                className="text-secondary-color"
+              >
                 {sub.name}
               </Link>
             </li>
           ))}
 
         {/* ----- */}
-        <li className="flex items-center gap-2">
+        <li className="flex items-center gap-2 capitalize">
           <BsChevronRight size="14px" className="mt-[2px]" />
-          <Link href="" className="capitalize">
-            {product?.name}
-          </Link>
+          {product?.name}
         </li>
       </ul>
     </div>

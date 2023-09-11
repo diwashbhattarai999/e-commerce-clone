@@ -1,10 +1,10 @@
 import Container from "@/components/Container";
+import MainSwiper from "@/components/productPage/mainSwiper/MainSwiper";
 import BreadCrumbs from "@/components/products/Breadcrumbs";
 import Category from "@/models/Category";
 import Product, { ProductType, subProductType } from "@/models/Products";
 import SubCategory from "@/models/SubCategory";
 import db from "@/utils/db";
-
 interface PageParams {
   params: {
     slug: string;
@@ -98,9 +98,12 @@ export default async function page({ params, searchParams }: PageParams) {
   }
 
   return (
-    <div className="pt-2">
+    <div className="mobile:pt-2">
       <Container>
         <BreadCrumbs product={newProduct} />
+        <div className="bg-white p-2">
+          <MainSwiper images={newProduct?.images} />
+        </div>
       </Container>
     </div>
   );
