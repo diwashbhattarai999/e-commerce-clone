@@ -19,6 +19,7 @@ interface ProductCardInfoProps {
     React.SetStateAction<{ url: string; public_url: string }[]>
   >;
   setActive: React.Dispatch<React.SetStateAction<number>>;
+  options?: boolean;
 }
 
 const ProductCardInfo: React.FC<ProductCardInfoProps> = ({
@@ -30,22 +31,23 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({
   styles,
   setImages,
   setActive,
+  options,
 }) => {
   const productName =
     product?.name.length > 45
       ? `${product?.name.substring(0, 45)}...`
       : product?.name;
 
-  const productPrice =
-    prices?.length === 1
+  const productPrice = prices
+    ? prices?.length === 1
       ? `${prices[0]}$`
-      : `${prices[0]}$ - ${prices[prices.length - 1]}$
-`;
+      : `${prices[0]}$ - ${prices[prices.length - 1]}$`
+    : null;
 
   return (
     <>
       <div className="pb-1 px-4 text-left text-primary-color relative">
-        <Link href={`/product/${product.slug}?style=${active}`}>
+        <Link href={`/product/${product?.slug}?style=${active}`}>
           <div className="mb-2 text-lg font-normal block cursor-pointer h-[56px]">
             {productName}
           </div>
@@ -54,44 +56,46 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({
           <span className="text-lg">{productPrice}</span>
           {/* <s className="text-sm text-gray-color">Rs 423</s> */}
         </div>
-        <div className="flex gap-2 mb-4">
-          {styles &&
-            styles.map((style, i) =>
-              style.image ? (
-                <Image
-                  key={i}
-                  src={style.image}
-                  alt=""
-                  width={30}
-                  height={30}
-                  className={`
+        {!options && (
+          <div className="flex gap-2 mb-4">
+            {styles &&
+              styles.map((style, i) =>
+                style.image ? (
+                  <Image
+                    key={i}
+                    src={style.image}
+                    alt=""
+                    width={30}
+                    height={30}
+                    className={`
                     rounded-full w-[30px] h-[30px] cursor-pointer
                     object-cover shadow-md 
                     outline-offset-2 outline hover:outline-black
                     transition-all duration-500
                     ${i == active && "outline-black"} 
                   `}
-                  onMouseOver={() => {
-                    setImages(product.subProducts[i].images);
-                    setActive(i);
-                  }}
-                />
-              ) : (
-                <span
-                  key={i}
-                  className={`
+                    onMouseOver={() => {
+                      setImages(product.subProducts[i].images);
+                      setActive(i);
+                    }}
+                  />
+                ) : (
+                  <span
+                    key={i}
+                    className={`
                     bg-white 
                     w-[30px] h-[30px] rounded-full
                     shadow-md overflow-hidden
                   `}
-                  onMouseOver={() => {
-                    setImages(product.subProducts[i].images);
-                    setActive(i);
-                  }}
-                ></span>
-              )
-            )}
-        </div>
+                    onMouseOver={() => {
+                      setImages(product.subProducts[i].images);
+                      setActive(i);
+                    }}
+                  ></span>
+                )
+              )}
+          </div>
+        )}
         <Button buttonText={buttonText} full icon={icon} />
       </div>
     </>

@@ -10,6 +10,8 @@ interface NewProductCardProps {
   w_full?: boolean;
   buttonText: string;
   icon?: boolean;
+  imgHeight?: string;
+  options?: boolean;
 }
 
 const ProductCard: React.FC<NewProductCardProps> = ({
@@ -17,6 +19,8 @@ const ProductCard: React.FC<NewProductCardProps> = ({
   w_full,
   buttonText,
   icon = false,
+  imgHeight,
+  options,
 }) => {
   const [active, setActive] = useState(0);
   const [images, setImages] = useState(product?.subProducts[active]?.images);
@@ -57,7 +61,12 @@ const ProductCard: React.FC<NewProductCardProps> = ({
       `}
     >
       <div className="relative bg-content-background-color h-full text-center transition-all duration-1000 ease-in-out">
-        <ProductCardImg product={product} images={images} active={active} />
+        <ProductCardImg
+          product={product}
+          images={images}
+          active={active}
+          imgHeight={imgHeight}
+        />
         <ProductCardInfo
           product={product}
           buttonText={buttonText}
@@ -67,6 +76,7 @@ const ProductCard: React.FC<NewProductCardProps> = ({
           styles={styles}
           setImages={setImages}
           setActive={setActive}
+          options={options}
         />
       </div>
     </div>

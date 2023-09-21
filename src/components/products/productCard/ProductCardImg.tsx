@@ -13,12 +13,14 @@ interface ProductCardImg {
     public_url: string;
   }[];
   active: number;
+  imgHeight?: string;
 }
 
 const ProductCardImg: React.FC<ProductCardImg> = ({
   product,
   images,
   active,
+  imgHeight,
 }) => {
   const [heartActive, setHeartActive] = useState(false);
   const handleWishList = () => {
@@ -31,8 +33,11 @@ const ProductCardImg: React.FC<ProductCardImg> = ({
     <>
       <div className="min-h-0 relative overflow-hidden mb-4">
         {/* --------------- IMAGE --------------- */}
-        <Link href={`/product/${product?.slug}?style=${active}`} className="z-0">
-          <ProductSwiper images={images} />
+        <Link
+          href={`/product/${product?.slug}?style=${active}`}
+          className="z-0"
+        >
+          <ProductSwiper images={images} imgHeight={imgHeight} />
         </Link>
         {/* --------------- WISHLIST --------------- */}
         <div

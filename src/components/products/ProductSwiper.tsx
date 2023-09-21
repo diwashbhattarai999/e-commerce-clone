@@ -19,9 +19,10 @@ interface ProductSwiperProps {
     url: string;
     public_url: string;
   }[];
+  imgHeight?: string;
 }
 
-const ProductSwiper: React.FC<ProductSwiperProps> = ({ images }) => {
+const ProductSwiper: React.FC<ProductSwiperProps> = ({ images, imgHeight }) => {
   const swiperRef = useRef<SwiperRef>(null);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const ProductSwiper: React.FC<ProductSwiperProps> = ({ images }) => {
         swiperRef.current?.swiper.autoplay.stop();
         swiperRef.current?.swiper.slideTo(0);
       }}
-      className="h-[400px]"
+      className={`${imgHeight}`}
     >
       <Swiper
         ref={swiperRef}

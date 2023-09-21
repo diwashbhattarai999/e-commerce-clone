@@ -1,6 +1,6 @@
 import Container from "@/components/Container";
 import Image from "next/image";
-import advertise from "@/images/advertise_on_sastodeal.jpg";
+import advertise from "@/../public/images/advertise_on_sastodeal.jpg";
 import Link from "next/link";
 
 const page = () => {

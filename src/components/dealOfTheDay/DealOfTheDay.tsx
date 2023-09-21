@@ -2,10 +2,11 @@ import Link from "next/link";
 import Container from "../Container";
 import { BsArrowRight } from "react-icons/bs";
 import ProductCard from "../products/productCard/ProductCard";
-import { Product } from "../newArrivals/NewArrivals";
+import { ProductType } from "@/models/Products";
+import Timer from "../banner/Timer";
 
 interface DealOfTheDayProps {
-  products: Product[];
+  products: ProductType[];
 }
 
 const DealOfTheDay: React.FC<DealOfTheDayProps> = ({ products }) => {
@@ -22,10 +23,18 @@ const DealOfTheDay: React.FC<DealOfTheDayProps> = ({ products }) => {
         "
         >
           {/* --------------- TIMER --------------- */}
-          <div className="timer"></div>
+          <div className="hidden laptop:flex absolute laptop:bottom-[110px] laptop:right-[33%]">
+            <Timer date={new Date(2023, 9, 21)} />
+          </div>
           {/* --------------- PRODUCTS --------------- */}
           <div className="max-w-[252px] ml-auto mb-4">
-            <ProductCard product={product} w_full buttonText="Options" />
+            <ProductCard
+              product={product}
+              w_full
+              buttonText="Options"
+              imgHeight="h-[191px]"
+              options
+            />
           </div>
           {/* --------------- ACTIONS --------------- */}
           <Link
@@ -33,6 +42,7 @@ const DealOfTheDay: React.FC<DealOfTheDayProps> = ({ products }) => {
             className="
               text-white text-xl 
               flex items-center justify-end gap-2
+              mr-2
             "
           >
             <span>Go to Deals page</span>
