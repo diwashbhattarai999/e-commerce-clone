@@ -108,3 +108,13 @@ button {
 .swiper-button-next {
   right: 8px;
 }
+
+.prod-slider::-webkit-scrollbar {
+  width: 0.2rem;
+  background-color: white;
+}
+
+.prod-slider::-webkit-scrollbar-thumb {
+  height: 2px;
+  background-color: #eeeeee;
+}

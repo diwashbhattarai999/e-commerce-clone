@@ -35,7 +35,7 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({
 }) => {
   const productName =
     product?.name.length > 45
-      ? `${product?.name.substring(0, 45)}...`
+      ? `${product?.name.substring(0, 42)}...`
       : product?.name;
 
   const productPrice = prices

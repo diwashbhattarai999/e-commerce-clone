@@ -28,6 +28,7 @@ const NewArrivals: React.FC<NewArrivalsProps> = ({ products }) => {
               product={product}
               buttonText="Add to Cart"
               icon
+              imgHeight="h-[376px]"
             />
           ))}
         </div>

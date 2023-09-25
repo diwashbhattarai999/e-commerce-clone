@@ -1,6 +1,7 @@
 import Container from "@/components/Container";
 import MainSwiper from "@/components/productPage/mainSwiper/MainSwiper";
 import BreadCrumbs from "@/components/products/Breadcrumbs";
+import ProductInfos from "@/components/productPage/infos/ProductInfos";
 import Category from "@/models/Category";
 import Product, { ProductType, subProductType } from "@/models/Products";
 import SubCategory from "@/models/SubCategory";
@@ -101,8 +102,9 @@ export default async function page({ params, searchParams }: PageParams) {
     <div className="mobile:pt-2">
       <Container>
         <BreadCrumbs product={newProduct} />
-        <div className="bg-white p-2">
+        <div className="bg-white p-2 mb-2 flex flex-col tablet:flex-row gap-6">
           <MainSwiper images={newProduct?.images} />
+          <ProductInfos product={newProduct} />
         </div>
       </Container>
     </div>
