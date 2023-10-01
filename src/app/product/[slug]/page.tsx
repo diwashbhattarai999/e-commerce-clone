@@ -66,36 +66,39 @@ export default async function page({ params, searchParams }: PageParams) {
     }
 
     //get the all prices array
-    prices = subProduct.sizes.map((s) => s.price).sort((a, b) => a - b);
+    prices = subProduct?.sizes.map((s) => s.price).sort((a, b) => a - b);
 
     //define the new custom product
     newProduct = {
       ...product,
-      images: subProduct.images,
-      sizes: subProduct.sizes,
-      discount: subProduct.discount,
-      sku: subProduct.sku,
-      colors: product.subProducts.map((p) => p.color),
-      priceRange:
-        prices?.length > 1
-          ? `From ${prices[0]} to ${prices[prices.length - 1]}$`
-          : "",
+      images: subProduct?.images,
+      sizes: subProduct?.sizes,
+      discount: subProduct?.discount,
+      sku: subProduct?.sku,
+      colors: product?.subProducts?.map((p) => p.color),
+      priceRange: subProduct?.discount
+        ? `From ${(prices[0] - prices[0] / subProduct?.discount).toFixed(2)} 
+           to ${(
+             prices[prices?.length - 1] -
+             prices[prices?.length - 1] / subProduct?.discount
+           ).toFixed(2)}$`
+        : `From ${prices[0]} to ${prices[prices?.length - 1]}$`,
       price:
-        subProduct.discount > 0
+        subProduct?.discount > 0
           ? (
-              subProduct.sizes[size].price -
-              subProduct.sizes[size].price / subProduct.discount
+              subProduct?.sizes[size]?.price -
+              subProduct?.sizes[size]?.price / subProduct?.discount
             ).toFixed(2)
-          : subProduct.sizes[size].price,
-      priceBefore: subProduct.sizes[size].price,
-      quantity: subProduct.sizes[size].qty,
+          : subProduct?.sizes[size]?.price,
+      priceBefore: subProduct?.sizes[size]?.price,
+      quantity: subProduct?.sizes[size]?.qty,
     };
 
     newProduct = JSON.parse(JSON.stringify(newProduct));
   } catch (error) {
     console.log("Error", error);
   } finally {
-    db.disconnectDB();
+    await db.disconnectDB();
   }
 
   return (

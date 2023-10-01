@@ -14,10 +14,10 @@ interface ProductInfosProps {
 const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
   const searchParams = useSearchParams();
 
-  const getsize = searchParams.get("size");
+  const productSize = searchParams.get("size");
   const style = searchParams.get("style");
 
-  const [getSize, setGetSize] = useState(getsize);
+  const [getSize, setGetSize] = useState(productSize);
 
   return (
     <div className="flex flex-col gap-[5px]">
@@ -33,14 +33,14 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
       <div className="flex items-baseline flex-wrap text-lg gap-2">
         <Star rating={product?.rating} />
         <span className="text-gray-500">
-          {product?.numReviews}{" "}
-          {product?.numReviews == 1 ? "review" : "reviews"}
+          {product?.numReviews}
+          {product?.numReviews == 1 ? " review" : " reviews"}
         </span>
       </div>
 
       {/* Price */}
       <div className="flex items-center flex-wrap gap-2 text-lg font-semibold text-primary-color">
-        {product?.priceRange ? (
+        {!productSize ? (
           <h2>{product?.priceRange}</h2>
         ) : (
           <h1>{product?.price}</h1>
@@ -48,7 +48,11 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
         {product?.discount &&
           (product?.discount > 0 ? (
             <h3 className="text-gray-500 text-base">
-              <span className="mr-1 line-through">{product?.priceBefore}$</span>
+              {productSize && (
+                <span className="mr-1 line-through">
+                  {product?.priceBefore}$
+                </span>
+              )}
               <span>(-{product?.discount}%)</span>
             </h3>
           ) : (
@@ -85,10 +89,10 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
           >
             <div
               className={`${
-                getsize != null &&
-                index == parseFloat(getsize) &&
+                productSize != null &&
+                index == parseFloat(productSize) &&
                 "bg-primary-color text-white"
-              } py-1 px-2 rounded-sm transition duration-500`}
+              } py-1 px-2 rounded-sm transition duration-300`}
               onClick={() => setGetSize(size.size)}
             >
               {size.size}
