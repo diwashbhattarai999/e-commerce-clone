@@ -1,11 +1,14 @@
+import { IconType } from "react-icons";
 import { BsFillCartPlusFill } from "react-icons/bs";
 
 interface ButtonProps {
-  buttonText: string;
+  buttonText?: string;
   center?: boolean;
   full?: boolean;
   error?: boolean;
-  icon?: boolean;
+  icon?: IconType;
+  outline?: boolean;
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -13,28 +16,32 @@ const Button: React.FC<ButtonProps> = ({
   full,
   buttonText,
   error,
-  icon,
+  icon: Icon,
+  outline,
+  onClick,
 }) => {
   return (
-    <div className={`my-2 ${center && "text-center"}`}>
+    <div className={`my-2 ${center && "text-center"}`} onClick={onClick}>
       <button
         type="submit"
         className={`
             ${full && "w-full"}
             ${error && "cursor-not-allowed"}
-            ${icon && "flex justify-between items-center"}
-          text-white text-base
-            bg-accent-color 
-            py-3 px-5
+            ${Icon && "flex justify-between items-center"}
+            ${
+              outline
+                ? "py-1 px-2"
+                : "text-white bg-accent-color px-5 py-3 min-h-[40px]"
+            }
+            text-base
             rounded-full
-            min-h-[40px]
             tracking-[0.01em]
-            hover:bg-secondary-color
+            hover:bg-secondary-color hover:text-white
             transition duration-500
           `}
       >
         {buttonText}
-        {icon && <BsFillCartPlusFill size={22} />}
+        {Icon && <Icon size={22} />}
       </button>
     </div>
   );

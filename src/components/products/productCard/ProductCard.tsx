@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { ProductType } from "@/models/Products";
 import ProductCardImg from "./ProductCardImg";
 import ProductCardInfo from "./ProductCardInfo";
+import { IconType } from "react-icons";
 
 interface NewProductCardProps {
   product: ProductType;
   w_full?: boolean;
   buttonText: string;
-  icon?: boolean;
+  icon?: IconType;
   imgHeight?: string;
   options?: boolean;
 }
@@ -18,7 +19,7 @@ const ProductCard: React.FC<NewProductCardProps> = ({
   product,
   w_full,
   buttonText,
-  icon = false,
+  icon,
   imgHeight,
   options,
 }) => {

@@ -4,11 +4,12 @@ import Button from "@/components/Button";
 import { ProductType as ProductType } from "@/models/Products";
 import Image from "next/image";
 import Link from "next/link";
+import { IconType } from "react-icons";
 
 interface ProductCardInfoProps {
   product: ProductType;
   buttonText: string;
-  icon?: boolean;
+  icon?: IconType;
   prices: number[];
   active: number;
   styles: {
@@ -68,12 +69,12 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({
                     width={30}
                     height={30}
                     className={`
-                    rounded-full w-[30px] h-[30px] cursor-pointer
-                    object-cover shadow-md 
-                    outline-offset-2 outline hover:outline-black
-                    transition-all duration-500
-                    ${i == active && "outline-black"} 
-                  `}
+                      rounded-full w-[30px] h-[30px] cursor-pointer
+                      object-cover shadow-md 
+                      outline-offset-2 outline hover:outline-primary-color
+                      transition-all duration-500
+                      ${i == active && "outline-primary-color"} 
+                    `}
                     onMouseOver={() => {
                       setImages(product.subProducts[i].images);
                       setActive(i);

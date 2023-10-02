@@ -1,6 +1,7 @@
 "use client";
 
 import { BiTimeFive } from "react-icons/bi";
+import { BsFillCartPlusFill } from "react-icons/bs";
 
 import Container from "../Container";
 import Heading from "../Heading";
@@ -27,7 +28,7 @@ const NewArrivals: React.FC<NewArrivalsProps> = ({ products }) => {
               key={product._id}
               product={product}
               buttonText="Add to Cart"
-              icon
+              icon={BsFillCartPlusFill}
               imgHeight="h-[376px]"
             />
           ))}
