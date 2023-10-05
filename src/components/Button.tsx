@@ -8,6 +8,7 @@ interface ButtonProps {
   error?: boolean;
   icon?: IconType;
   outline?: boolean;
+  secondary?: boolean;
   onClick?: () => void;
 }
 
@@ -18,10 +19,14 @@ const Button: React.FC<ButtonProps> = ({
   error,
   icon: Icon,
   outline,
+  secondary,
   onClick,
 }) => {
   return (
-    <div className={`my-2 ${center && "text-center"}`} onClick={onClick}>
+    <div
+      className={`my-2 ${center && "text-center"} ${full && "w-full"}`}
+      onClick={onClick}
+    >
       <button
         type="submit"
         className={`
@@ -30,13 +35,18 @@ const Button: React.FC<ButtonProps> = ({
             ${Icon && "flex justify-between items-center"}
             ${
               outline
-                ? "py-1 px-2"
+                ? "py-1 px-2 justify-center"
                 : "text-white bg-accent-color px-5 py-3 min-h-[40px]"
+            }
+            ${
+              secondary
+                ? "bg-secondary-color hover:bg-primary-color"
+                : "hover:bg-secondary-color"
             }
             text-base
             rounded-full
             tracking-[0.01em]
-            hover:bg-secondary-color hover:text-white
+             hover:text-white
             transition duration-500
           `}
       >

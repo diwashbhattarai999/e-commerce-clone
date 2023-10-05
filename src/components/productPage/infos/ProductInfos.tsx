@@ -3,12 +3,16 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+
 import { TbPlus, TbMinus } from "react-icons/tb";
+import { BsFillCartPlusFill } from "react-icons/bs";
+import { AiOutlineHeart } from "react-icons/ai";
 
 import { CustomProductType } from "@/app/product/[slug]/page";
 import Star from "@/components/star/Star";
-import Image from "next/image";
 import Button from "@/components/Button";
+import Share from "./Share";
 
 interface ProductInfosProps {
   product: CustomProductType | undefined;
@@ -23,16 +27,10 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
   const [getSize, setGetSize] = useState(productSize);
   const [qty, setQty] = useState(1);
 
-  // useEffect(() => {
-  //   setGetSize("");
-  //   setQty(1);
-  // }, [style, productSize]);
-
-  // useEffect(() => {
-  //   if (product?.quantity && qty > product?.quantity) {
-  //     setQty(product?.quantity);
-  //   }
-  // }, [productSize]);
+  useEffect(() => {
+    setGetSize("");
+    setQty(1);
+  }, [style, productSize]);
 
   return (
     <div className="flex flex-col gap-[5px] flex-1">
@@ -91,7 +89,7 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
 
         {/* Quantity */}
         <div className="text-gray-900">
-          {getSize
+          {productSize
             ? product?.quantity
             : product?.sizes.reduce((start, next) => start + next.qty, 0)}{" "}
           pieces available
@@ -152,11 +150,15 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
       <span className="h-[1px] w-full bg-gray-200 my-2" />
 
       {/* Qty */}
-      <div className="flex">
+      <h1 className="text-lg font-semibold text-primary-color mt-2">
+        Qunatity:
+      </h1>
+      <div className="flex mb-2">
         <div className="flex gap-2 items-center justify-center border rounded-full px-2">
           <Button
             icon={TbPlus}
             outline
+            center
             onClick={() =>
               product?.quantity &&
               qty < product?.quantity &&
@@ -167,10 +169,30 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
           <Button
             icon={TbMinus}
             outline
+            center
             onClick={() => qty > 1 && setQty((prev) => prev - 1)}
           />
         </div>
       </div>
+
+      {/* actions */}
+      <div className="flex flex-wrap gap-4 tablet:hidden mt-6">
+        <Button buttonText="Add to Cart" icon={BsFillCartPlusFill} full />
+        <Button
+          buttonText="Add to wishlist"
+          icon={AiOutlineHeart}
+          full
+          secondary
+        />
+      </div>
+      <span className="h-[1px] w-full bg-gray-200 my-2" />
+
+      {/* Share */}
+      <h1 className="text-lg font-semibold text-primary-color my-2">
+        Share with socials:
+      </h1>
+      <Share />
+      <span className="h-[1px] w-full bg-gray-200 my-2" />
     </div>
   );
 };
