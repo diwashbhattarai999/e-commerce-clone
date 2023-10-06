@@ -12,7 +12,14 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { CustomProductType } from "@/app/product/[slug]/page";
 import Star from "@/components/star/Star";
 import Button from "@/components/Button";
-import Share from "./Share";
+import Share from "@/components/Share";
+import Accordian from "@/components/Accordian";
+
+export interface DetailsType {
+  name: string;
+  value: string;
+  _id: string;
+}
 
 interface ProductInfosProps {
   product: CustomProductType | undefined;
@@ -26,6 +33,14 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
 
   const [getSize, setGetSize] = useState(productSize);
   const [qty, setQty] = useState(1);
+
+  const details: [string, DetailsType[]] = ["", []];
+  if (product?.description) {
+    details[0] = product.description;
+  }
+  if (product?.details) {
+    details[1] = product.details;
+  }
 
   useEffect(() => {
     setGetSize("");
@@ -193,6 +208,9 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
       </h1>
       <Share />
       <span className="h-[1px] w-full bg-gray-200 my-2" />
+
+      {/* Accordian */}
+      <Accordian details={details}/>
     </div>
   );
 };

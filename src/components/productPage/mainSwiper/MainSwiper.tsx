@@ -27,7 +27,8 @@ const MainSwiper: React.FC<MainSwiperProps> = ({ images, activeImg }) => {
   const imgSrc = images ? images[active]?.url : "";
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col tablet:sticky top-[4.2rem] left-0 h-full">
+      {/* images */}
       <div className="flex flex-col-reverse tablet:flex-row gap-4 overflow-hidden">
         <div className="flex tablet:flex-col self-center tablet:self-start pr-2 tablet:h-[479px] overflow-auto prod-slider">
           {images?.map((img, index) => (

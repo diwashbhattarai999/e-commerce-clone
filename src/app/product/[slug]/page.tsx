@@ -105,7 +105,7 @@ export default async function page({ params, searchParams }: PageParams) {
     <div className="mobile:pt-2">
       <Container>
         <BreadCrumbs product={newProduct} />
-        <div className="bg-white p-2 mb-2 flex flex-col tablet:flex-row gap-6">
+        <div className="bg-white p-2 mb-2 flex flex-col tablet:flex-row gap-6 relative">
           <MainSwiper images={newProduct?.images} />
           <ProductInfos product={newProduct} />
         </div>
