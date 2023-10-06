@@ -20,7 +20,8 @@ import {
   ViberShareButton,
   WhatsappIcon,
   WhatsappShareButton,
-} from "react-share";
+} from "next-share";
+
 
 const Share = () => {
   const [currentURL, setCurrentURL] = useState("");
