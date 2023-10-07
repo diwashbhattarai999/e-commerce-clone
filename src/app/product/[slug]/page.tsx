@@ -6,6 +6,7 @@ import Category from "@/models/Category";
 import Product, { ProductType, subProductType } from "@/models/Products";
 import SubCategory from "@/models/SubCategory";
 import db from "@/utils/db";
+import SimilarSwiper from "@/components/productPage/infos/SimilarSwiper";
 interface PageParams {
   params: {
     slug: string;
@@ -105,9 +106,17 @@ export default async function page({ params, searchParams }: PageParams) {
     <div className="mobile:pt-2">
       <Container>
         <BreadCrumbs product={newProduct} />
-        <div className="bg-white p-2 mb-2 flex flex-col tablet:flex-row gap-6 relative">
-          <MainSwiper images={newProduct?.images} />
-          <ProductInfos product={newProduct} />
+        <div className="bg-white p-2 mb-2 relative">
+          <div className="flex flex-col tablet:flex-row gap-6">
+            <MainSwiper images={newProduct?.images} />
+            <ProductInfos product={newProduct} />
+          </div>
+          <div>
+            <h1 className="text-2xl font-semibold text-primary-color mt-6 mb-3">
+              Similar Products
+            </h1>
+            <SimilarSwiper />
+          </div>
         </div>
       </Container>
     </div>

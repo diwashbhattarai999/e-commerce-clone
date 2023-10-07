@@ -14,6 +14,7 @@ import Star from "@/components/star/Star";
 import Button from "@/components/Button";
 import Share from "@/components/Share";
 import Accordian from "@/components/Accordian";
+import SimilarSwiper from "./SimilarSwiper";
 
 export interface DetailsType {
   name: string;
@@ -210,7 +211,10 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
       <span className="h-[1px] w-full bg-gray-200 my-2" />
 
       {/* Accordian */}
-      <Accordian details={details}/>
+      <Accordian details={details} />
+
+      {/* Similar Products */}
+      {/* <SimilarSwiper /> */}
     </div>
   );
 };
