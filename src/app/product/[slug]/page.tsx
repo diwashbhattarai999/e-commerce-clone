@@ -4,9 +4,9 @@ import BreadCrumbs from "@/components/products/Breadcrumbs";
 import ProductInfos from "@/components/productPage/infos/ProductInfos";
 import Category from "@/models/Category";
 import Product, { ProductType, subProductType } from "@/models/Products";
-import SubCategory from "@/models/SubCategory";
 import db from "@/utils/db";
-import SimilarSwiper from "@/components/productPage/infos/SimilarSwiper";
+import SimilarSwiper from "@/components/productPage/SimilarSwiper";
+import Reviews from "@/components/productPage/reviews/Reviews";
 interface PageParams {
   params: {
     slug: string;
@@ -35,9 +35,12 @@ export interface CustomProductType extends ProductType {
     image: string;
   }[];
   priceRange: string;
-  price: any;
+  price: string | number;
   priceBefore: number;
   quantity: number;
+  ratings: {
+    percentage: number;
+  }[];
 }
 
 export default async function page({ params, searchParams }: PageParams) {
@@ -93,6 +96,23 @@ export default async function page({ params, searchParams }: PageParams) {
           : subProduct?.sizes[size]?.price,
       priceBefore: subProduct?.sizes[size]?.price,
       quantity: subProduct?.sizes[size]?.qty,
+      ratings: [
+        {
+          percentage: 78,
+        },
+        {
+          percentage: 52,
+        },
+        {
+          percentage: 29,
+        },
+        {
+          percentage: 15,
+        },
+        {
+          percentage: 6,
+        },
+      ],
     };
 
     newProduct = JSON.parse(JSON.stringify(newProduct));
@@ -111,12 +131,9 @@ export default async function page({ params, searchParams }: PageParams) {
             <MainSwiper images={newProduct?.images} />
             <ProductInfos product={newProduct} />
           </div>
-          <div>
-            <h1 className="text-2xl font-semibold text-primary-color mt-6 mb-3">
-              Similar Products
-            </h1>
-            <SimilarSwiper />
-          </div>
+          {/* Similar Products */}
+          <SimilarSwiper />
+          <Reviews product={newProduct} />
         </div>
       </Container>
     </div>

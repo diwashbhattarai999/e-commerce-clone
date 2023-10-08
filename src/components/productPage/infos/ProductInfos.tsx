@@ -14,7 +14,7 @@ import Star from "@/components/star/Star";
 import Button from "@/components/Button";
 import Share from "@/components/Share";
 import Accordian from "@/components/Accordian";
-import SimilarSwiper from "./SimilarSwiper";
+import SimilarSwiper from "../SimilarSwiper";
 
 export interface DetailsType {
   name: string;
@@ -62,7 +62,7 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
 
       {/* Rating */}
       <div className="flex items-baseline flex-wrap text-lg gap-2">
-        <Star rating={product?.rating} />
+        <Star rating={product?.rating} readonly />
         <span className="text-gray-500">
           {product?.numReviews}
           {product?.numReviews == 1 ? " review" : " reviews"}
