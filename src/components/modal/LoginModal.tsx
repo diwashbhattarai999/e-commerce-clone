@@ -4,7 +4,6 @@ import {
   selectToggleFeatureState,
   setFeatureFalse,
   setFeatureTrue,
-  toggleFeature,
 } from "@/store/slices/featureToggleSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ChangeEvent, useState } from "react";

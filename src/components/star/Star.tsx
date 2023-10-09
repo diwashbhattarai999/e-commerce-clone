@@ -4,9 +4,10 @@ import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 interface RatingProps {
   rating: number | undefined;
   readonly?: boolean;
+  gap?: number;
 }
 
-const Star: React.FC<RatingProps> = ({ rating, readonly }) => {
+const Star: React.FC<RatingProps> = ({ rating, readonly, gap }) => {
   const [hoverRating, setHoverRating] = useState(0);
   const [selectedRating, setSelectedRating] = useState(rating ? rating : 0);
 
@@ -17,7 +18,7 @@ const Star: React.FC<RatingProps> = ({ rating, readonly }) => {
   };
 
   return (
-    <div className="flex ">
+    <div className={`flex gap-${gap}`}>
       {Array.from({ length: 5 }, (_, index) => {
         const starValue = index + 1;
         const isFilled = starValue <= (hoverRating || selectedRating);
@@ -36,7 +37,7 @@ const Star: React.FC<RatingProps> = ({ rating, readonly }) => {
             onMouseLeave={() => !readonly && setHoverRating(0)}
             className={`${
               readonly ? "cursor-default" : "cursor-pointer"
-            } text-orange-500 mr-1`}
+            } text-orange-500`}
           >
             {isHalfFilled ? (
               <BsStarHalf />

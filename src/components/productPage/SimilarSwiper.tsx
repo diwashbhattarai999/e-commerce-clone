@@ -34,7 +34,13 @@ const SimilarSwiper = () => {
         {simillar_products.map((p, index) => (
           <SwiperSlide key={index}>
             <Link href="">
-              <Image src={p} alt="" width={340} height={340} className="" />
+              <Image
+                src={p}
+                alt=""
+                width={340}
+                height={340}
+                className="rounded-md"
+              />
             </Link>
           </SwiperSlide>
         ))}

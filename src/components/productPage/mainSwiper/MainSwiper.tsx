@@ -35,7 +35,7 @@ const MainSwiper: React.FC<MainSwiperProps> = ({ images, activeImg }) => {
             <div
               key={img.url}
               className={`
-              mb-2 border-2  p-[2px] cursor-pointer
+              mb-2 border-2 rounded-md p-[2px] cursor-pointer
               ${
                 active === index ? "border-primary-color" : "border-transparent"
               }
@@ -43,23 +43,40 @@ const MainSwiper: React.FC<MainSwiperProps> = ({ images, activeImg }) => {
             `}
               onClick={() => setActive(index)}
             >
-              <Image src={img.url} alt="" width={100} height={100} />
+              <Image
+                src={img.url}
+                alt=""
+                width={100}
+                height={100}
+                className="rounded-md"
+              />
             </div>
           ))}
         </div>
         <div className="tablet:w-[360px] self-center tablet:self-start">
-          <InnerImageZoom src={imgSrc} zoomType="hover" zoomPreload={true} />
+          <InnerImageZoom
+            src={imgSrc}
+            zoomType="hover"
+            zoomPreload={true}
+            className="rounded-md"
+          />
         </div>
       </div>
 
       {/* actions */}
       <div className="hidden tablet:flex gap-4 mt-4">
-        <Button buttonText="Add to Cart" icon={BsFillCartPlusFill} full />
+        <Button
+          buttonText="Add to Cart"
+          icon={BsFillCartPlusFill}
+          full
+          rounded="md"
+        />
         <Button
           buttonText="Add to wishlist"
           icon={AiOutlineHeart}
           full
           secondary
+          rounded="md"
         />
       </div>
     </div>

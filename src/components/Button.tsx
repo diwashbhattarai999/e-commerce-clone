@@ -10,6 +10,7 @@ interface ButtonProps {
   outline?: boolean;
   secondary?: boolean;
   onClick?: () => void;
+  rounded?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -21,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   outline,
   secondary,
   onClick,
+  rounded,
 }) => {
   return (
     <div
@@ -43,8 +45,8 @@ const Button: React.FC<ButtonProps> = ({
                 ? "bg-secondary-color hover:bg-primary-color"
                 : "hover:bg-secondary-color"
             }
+            ${rounded ? `rounded-${rounded}` : "rounded-full"}
             text-base
-            rounded-full
             tracking-[0.01em]
              hover:text-white
             transition duration-500

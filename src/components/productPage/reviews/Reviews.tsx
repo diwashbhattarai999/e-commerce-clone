@@ -1,29 +1,41 @@
 "use client";
 
+import { useSession } from "next-auth/react";
+import { useDispatch } from "react-redux";
+
 import { CustomProductType } from "@/app/product/[slug]/page";
+
+import Button from "@/components/Button";
 import Star from "@/components/star/Star";
+import { toggleFeature } from "@/store/slices/featureToggleSlice";
+import AddReview from "./AddReview";
 
 interface ReviewsProps {
   product: CustomProductType | undefined;
 }
 
 const Reviews: React.FC<ReviewsProps> = ({ product }) => {
+  const { data: session } = useSession();
+  const dispatch = useDispatch();
+
   return (
     <>
       <h1 className="text-2xl font-semibold text-primary-color mt-6 mb-3">
-        Customer Reviews ({product?.reviews.length}+)
+        Customer Reviews {product?.reviews && `(${product.reviews.length}+)`}
       </h1>
-      <div className="bg-lime-50 p-5 tablet:p-10 flex gap-4 tablet:items-center justify-between flex-col tablet:flex-row">
+      {/* Review Stats */}
+      <div className="bg-base-background-color p-5 tablet:p-10 flex gap-4 tablet:items-center justify-between flex-col tablet:flex-row rounded-md">
         {/* Stats Overview */}
         <div>
           <h2 className="font-semibold text-lg mb-4">Average Rating</h2>
           <div className="flex flex-col mobile:flex-row mobile:items-center mobile:gap-4 text-xl">
-            <Star rating={product?.rating} readonly />
-            {product?.rating == 0
-              ? "No review yet"
-              : `${product?.rating} ${
-                  product?.rating == 1 ? "review" : "reviews"
-                }`}
+            <Star rating={product?.rating} readonly gap={1} />
+            {product?.rating &&
+              (product?.rating == 0
+                ? "No review yet"
+                : `${product?.rating} ${
+                    product?.rating == 1 ? "review" : "reviews"
+                  }`)}
           </div>
         </div>
 
@@ -34,9 +46,9 @@ const Reviews: React.FC<ReviewsProps> = ({ product }) => {
               key={index}
               className="flex flex-col mobile:flex-row mobile:items-center gap-2"
             >
-              <Star rating={5 - index} readonly />
+              <Star rating={5 - index} readonly gap={3} />
               <div className="flex items-center gap-2">
-                <div className="h-[6px] w-[50vw] tablet:w-[20vw] bg-gray-200 relative rounded-md">
+                <div className="h-[5px] w-[50vw] tablet:w-[20vw] bg-gray-200 relative rounded-md">
                   <span
                     className={`bg-orange-600 h-full absolute left-0`}
                     style={{ width: `${rating.percentage}%` }}
@@ -47,6 +59,24 @@ const Reviews: React.FC<ReviewsProps> = ({ product }) => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Add Review */}
+      <div className="my-4">
+        {session ? (
+          <div className="bg-base-background-color p-5 tablet:p-10">
+            <AddReview product={product} />
+          </div>
+        ) : (
+          <Button
+            buttonText="Login In to add review"
+            rounded="md"
+            full
+            onClick={() => {
+              dispatch(toggleFeature({ featureName: "signIn" }));
+            }}
+          />
+        )}
       </div>
     </>
   );

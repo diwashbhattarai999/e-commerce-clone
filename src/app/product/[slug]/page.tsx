@@ -41,6 +41,12 @@ export interface CustomProductType extends ProductType {
   ratings: {
     percentage: number;
   }[];
+  allSizes: {
+    size: string;
+    qty: number;
+    price: number;
+    _id: string;
+  }[];
 }
 
 export default async function page({ params, searchParams }: PageParams) {
@@ -113,6 +119,18 @@ export default async function page({ params, searchParams }: PageParams) {
           percentage: 6,
         },
       ],
+      allSizes: product.subProducts
+        .map((p) => {
+          return p.sizes;
+        })
+        .flat()
+        .sort((a, b) => {
+          return parseInt(a.size) - parseInt(b.size);
+        })
+        .filter(
+          (elem, index, arr) =>
+            arr.findIndex((elem2) => elem2.size === elem.size) === index
+        ),
     };
 
     newProduct = JSON.parse(JSON.stringify(newProduct));
