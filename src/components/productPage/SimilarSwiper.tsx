@@ -24,8 +24,8 @@ const SimilarSwiper = () => {
         Similar Products
       </h1>
       <Swiper
-        slidesPerView={4}
-        spaceBetween={4}
+        slidesPerView={5}
+        spaceBetween={10}
         slidesPerGroup={3}
         navigation={true}
         modules={[Navigation]}
@@ -37,8 +37,8 @@ const SimilarSwiper = () => {
               <Image
                 src={p}
                 alt=""
-                width={340}
-                height={340}
+                width={240}
+                height={240}
                 className="rounded-md"
               />
             </Link>

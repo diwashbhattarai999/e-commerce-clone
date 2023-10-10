@@ -1,8 +1,14 @@
 "use client";
 
-import { CustomProductType } from "@/app/product/[slug]/page";
-import Select, { styleType } from "./Select";
+import * as React from "react";
 import { useState } from "react";
+
+import { CustomProductType } from "@/app/product/[slug]/page";
+
+import Select, { styleType } from "./Select";
+import Button from "@/components/Button";
+
+import Rating from "@mui/material/Rating";
 
 interface AddReviewProps {
   product: CustomProductType | undefined;
@@ -14,10 +20,12 @@ const AddReview: React.FC<AddReviewProps> = ({ product }) => {
   const [size, setSize] = useState<string | styleType>("");
   const [style, setStyle] = useState<string | styleType>("");
   const [fit, setFit] = useState<string | styleType>("");
+  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(0);
 
   return (
-    <div>
-      <div className="flex gap-2 justify-end">
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-2">
         {/* Size */}
         <Select
           property={size}
@@ -45,6 +53,33 @@ const AddReview: React.FC<AddReviewProps> = ({ product }) => {
           handleClick={(newItem) => setFit(newItem)}
         />
       </div>
+
+      <textarea
+        name="review"
+        value={review}
+        onChange={(e) => setReview(e.target.value)}
+        rows={5}
+        placeholder="Write your review here..."
+        className="w-full p-4"
+      />
+
+      <div className="flex gap-2">
+        <h2 className="font-semibold">Rate this product:</h2>
+        <Rating
+          name="half-rating-read"
+          defaultValue={0}
+          value={rating}
+          onChange={(_, newValue: number | null) => {
+            if (newValue !== null) {
+              setRating(newValue);
+            }
+          }}
+          precision={0.5}
+          className="text-orange-500 w-fit"
+        />
+      </div>
+
+      <Button buttonText="Submit Review" full rounded="md" />
     </div>
   );
 };
