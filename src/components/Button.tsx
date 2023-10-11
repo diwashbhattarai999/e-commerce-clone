@@ -48,7 +48,7 @@ const Button: React.FC<ButtonProps> = ({
             ${rounded ? `rounded-${rounded}` : "rounded-full"}
             text-base
             tracking-[0.01em]
-             hover:text-white
+            hover:text-white
             transition duration-500
           `}
       >

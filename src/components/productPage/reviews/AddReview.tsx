@@ -9,6 +9,7 @@ import Select, { styleType } from "./Select";
 import Button from "@/components/Button";
 
 import Rating from "@mui/material/Rating";
+import UploadImage from "./UploadImage";
 
 interface AddReviewProps {
   product: CustomProductType | undefined;
@@ -22,6 +23,7 @@ const AddReview: React.FC<AddReviewProps> = ({ product }) => {
   const [fit, setFit] = useState<string | styleType>("");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+  const [images, setImages] = useState<string[]>([]);
 
   return (
     <div className="flex flex-col gap-4">
@@ -53,6 +55,8 @@ const AddReview: React.FC<AddReviewProps> = ({ product }) => {
           handleClick={(newItem) => setFit(newItem)}
         />
       </div>
+
+      <UploadImage images={images} setImages={setImages} />
 
       <textarea
         name="review"

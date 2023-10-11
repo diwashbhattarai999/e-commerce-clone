@@ -63,7 +63,7 @@ const Select: React.FC<SelectProps> = ({
                     alt=""
                     width={30}
                     height={30}
-                    className="rounded-full"
+                    className="rounded-full w-[32px] h-[32px]"
                   />
                 ) || `Select ${selectText}`
               : selectText == "Fit" && typeof property === "string"
@@ -75,7 +75,7 @@ const Select: React.FC<SelectProps> = ({
 
         <ul
           className={`
-            absolute bg-gray-50 mt-[1px] text-center w-full shadow-lg rounded-md font-normal text-base
+            absolute z-40 bg-gray-50 mt-[1px] text-center w-full shadow-lg rounded-md font-normal text-base
             ${
               visible
                 ? "max-h-[320px] opacity-100"
@@ -113,7 +113,7 @@ const Select: React.FC<SelectProps> = ({
               return (
                 <li
                   key={index}
-                  className="hover:opacity-90 cursor-pointer p-1 border-b border-gray-100 rounded-md transition-all duration-300"
+                  className="flex items-center justify-center hover:opacity-90 cursor-pointer p-1 border-b border-gray-100 rounded-md transition-all duration-300"
                   style={{ background: `${item.color}` }}
                   onClick={() => handleClick(item)}
                 >
@@ -122,7 +122,7 @@ const Select: React.FC<SelectProps> = ({
                     alt=""
                     width={30}
                     height={30}
-                    className="rounded-full"
+                    className="rounded-full w-[32px] h-[32px]"
                   />
                 </li>
               );
