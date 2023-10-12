@@ -26,7 +26,7 @@ const AddReview: React.FC<AddReviewProps> = ({ product }) => {
   const [images, setImages] = useState<string[]>([]);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 bg-base-background-color p-5 tablet:p-10 rounded-md">
       <div className="flex gap-2">
         {/* Size */}
         <Select

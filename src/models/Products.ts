@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 import { CategoryType } from "./Category";
 import { subCategoryType } from "./SubCategory";
@@ -23,6 +22,8 @@ export interface subProductType {
   discount: number;
   _id: string;
 }
+
+const { ObjectId } = mongoose.Schema;
 
 export interface ProductType {
   _id: string;

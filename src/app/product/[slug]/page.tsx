@@ -1,12 +1,17 @@
-import Container from "@/components/Container";
-import MainSwiper from "@/components/productPage/mainSwiper/MainSwiper";
-import BreadCrumbs from "@/components/products/Breadcrumbs";
-import ProductInfos from "@/components/productPage/infos/ProductInfos";
-import Category from "@/models/Category";
 import Product, { ProductType, subProductType } from "@/models/Products";
+import SubCategory from "@/models/SubCategory";
+import Category from "@/models/Category";
+import User from "@/models/User";
+
 import db from "@/utils/db";
-import SimilarSwiper from "@/components/productPage/SimilarSwiper";
+
+import Container from "@/components/Container";
+import BreadCrumbs from "@/components/products/Breadcrumbs";
 import Reviews from "@/components/productPage/reviews/Reviews";
+import SimilarSwiper from "@/components/productPage/SimilarSwiper";
+import ProductInfos from "@/components/productPage/infos/ProductInfos";
+import MainSwiper from "@/components/productPage/mainSwiper/MainSwiper";
+
 interface PageParams {
   params: {
     slug: string;
@@ -66,7 +71,8 @@ export default async function page({ params, searchParams }: PageParams) {
     //get the product and subproduct
     product = await Product.findOne({ slug })
       .populate({ path: "category", model: Category })
-      // .populate({ path: "subCategories", model: SubCategory })
+      .populate({ path: "subcategories._id", model: SubCategory })
+      .populate({ path: "reviews.reviewBy", model: User })
       .lean();
     subProduct = product?.subProducts[style];
 

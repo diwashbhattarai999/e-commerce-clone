@@ -64,9 +64,7 @@ const Reviews: React.FC<ReviewsProps> = ({ product }) => {
       {/* Add Review */}
       <div className="my-4">
         {session ? (
-          <div className="bg-base-background-color p-5 tablet:p-10 rounded-md">
-            <AddReview product={product} />
-          </div>
+          <AddReview product={product} />
         ) : (
           <Button
             buttonText="Login In to add review"
@@ -77,6 +75,8 @@ const Reviews: React.FC<ReviewsProps> = ({ product }) => {
             }}
           />
         )}
+
+        
       </div>
     </>
   );

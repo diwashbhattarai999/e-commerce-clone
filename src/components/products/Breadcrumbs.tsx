@@ -9,7 +9,6 @@ interface BreadCrumbsProps {
 }
 
 const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ product }) => {
-  // console.log(product);
 
   return (
     <div className="bg-white p-2 tablet:p-4 mb-2">

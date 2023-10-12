@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 import { CategoryType } from "./Category";
 
@@ -7,6 +6,8 @@ export interface subCategoryType {
   slug: string;
   parent: CategoryType;
 }
+
+const { ObjectId } = mongoose.Schema;
 
 const subCategorySchema = new mongoose.Schema(
   {
