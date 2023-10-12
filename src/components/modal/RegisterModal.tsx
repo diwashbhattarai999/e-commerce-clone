@@ -18,7 +18,7 @@ import axios from "axios";
 
 import Input from "./Input";
 import Modal from "./Modal";
-import Button from "../Button";
+import Button from "../reusable/Button";
 
 import { registerValidation } from "./schemas";
 

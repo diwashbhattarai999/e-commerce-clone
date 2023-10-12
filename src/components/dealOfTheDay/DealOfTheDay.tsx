@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Container from "../Container";
+import Container from "../reusable/Container";
 import { BsArrowRight } from "react-icons/bs";
 import ProductCard from "../products/productCard/ProductCard";
 import { ProductType } from "@/models/Products";

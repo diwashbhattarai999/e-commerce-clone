@@ -10,10 +10,10 @@ import { BsFillCartPlusFill } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 
 import { CustomProductType } from "@/app/product/[slug]/page";
-import Star from "@/components/star/Star";
-import Button from "@/components/Button";
-import Share from "@/components/Share";
-import Accordian from "@/components/Accordian";
+import Star from "@/components/reusable/Star";
+import Button from "@/components/reusable/Button";
+import Share from "@/components/reusable/Share";
+import Accordian from "@/components/reusable/Accordian";
 import SimilarSwiper from "../SimilarSwiper";
 
 export interface DetailsType {

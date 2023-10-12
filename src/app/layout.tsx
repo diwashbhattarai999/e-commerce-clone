@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 
 import { ReduxProvider } from "@/store/provider";
-import SProvider from "@/components/SProvider";
+import SProvider from "@/components/reusable/SProvider";
 
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";

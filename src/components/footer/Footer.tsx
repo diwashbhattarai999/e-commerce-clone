@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Container from "../Container";
+import Container from "../reusable/Container";
 import Links from "./Links";
 import Socials from "./Socials";
 import qr_app from "/public/images/footer_qr_app.png";

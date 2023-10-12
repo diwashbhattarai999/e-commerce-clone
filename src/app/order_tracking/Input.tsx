@@ -1,7 +1,7 @@
 import { AiOutlineGift } from "react-icons/ai";
 import { GoPerson } from "react-icons/go";
 import { IconType } from "react-icons";
-import Button from "@/components/Button";
+import Button from "@/components/reusable/Button";
 
 interface InputListsType {
   id: number;

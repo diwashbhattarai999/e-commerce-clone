@@ -5,7 +5,7 @@ import User from "@/models/User";
 
 import db from "@/utils/db";
 
-import Container from "@/components/Container";
+import Container from "@/components/reusable/Container";
 import BreadCrumbs from "@/components/products/Breadcrumbs";
 import Reviews from "@/components/productPage/reviews/Reviews";
 import SimilarSwiper from "@/components/productPage/SimilarSwiper";

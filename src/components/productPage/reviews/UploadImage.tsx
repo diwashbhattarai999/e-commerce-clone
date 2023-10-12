@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { IoIosRemoveCircle } from "react-icons/io";
 
-import Button from "@/components/Button";
+import Button from "@/components/reusable/Button";
 
 interface UploadImageProps {
   images: string[];

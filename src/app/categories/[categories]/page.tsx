@@ -1,4 +1,4 @@
-import Container from "@/components/Container";
+import Container from "@/components/reusable/Container";
 import ProductBanner from "./products/ProductBanner";
 import ProductFilter from "../../../components/products/ProductFilter";
 import Products from "./products/Products";

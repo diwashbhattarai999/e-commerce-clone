@@ -1,4 +1,4 @@
-import Container from "@/components/Container";
+import Container from "@/components/reusable/Container";
 import Image from "next/image";
 import advertise from "@/../public/images/advertise_on_sastodeal.jpg";
 import Link from "next/link";

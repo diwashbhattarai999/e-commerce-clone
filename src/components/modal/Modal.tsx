@@ -9,7 +9,7 @@ import {
   setFeatureFalse,
 } from "@/store/slices/featureToggleSlice";
 import useClickOutside from "@/hooks/useClickOutside";
-import Loader from "../loaders/Loader";
+import Loader from "../reusable/Loader";
 
 interface ModalProps {
   isOpen: boolean;

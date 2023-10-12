@@ -1,4 +1,4 @@
-import Container from "../Container";
+import Container from "../reusable/Container";
 import Timer from "./Timer";
 
 interface CountdownProps {

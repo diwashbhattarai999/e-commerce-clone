@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Container from "../Container";
+import Container from "../reusable/Container";
 import Bottom from "./bottom/Bottom";
 import Middle from "./middle/Middle";
 import Top from "./top/Top";

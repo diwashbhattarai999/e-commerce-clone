@@ -3,8 +3,8 @@
 import { BiTimeFive } from "react-icons/bi";
 import { BsFillCartPlusFill } from "react-icons/bs";
 
-import Container from "../Container";
-import Heading from "../Heading";
+import Container from "../reusable/Container";
+import Heading from "../reusable/Heading";
 import ProductCard from "../products/productCard/ProductCard";
 import { ProductType } from "@/models/Products";
 

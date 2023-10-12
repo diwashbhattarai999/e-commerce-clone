@@ -14,8 +14,8 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 
 import Input from "@/components/modal/Input";
-import Button from "@/components/Button";
-import Loader from "@/components/loaders/Loader";
+import Button from "@/components/reusable/Button";
+import Loader from "@/components/reusable/Loader";
 import { setFeatureTrue } from "@/store/slices/featureToggleSlice";
 
 interface ResetFormProps {

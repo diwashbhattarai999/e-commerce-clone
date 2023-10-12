@@ -5,10 +5,11 @@ import { useDispatch } from "react-redux";
 
 import { CustomProductType } from "@/app/product/[slug]/page";
 
-import Button from "@/components/Button";
-import Star from "@/components/star/Star";
+import Button from "@/components/reusable/Button";
+import Star from "@/components/reusable/Star";
 import { toggleFeature } from "@/store/slices/featureToggleSlice";
 import AddReview from "./AddReview";
+import Table from "./Table";
 
 interface ReviewsProps {
   product: CustomProductType | undefined;
@@ -76,7 +77,7 @@ const Reviews: React.FC<ReviewsProps> = ({ product }) => {
           />
         )}
 
-        
+        <Table reviews={product?.reviews} />
       </div>
     </>
   );

@@ -25,6 +25,25 @@ export interface subProductType {
 
 const { ObjectId } = mongoose.Schema;
 
+export type reviewsType = {
+  reviewBy: string;
+  rating: string;
+  review: string;
+  size: string;
+  style: {
+    color: string;
+    image: string;
+  };
+  fit: string;
+  images: {
+    url: string;
+    public_url: string;
+  }[];
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export interface ProductType {
   _id: string;
   name: string;
@@ -43,24 +62,7 @@ export interface ProductType {
   numReviews: number;
   rating: number;
   refundPolicy: string;
-  reviews: {
-    reviewBy: string;
-    rating: string;
-    review: string;
-    size: string;
-    style: {
-      color: string;
-      image: string;
-    };
-    fit: string;
-    images: {
-      url: string;
-      public_url: string;
-    }[];
-    _id: string;
-    createdAt: string;
-    updatedAt: string;
-  }[];
+  reviews: reviewsType[];
   shipping: string;
 }
 

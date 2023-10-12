@@ -14,7 +14,7 @@ import {
 
 import Input from "./Input";
 import Modal from "./Modal";
-import Button from "../Button";
+import Button from "../reusable/Button";
 import { forgotValidation } from "./schemas";
 import useBodyOverflow from "@/hooks/useBodyOverflow";
 import { RootState } from "@/store/store";
@@ -127,9 +127,7 @@ const ForgotModal = () => {
                 "
               >
                 <BsFillArrowLeftCircleFill />
-                <span onClick={handleGoBack}>
-                  Go back
-                </span>
+                <span onClick={handleGoBack}>Go back</span>
               </div>
             </div>
           </Form>

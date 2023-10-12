@@ -1,4 +1,4 @@
-import Container from "@/components/Container";
+import Container from "@/components/reusable/Container";
 import ResetForm from "./ResetForm";
 import jwt from "jsonwebtoken";
 import { getServerSession } from "next-auth/next";

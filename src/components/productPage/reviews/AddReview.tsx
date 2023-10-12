@@ -6,7 +6,7 @@ import { useState } from "react";
 import { CustomProductType } from "@/app/product/[slug]/page";
 
 import Select, { styleType } from "./Select";
-import Button from "@/components/Button";
+import Button from "@/components/reusable/Button";
 
 import Rating from "@mui/material/Rating";
 import UploadImage from "./UploadImage";

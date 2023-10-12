@@ -1,4 +1,4 @@
-import Container from "@/components/Container";
+import Container from "@/components/reusable/Container";
 import ProductBanner from "../../products/ProductBanner";
 import { NextPage } from "next";
 

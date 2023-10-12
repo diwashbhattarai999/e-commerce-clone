@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/Button";
+import Button from "@/components/reusable/Button";
 import { ProductType as ProductType } from "@/models/Products";
 import Image from "next/image";
 import Link from "next/link";
