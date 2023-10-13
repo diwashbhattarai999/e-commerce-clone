@@ -6,6 +6,7 @@ const nextConfig = {
       "img.ltwebstatic.com",
       "lh3.googleusercontent.com",
       "pbs.twimg.com",
+      "avatars.githubusercontent.com",
     ],
   },
 };
