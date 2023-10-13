@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { reviewsType } from "@/models/Products";
 import usePagination from "@/hooks/usePagination";
-import { Pagination } from "@mui/material";
+import Pagination from "@/components/reusable/Pagination";
 
 interface TableProps {
   reviews: reviewsType[] | undefined;
@@ -16,7 +16,7 @@ const Table: React.FC<TableProps> = ({ reviews }) => {
   const count = reviews ? Math.ceil(reviews.length / PER_PAGE) : 0;
   const _DATA = usePagination(reviews, PER_PAGE);
 
-  const handleChange = (e, p: number) => {
+  const handleChange = (p: number) => {
     setPage(p);
     _DATA.jump(p);
   };
@@ -31,11 +31,9 @@ const Table: React.FC<TableProps> = ({ reviews }) => {
         </div>
         <div>
           <Pagination
-            count={count}
-            page={page}
-            variant="text"
-            shape="rounded"
-            onChange={handleChange}
+            currentPage={page}
+            maxPage={count}
+            onPageChange={handleChange}
           />
         </div>
       </div>

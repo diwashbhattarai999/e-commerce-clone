@@ -70,6 +70,7 @@ const MainSwiper: React.FC<MainSwiperProps> = ({ images, activeImg }) => {
           icon={BsFillCartPlusFill}
           full
           rounded="md"
+          normal
         />
         <Button
           buttonText="Add to wishlist"
@@ -77,6 +78,7 @@ const MainSwiper: React.FC<MainSwiperProps> = ({ images, activeImg }) => {
           full
           secondary
           rounded="md"
+
         />
       </div>
     </div>

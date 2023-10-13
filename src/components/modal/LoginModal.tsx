@@ -116,7 +116,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ providers }) => {
                   errors={errors}
                   touched={touched}
                 />
-                <Button buttonText="Login" full />
+                <Button buttonText="Login" full normal/>
               </Form>
             )}
           </Formik>

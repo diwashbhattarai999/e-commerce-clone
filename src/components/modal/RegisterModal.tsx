@@ -139,7 +139,7 @@ const RegisterModal = () => {
               errors={errors}
               touched={touched}
             />
-            <Button buttonText="Create an Account" />
+            <Button buttonText="Create an Account" normal/>
           </Form>
         )}
       </Formik>

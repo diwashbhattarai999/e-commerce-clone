@@ -97,7 +97,7 @@ const ProductCardInfo: React.FC<ProductCardInfoProps> = ({
               )}
           </div>
         )}
-        <Button buttonText={buttonText} full icon={icon} />
+        <Button buttonText={buttonText} full icon={icon} normal/>
       </div>
     </>
   );

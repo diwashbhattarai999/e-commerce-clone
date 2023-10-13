@@ -71,6 +71,7 @@ const Reviews: React.FC<ReviewsProps> = ({ product }) => {
             buttonText="Login In to add review"
             rounded="md"
             full
+            normal
             onClick={() => {
               dispatch(toggleFeature({ featureName: "signIn" }));
             }}

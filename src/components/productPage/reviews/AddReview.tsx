@@ -83,7 +83,7 @@ const AddReview: React.FC<AddReviewProps> = ({ product }) => {
         />
       </div>
 
-      <Button buttonText="Submit Review" full rounded="md" />
+      <Button buttonText="Submit Review" full rounded="md" normal />
     </div>
   );
 };

@@ -173,7 +173,7 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
         <div className="flex gap-2 items-center justify-center border rounded-full px-2">
           <Button
             icon={TbPlus}
-            outline
+            small
             center
             onClick={() =>
               product?.quantity &&
@@ -181,10 +181,10 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
               setQty((prev) => prev + 1)
             }
           />
-          <span className="my-2 px-4 py-1">{qty}</span>
+          <span className="my-[2px] px-4 py-1">{qty}</span>
           <Button
             icon={TbMinus}
-            outline
+            small
             center
             onClick={() => qty > 1 && setQty((prev) => prev - 1)}
           />

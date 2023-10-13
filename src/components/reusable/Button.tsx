@@ -8,9 +8,12 @@ interface ButtonProps {
   error?: boolean;
   icon?: IconType;
   outline?: boolean;
+  small?: boolean;
+  normal?: boolean;
   secondary?: boolean;
   onClick?: () => void;
   rounded?: string;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,37 +23,44 @@ const Button: React.FC<ButtonProps> = ({
   error,
   icon: Icon,
   outline,
+  small,
+  normal,
   secondary,
   onClick,
   rounded,
+  disabled,
 }) => {
   return (
     <div
-      className={`my-2 ${center && "text-center"} ${full && "w-full"}`}
+      className={`${small ? "my-0" : "my-2"} ${center && "text-center"} ${
+        full && "w-full"
+      }`}
       onClick={onClick}
     >
       <button
         type="submit"
         className={`
-            ${full && "w-full"}
-            ${error && "cursor-not-allowed"}
-            ${Icon && "flex justify-between items-center"}
+            ${full ? "w-full" : ""}
+            ${error ? "cursor-not-allowed" : ""}
+            ${disabled ? "pointer-events-none text-gray-300" : ""}
+            ${Icon ? "flex justify-between items-center p-1" : ""}
             ${
-              outline
-                ? "py-1 px-2 justify-center"
-                : "text-white bg-accent-color px-5 py-3 min-h-[40px]"
+              outline ? "py-1 px-2 border border-solid border-accent-color" : ""
             }
+            ${small ? "py-1 px-2" : ""}
+            ${normal ? "text-white bg-accent-color px-5 py-3 min-h-[40px]" : ""}
             ${
               secondary
-                ? "bg-secondary-color hover:bg-primary-color"
-                : "hover:bg-secondary-color"
+                ? "text-white bg-secondary-color hover:bg-primary-color px-5 py-3 min-h-[40px]"
+                : "hover:bg-secondary-color "
             }
             ${rounded ? `rounded-${rounded}` : "rounded-full"}
+            hover:text-white
             text-base
             tracking-[0.01em]
-            hover:text-white
             transition duration-500
-          `}
+        `}
+        disabled={disabled}
       >
         {buttonText}
         {Icon && <Icon size={22} />}

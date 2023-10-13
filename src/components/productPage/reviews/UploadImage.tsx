@@ -73,6 +73,7 @@ const UploadImage: React.FC<UploadImageProps> = ({ images, setImages }) => {
         <Button
           buttonText="Add Images"
           rounded="md"
+          normal
           onClick={() => inputRef.current?.click()}
         />
       </div>

@@ -118,7 +118,7 @@ const ForgotModal = () => {
               touched={touched}
             /> */}
             <div className="flex items-center gap-4">
-              <Button buttonText="Submit" />
+              <Button buttonText="Submit" normal/>
               <div
                 className="
                   flex items-center justify-center gap-1 
