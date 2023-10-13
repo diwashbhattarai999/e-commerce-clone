@@ -42,7 +42,11 @@ const Button: React.FC<ButtonProps> = ({
         className={`
             ${full ? "w-full" : ""}
             ${error ? "cursor-not-allowed" : ""}
-            ${disabled ? "pointer-events-none text-gray-300" : ""}
+            ${
+              disabled
+                ? "pointer-events-none text-gray-300 border-gray-300"
+                : ""
+            }
             ${Icon ? "flex justify-between items-center p-1" : ""}
             ${
               outline ? "py-1 px-2 border border-solid border-accent-color" : ""

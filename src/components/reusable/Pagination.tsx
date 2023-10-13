@@ -31,6 +31,7 @@ const Pagination: React.FC<PaginationProps> = ({
         onClick={() => onPageChange(pageNumber)}
         rounded="sm"
         outline
+        disabled={currentPage === pageNumber}
       />
     ));
   };
