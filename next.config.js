@@ -5,6 +5,7 @@ const nextConfig = {
       "res.cloudinary.com",
       "img.ltwebstatic.com",
       "lh3.googleusercontent.com",
+      "pbs.twimg.com",
     ],
   },
 };
