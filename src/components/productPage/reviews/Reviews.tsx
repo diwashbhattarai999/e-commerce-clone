@@ -49,7 +49,7 @@ const Reviews: React.FC<ReviewsProps> = ({ product }) => {
             >
               <Star rating={5 - index} readonly gap={3} />
               <div className="flex items-center gap-2">
-                <div className="h-[5px] w-[50vw] tablet:w-[20vw] bg-gray-200 relative rounded-md">
+                <div className="h-[5px] w-[40vw] tablet:w-[20vw] bg-gray-200 relative rounded-md">
                   <span
                     className={`bg-orange-600 h-full absolute left-0`}
                     style={{ width: `${rating.percentage}%` }}

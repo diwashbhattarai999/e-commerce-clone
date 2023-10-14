@@ -31,13 +31,12 @@ async function connectDB() {
   }
 
   if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    };
+    const opts = {};
 
     cached.promise = connect(MONGODB_URI!, opts)
       .then((mongoose) => {
         console.log("✅ New connection established");
+        cached.conn = mongoose;
         return mongoose;
       })
       .catch((error) => {
@@ -47,7 +46,7 @@ async function connectDB() {
   }
 
   try {
-    cached.conn = await cached.promise;
+    await cached.promise;
   } catch (e) {
     cached.promise = null;
     throw e;

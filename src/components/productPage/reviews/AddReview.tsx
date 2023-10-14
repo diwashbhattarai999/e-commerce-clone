@@ -27,7 +27,7 @@ const AddReview: React.FC<AddReviewProps> = ({ product }) => {
 
   return (
     <div className="flex flex-col gap-4 bg-base-background-color p-5 tablet:p-10 rounded-md">
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         {/* Size */}
         <Select
           property={size}

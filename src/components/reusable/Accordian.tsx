@@ -30,9 +30,11 @@ const AccordianSection: React.FC<AccordianSectionProps> = ({
           className="flex justify-between items-center cursor-pointer"
           onClick={toggleAccordion}
         >
-          <h1 className="text-xl font-bold text-primary-color">{title}</h1>
+          <h1 className="text-base mobile:text-lg tablet:text-xl font-semibold tablet:font-bold text-primary-color">
+            {title}
+          </h1>
           <IoIosArrowDown
-            size={22}
+            size={20}
             className={`${
               isOpen ? "transform rotate-180" : ""
             } transition-transform duration-500 ease-in-out`}
@@ -48,16 +50,18 @@ const AccordianSection: React.FC<AccordianSectionProps> = ({
 
       <div
         className={`${
-          isOpen ? "max-h-[320px] opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
         } pb-2 transition-all duration-700 ease-in-out overflow-hidden`}
       >
         {details && (
           <>
-            <h1 className="text-lg font-semibold">{details[0]}</h1>
+            <h1 className="text-sm mobile:text-base tablet:text-lg font-semibold">
+              {details[0]}
+            </h1>
             <span className="h-[1px] w-full bg-slate-200 my-2 block" />
           </>
         )}
-        <ul className="max-w-[400px]">
+        <ul className="max-w-[400px] text-xs mobile:text-sm tablet:text-base">
           {details &&
             details[1].map((detail) => (
               <li

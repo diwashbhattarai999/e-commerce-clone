@@ -36,10 +36,10 @@ const Select: React.FC<SelectProps> = ({
 
   return (
     <div className="flex items-center gap-3">
-      <h2 className=" font-medium text-base">{selectTitle}</h2>
+      <h2 className=" font-medium text-xs tablet:text-base">{selectTitle}</h2>
       <div className="relative">
         <div
-          className="flex items-center justify-center gap-4 border-2 p-2 min-w-[90px] max-w-[150px] hover:bg-gray-50 rounded-md cursor-pointer font-medium text-lg"
+          className="flex items-center justify-center gap-4 border-2 p-2 min-w-[90px] max-w-[150px] hover:bg-gray-50 rounded-md cursor-pointer font-medium text-sm tablet:text-lg"
           onMouseOver={() => setVisible(true)}
           onMouseLeave={() => setVisible(false)}
           style={{

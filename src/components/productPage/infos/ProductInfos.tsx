@@ -193,12 +193,19 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
 
       {/* actions */}
       <div className="flex flex-wrap gap-4 tablet:hidden mt-6">
-        <Button buttonText="Add to Cart" icon={BsFillCartPlusFill} full />
+        <Button
+          buttonText="Add to Cart"
+          icon={BsFillCartPlusFill}
+          full
+          normal
+          rounded="md"
+        />
         <Button
           buttonText="Add to wishlist"
           icon={AiOutlineHeart}
           full
           secondary
+          rounded="md"
         />
       </div>
       <span className="h-[1px] w-full bg-gray-200 my-2" />
@@ -212,9 +219,6 @@ const ProductInfos: React.FC<ProductInfosProps> = ({ product }) => {
 
       {/* Accordian */}
       <Accordian details={details} />
-
-      {/* Similar Products */}
-      {/* <SimilarSwiper /> */}
     </div>
   );
 };

@@ -25,8 +25,32 @@ export interface subProductType {
 
 const { ObjectId } = mongoose.Schema;
 
+export type reviewByType = {
+  name: string;
+  email: string;
+  role: string;
+  image: string;
+  emailVerfied: boolean;
+  defaultPaymentMethod: string;
+  updatedAt: string;
+  _id: string;
+  address: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    address1: string;
+    address2: string;
+    city: string;
+    zipcode: string;
+    state: string;
+    country: string;
+    active: boolean;
+  }[];
+};
+
 export type reviewsType = {
-  reviewBy: string;
+  reviewBy: reviewByType;
   rating: string;
   review: string;
   size: string;
@@ -39,6 +63,7 @@ export type reviewsType = {
     url: string;
     public_url: string;
   }[];
+  likes: { likes: string };
   _id: string;
   createdAt: string;
   updatedAt: string;
