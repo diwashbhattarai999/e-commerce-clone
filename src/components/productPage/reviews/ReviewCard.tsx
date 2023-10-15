@@ -14,7 +14,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   const { name, image } = review.reviewBy;
 
   return (
-    <div className="flex flex-col mobile:flex-row gap-2 mobile:gap-0 justify-between border-b my-2 pt-2 pb-4">
+    <div className="bg-base-background-color  flex flex-col mobile:flex-row gap-2 mobile:gap-0 justify-between border-b rounded-md px-4 py-6 my-2">
       {/* Customer & product review details with product images */}
       <div>
         {/* Customer & product review details */}

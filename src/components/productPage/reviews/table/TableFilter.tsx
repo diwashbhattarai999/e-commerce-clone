@@ -1,28 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 import { IoIosArrowDown } from "react-icons/io";
-
-export type sizeType = {
-  size: string;
-  qty: number;
-  price: number;
-  _id: string;
-};
-
-export type styleType = {
-  color: string;
-  image: string;
-};
+import { orderType, ratingsType } from "./TableHeader";
+import { sizeType, styleType } from "../Select";
+import Image from "next/image";
 
 interface SelectProps {
-  property: string | styleType;
+  property: number | string | styleType;
   selectText: string;
   selectTitle: string;
-  data: (sizeType | styleType | string)[] | undefined;
-  handleClick: (newItem: string | styleType) => void;
+  data: ratingsType[] | sizeType[] | styleType[] | orderType[] | undefined;
+  handleClick: (newItem: any) => void;
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -39,7 +29,7 @@ const Select: React.FC<SelectProps> = ({
       <h2 className=" font-medium text-xs tablet:text-base">{selectTitle}</h2>
       <div className="relative">
         <div
-          className="flex items-center justify-center gap-4 border-2 p-[5px] min-w-[90px] max-w-[150px] hover:bg-gray-50 rounded-md cursor-pointer font-medium text-sm tablet:text-lg"
+          className="flex items-center justify-center gap-4 border-2 p-1 min-w-[90px] max-w-[230px] hover:bg-gray-50 rounded-md cursor-pointer font-medium text-sm tablet:text-lg"
           onMouseOver={() => setVisible(true)}
           onMouseLeave={() => setVisible(false)}
           style={{
@@ -53,10 +43,14 @@ const Select: React.FC<SelectProps> = ({
             }`,
           }}
         >
-          <span className="text-ellipsis overflow-hidden">
-            {selectText == "Size" && typeof property === "string"
+          <span>
+            {(selectText == "Rating" && typeof property === "number") ||
+            (selectText == "Size" && typeof property === "string") ||
+            (selectText == "Order" && typeof property === "string")
               ? property || `Select ${selectText}`
-              : selectText == "Style" && typeof property === "object"
+              : selectText == "Style" &&
+                typeof property === "object" &&
+                property.image
               ? (
                   <Image
                     src={property.image}
@@ -66,8 +60,6 @@ const Select: React.FC<SelectProps> = ({
                     className="rounded-full w-[32px] h-[32px]"
                   />
                 ) || `Select ${selectText}`
-              : selectText == "Fit" && typeof property === "string"
-              ? property || `Select ${selectText}`
               : `Select ${selectText}`}
           </span>
           <IoIosArrowDown />
@@ -87,6 +79,24 @@ const Select: React.FC<SelectProps> = ({
           onMouseLeave={() => setVisible(false)}
         >
           {data?.map((item, index) => {
+            // Rating
+            if (
+              selectText == "Rating" &&
+              typeof item == "object" &&
+              "value" in item
+            ) {
+              return (
+                <li
+                  key={index}
+                  className="hover:bg-gray-200 cursor-pointer p-1 border-b border-gray-100 transition-all duration-300"
+                  onClick={() => handleClick(item.value)}
+                >
+                  {item.text}
+                </li>
+              );
+            }
+
+            // Size
             if (
               selectText == "Size" &&
               typeof item === "object" &&
@@ -97,7 +107,9 @@ const Select: React.FC<SelectProps> = ({
                   key={index}
                   className="hover:bg-gray-200 cursor-pointer p-1 border-b border-gray-100 transition-all duration-300"
                   onClick={() => {
-                    handleClick(item.size);
+                    if (item.size === "All") {
+                      handleClick("");
+                    } else handleClick(item.size);
                   }}
                 >
                   {item.size}
@@ -105,6 +117,7 @@ const Select: React.FC<SelectProps> = ({
               );
             }
 
+            // Style
             if (
               selectText == "Style" &&
               typeof item === "object" &&
@@ -114,28 +127,43 @@ const Select: React.FC<SelectProps> = ({
                 <li
                   key={index}
                   className="flex items-center justify-center hover:opacity-90 cursor-pointer p-1 border-b border-gray-100 rounded-md transition-all duration-300"
-                  style={{ background: `${item.color}` }}
-                  onClick={() => handleClick(item)}
+                  style={{ background: item.image ? `${item.color}` : "" }}
+                  onClick={() => {
+                    if (!item.image) {
+                      handleClick("");
+                    } else handleClick(item);
+                  }}
                 >
-                  <Image
-                    src={item.image}
-                    alt=""
-                    width={30}
-                    height={30}
-                    className="rounded-full w-[32px] h-[32px]"
-                  />
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt=""
+                      width={30}
+                      height={30}
+                      className="rounded-full w-[32px] h-[32px]"
+                    />
+                  ) : (
+                    <span className="bg-slate-50">All Colors</span>
+                  )}
                 </li>
               );
             }
 
-            if (selectText == "Fit" && typeof item == "string") {
+            // Order
+            if (
+              selectText == "Order" &&
+              typeof item === "object" &&
+              "value" in item
+            ) {
               return (
                 <li
                   key={index}
                   className="hover:bg-gray-200 cursor-pointer p-1 border-b border-gray-100 transition-all duration-300"
-                  onClick={() => handleClick(item)}
+                  onClick={() => {
+                    handleClick(item.value);
+                  }}
                 >
-                  {item}
+                  {item.text}
                 </li>
               );
             }

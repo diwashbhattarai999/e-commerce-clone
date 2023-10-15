@@ -9,7 +9,7 @@ import Button from "@/components/reusable/Button";
 import Star from "@/components/reusable/Star";
 import { toggleFeature } from "@/store/slices/featureToggleSlice";
 import AddReview from "./AddReview";
-import Table from "./Table";
+import Table from "./table/Table";
 
 interface ReviewsProps {
   product: CustomProductType | undefined;
@@ -78,7 +78,11 @@ const Reviews: React.FC<ReviewsProps> = ({ product }) => {
           />
         )}
 
-        <Table reviews={product?.reviews} />
+        <Table
+          reviews={product?.reviews}
+          allSizes={product?.allSizes}
+          colors={product?.colors}
+        />
       </div>
     </>
   );
