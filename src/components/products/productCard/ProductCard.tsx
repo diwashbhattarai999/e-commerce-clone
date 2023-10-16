@@ -41,9 +41,9 @@ const ProductCard: React.FC<NewProductCardProps> = ({
   );
 
   useEffect(() => {
-    setImages(product.subProducts[active].images);
+    setImages(product?.subProducts[active]?.images);
     setPrices(
-      product.subProducts[active]?.sizes
+      product?.subProducts[active]?.sizes
         .map((s) => {
           return s.price;
         })
