@@ -30,6 +30,7 @@ const RegisterModal = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
+<<<<<<< HEAD
   const { name, email, password, confirm_password, sucess, error } = user;
 
   const formikInitialValues = {
@@ -38,6 +39,9 @@ const RegisterModal = () => {
     password: password || '',
     confirm_password: confirm_password || '',
   };
+=======
+  const { name, email, password, sucess, error } = user;
+>>>>>>> 34f42bb5f3b8800d6e0a2ff8f1efe6f5a57946bf
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -100,7 +104,11 @@ const RegisterModal = () => {
       )}
       <Formik
         enableReinitialize
+<<<<<<< HEAD
         initialValues={formikInitialValues}
+=======
+        initialValues={user}
+>>>>>>> 34f42bb5f3b8800d6e0a2ff8f1efe6f5a57946bf
         onSubmit={handleSignUp}
         validationSchema={registerValidation}
       >
